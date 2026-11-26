@@ -1,0 +1,62 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "card_mrr",
+  "position": {
+    "x": 1270,
+    "y": 20,
+    "z": 5,
+    "width": 290,
+    "height": 110
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "streamscope vw_pbi_monthly_performance"
+                        }
+                      },
+                      "Property": "estimated_mrr"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "2(streamscope vw_pbi_monthly_performance.estimated_mrr)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Monthly Recurring Revenue (MRR)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

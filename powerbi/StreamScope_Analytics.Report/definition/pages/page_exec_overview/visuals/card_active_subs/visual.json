@@ -1,0 +1,62 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "card_active_subs",
+  "position": {
+    "x": 340,
+    "y": 20,
+    "z": 2,
+    "width": 290,
+    "height": 110
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "streamscope vw_pbi_monthly_performance"
+                        }
+                      },
+                      "Property": "active_subscribers"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "2(streamscope vw_pbi_monthly_performance.active_subscribers)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Active Paid Subscribers'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

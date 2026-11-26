@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "chart_completion_genre",
+  "position": {
+    "x": 1290,
+    "y": 550,
+    "z": 24,
+    "width": 600,
+    "height": 500
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "streamscope vw_pbi_content_dashboard"
+                    }
+                  },
+                  "Property": "genre"
+                }
+              },
+              "queryRef": "streamscope vw_pbi_content_dashboard.genre",
+              "nativeSummaryFunction": 0
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "streamscope vw_pbi_content_dashboard"
+                        }
+                      },
+                      "Property": "avg_completion_percentage"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "1(streamscope vw_pbi_content_dashboard.avg_completion_percentage)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Average Title Completion Rate by Genre'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

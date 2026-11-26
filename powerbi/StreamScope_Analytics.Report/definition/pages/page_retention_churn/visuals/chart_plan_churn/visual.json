@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "chart_plan_churn",
+  "position": {
+    "x": 30,
+    "y": 550,
+    "z": 32,
+    "width": 590,
+    "height": 500
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "streamscope vw_pbi_churn_by_dimension"
+                    }
+                  },
+                  "Property": "plan_name"
+                }
+              },
+              "queryRef": "streamscope vw_pbi_churn_by_dimension.plan_name",
+              "nativeSummaryFunction": 0
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "streamscope vw_pbi_churn_by_dimension"
+                        }
+                      },
+                      "Property": "is_true_churn"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "0(streamscope vw_pbi_churn_by_dimension.is_true_churn)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'True Churn Events by Subscription Plan Tier'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

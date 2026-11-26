@@ -1,0 +1,62 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "card_churn",
+  "position": {
+    "x": 1580,
+    "y": 20,
+    "z": 6,
+    "width": 310,
+    "height": 110
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "streamscope vw_pbi_monthly_performance"
+                        }
+                      },
+                      "Property": "churned_subscribers"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "0(streamscope vw_pbi_monthly_performance.churned_subscribers)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Total Churned Subscribers'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

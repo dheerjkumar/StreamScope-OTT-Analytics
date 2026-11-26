@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "chart_device_share",
+  "position": {
+    "x": 30,
+    "y": 550,
+    "z": 22,
+    "width": 590,
+    "height": 500
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "streamscope v_user_engagement_segments"
+                    }
+                  },
+                  "Property": "preferred_device"
+                }
+              },
+              "queryRef": "streamscope v_user_engagement_segments.preferred_device",
+              "nativeSummaryFunction": 0
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "streamscope v_user_engagement_segments"
+                        }
+                      },
+                      "Property": "user_id"
+                    }
+                  },
+                  "Function": 5
+                }
+              },
+              "queryRef": "5(streamscope v_user_engagement_segments.user_id)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Audience Share by Preferred Streaming Device'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" style="background:#0b1329; font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;">
+  <rect width="1920" height="1080" fill="#0b1329"/>
+  <rect x="0" y="0" width="1920" height="70" fill="#111c38"/>
+  <text x="40" y="44" fill="#f8fafc" font-size="24" font-weight="700">StreamScope</text>
+  <text x="180" y="44" fill="#94a3b8" font-size="16">| Content Catalog &amp; User Engagement Analytics</text>
+
+  <!-- Row 1 -->
+  <!-- Top 10 Titles -->
+  <rect x="40" y="90" width="910" height="460" rx="10" fill="#131e3a" stroke="#1e2d5a" stroke-width="1.5"/>
+  <text x="65" y="125" fill="#f8fafc" font-size="18" font-weight="700">Top 10 Blockbuster Titles by Total Streamed Hours</text>
+  <text x="65" y="145" fill="#94a3b8" font-size="12">Ranked by cumulative watch hours and viewer completion</text>
+
+  <g transform="translate(65, 175)">
+    <!-- 1. Cyber City 2099 -->
+    <text x="0" y="20" fill="#f8fafc" font-size="12" font-weight="600">1. Cyber City 2099</text>
+    <rect x="180" y="6" width="600" height="20" rx="3" fill="#38bdf8"/>
+    <text x="790" y="21" fill="#38bdf8" font-size="12" font-weight="700">6,341 hrs</text>
+
+    <!-- 2. Apex Protocol -->
+    <text x="0" y="55" fill="#f8fafc" font-size="12" font-weight="600">2. Apex Protocol</text>
+    <rect x="180" y="41" width="550" height="20" rx="3" fill="#38bdf8"/>
+    <text x="740" y="56" fill="#38bdf8" font-size="12" font-weight="700">5,820 hrs</text>
+
+    <!-- 3. The Boardroom -->
+    <text x="0" y="90" fill="#f8fafc" font-size="12" font-weight="600">3. The Boardroom</text>
+    <rect x="180" y="76" width="510" height="20" rx="3" fill="#38bdf8"/>
+    <text x="700" y="91" fill="#38bdf8" font-size="12" font-weight="700">5,411 hrs</text>
+
+    <!-- 4. Neon Horizon -->
+    <text x="0" y="125" fill="#f8fafc" font-size="12" font-weight="600">4. Neon Horizon</text>
+    <rect x="180" y="111" width="490" height="20" rx="3" fill="#38bdf8"/>
+    <text x="680" y="126" fill="#38bdf8" font-size="12" font-weight="700">5,230 hrs</text>
+
+    <!-- 5. Office Pandemonium -->
+    <text x="0" y="160" fill="#f8fafc" font-size="12" font-weight="600">5. Office Pandemonium</text>
+    <rect x="180" y="146" width="460" height="20" rx="3" fill="#38bdf8"/>
+    <text x="650" y="161" fill="#38bdf8" font-size="12" font-weight="700">4,890 hrs</text>
+
+    <!-- 6. Summer in Florence -->
+    <text x="0" y="195" fill="#f8fafc" font-size="12" font-weight="600">6. Summer in Florence</text>
+    <rect x="180" y="181" width="420" height="20" rx="3" fill="#38bdf8"/>
+    <text x="610" y="196" fill="#38bdf8" font-size="12" font-weight="700">4,450 hrs</text>
+
+    <!-- 7. Planet Wild: Oceans -->
+    <text x="0" y="230" fill="#f8fafc" font-size="12" font-weight="600">7. Planet Wild: Oceans</text>
+    <rect x="180" y="216" width="390" height="20" rx="3" fill="#38bdf8"/>
+    <text x="580" y="231" fill="#38bdf8" font-size="12" font-weight="700">4,120 hrs</text>
+
+    <!-- 8. The Vanishing Room -->
+    <text x="0" y="265" fill="#f8fafc" font-size="12" font-weight="600">8. The Vanishing Room</text>
+    <rect x="180" y="251" width="370" height="20" rx="3" fill="#38bdf8"/>
+    <text x="560" y="266" fill="#38bdf8" font-size="12" font-weight="700">3,980 hrs</text>
+
+    <!-- 9. Heartstrings -->
+    <text x="0" y="300" fill="#f8fafc" font-size="12" font-weight="600">9. Heartstrings</text>
+    <rect x="180" y="286" width="350" height="20" rx="3" fill="#38bdf8"/>
+    <text x="540" y="301" fill="#38bdf8" font-size="12" font-weight="700">3,760 hrs</text>
+
+    <!-- 10. Silicon Pioneers -->
+    <text x="0" y="335" fill="#f8fafc" font-size="12" font-weight="600">10. Silicon Pioneers</text>
+    <rect x="180" y="321" width="330" height="20" rx="3" fill="#38bdf8"/>
+    <text x="520" y="336" fill="#38bdf8" font-size="12" font-weight="700">3,540 hrs</text>
+  </g>
+
+  <!-- Genre Watch Hours -->
+  <rect x="970" y="90" width="910" height="460" rx="10" fill="#131e3a" stroke="#1e2d5a" stroke-width="1.5"/>
+  <text x="995" y="125" fill="#f8fafc" font-size="18" font-weight="700">Total Streamed Watch Hours by Content Genre</text>
+  <text x="995" y="145" fill="#94a3b8" font-size="12">Viewing demand distribution across catalog categories</text>
+
+  <g transform="translate(1010, 200)">
+    <!-- Column Chart for 8 genres -->
+    <rect x="20" y="50" width="65" height="260" rx="4" fill="#a855f7"/>
+    <text x="52" y="40" fill="#a855f7" font-size="12" font-weight="700" text-anchor="middle">28.4K</text>
+    <text x="52" y="330" fill="#94a3b8" font-size="11" text-anchor="middle">Sci-Fi</text>
+
+    <rect x="120" y="70" width="65" height="240" rx="4" fill="#a855f7"/>
+    <text x="152" y="60" fill="#a855f7" font-size="12" font-weight="700" text-anchor="middle">25.6K</text>
+    <text x="152" y="330" fill="#94a3b8" font-size="11" text-anchor="middle">Action</text>
+
+    <rect x="220" y="100" width="65" height="210" rx="4" fill="#a855f7"/>
+    <text x="252" y="90" fill="#a855f7" font-size="12" font-weight="700" text-anchor="middle">19.8K</text>
+    <text x="252" y="330" fill="#94a3b8" font-size="11" text-anchor="middle">Drama</text>
+
+    <rect x="320" y="120" width="65" height="190" rx="4" fill="#a855f7"/>
+    <text x="352" y="110" fill="#a855f7" font-size="12" font-weight="700" text-anchor="middle">16.2K</text>
+    <text x="352" y="330" fill="#94a3b8" font-size="11" text-anchor="middle">Comedy</text>
+
+    <rect x="420" y="140" width="65" height="170" rx="4" fill="#a855f7"/>
+    <text x="452" y="130" fill="#a855f7" font-size="12" font-weight="700" text-anchor="middle">14.5K</text>
+    <text x="452" y="330" fill="#94a3b8" font-size="11" text-anchor="middle">Thriller</text>
+
+    <rect x="520" y="170" width="65" height="140" rx="4" fill="#a855f7"/>
+    <text x="552" y="160" fill="#a855f7" font-size="12" font-weight="700" text-anchor="middle">10.4K</text>
+    <text x="552" y="330" fill="#94a3b8" font-size="11" text-anchor="middle">Docu</text>
+
+    <rect x="620" y="210" width="65" height="100" rx="4" fill="#a855f7"/>
+    <text x="652" y="200" fill="#a855f7" font-size="12" font-weight="700" text-anchor="middle">6.8K</text>
+    <text x="652" y="330" fill="#94a3b8" font-size="11" text-anchor="middle">Romance</text>
+
+    <rect x="720" y="230" width="65" height="80" rx="4" fill="#a855f7"/>
+    <text x="752" y="220" fill="#a855f7" font-size="12" font-weight="700" text-anchor="middle">4.9K</text>
+    <text x="752" y="330" fill="#94a3b8" font-size="11" text-anchor="middle">Animation</text>
+
+    <line x1="0" y1="310" x2="820" y2="310" stroke="#1e293b" stroke-width="1"/>
+  </g>
+
+  <!-- Row 2 -->
+  <!-- Device Share -->
+  <rect x="40" y="570" width="590" height="470" rx="10" fill="#131e3a" stroke="#1e2d5a" stroke-width="1.5"/>
+  <text x="65" y="605" fill="#f8fafc" font-size="18" font-weight="700">Streaming Sessions by Device</text>
+  <text x="65" y="625" fill="#94a3b8" font-size="12">Hardware preference &amp; playback share</text>
+
+  <g transform="translate(190, 780)">
+    <circle r="95" fill="none" stroke="#1e293b" stroke-width="35"/>
+    <circle r="95" fill="none" stroke="#38bdf8" stroke-width="35" stroke-dasharray="250 597" stroke-dashoffset="0"/>
+    <circle r="95" fill="none" stroke="#10b981" stroke-width="35" stroke-dasharray="190 597" stroke-dashoffset="-250"/>
+    <circle r="95" fill="none" stroke="#f59e0b" stroke-width="35" stroke-dasharray="110 597" stroke-dashoffset="-440"/>
+    <circle r="95" fill="none" stroke="#ec4899" stroke-width="35" stroke-dasharray="47 597" stroke-dashoffset="-550"/>
+    <text x="0" y="8" fill="#f8fafc" font-size="16" font-weight="700" text-anchor="middle">121.8K</text>
+  </g>
+  <g transform="translate(360, 720)" font-size="13">
+    <rect x="0" y="0" width="12" height="12" fill="#38bdf8" rx="2"/>
+    <text x="20" y="11" fill="#f8fafc">Smart TV (42.0%)</text>
+    <rect x="0" y="30" width="12" height="12" fill="#10b981" rx="2"/>
+    <text x="20" y="41" fill="#f8fafc">Mobile App (32.0%)</text>
+    <rect x="0" y="60" width="12" height="12" fill="#f59e0b" rx="2"/>
+    <text x="20" y="71" fill="#f8fafc">Laptop / Web (18.0%)</text>
+    <rect x="0" y="90" width="12" height="12" fill="#ec4899" rx="2"/>
+    <text x="20" y="101" fill="#f8fafc">Tablet (8.0%)</text>
+  </g>
+
+  <!-- Content Type Comparison -->
+  <rect x="650" y="570" width="610" height="470" rx="10" fill="#131e3a" stroke="#1e2d5a" stroke-width="1.5"/>
+  <text x="675" y="605" fill="#f8fafc" font-size="18" font-weight="700">Movies vs Web Series Dynamics</text>
+  <text x="675" y="625" fill="#94a3b8" font-size="12">Unique reach and replay frequency comparison</text>
+  <g transform="translate(720, 680)">
+    <text x="80" y="30" fill="#38bdf8" font-size="16" font-weight="700">Feature Films</text>
+    <rect x="60" y="60" width="120" height="220" rx="6" fill="#38bdf8"/>
+    <text x="120" y="180" fill="#0b1329" font-size="20" font-weight="700" text-anchor="middle">65.2K</text>
+    <text x="120" y="200" fill="#0b1329" font-size="12" text-anchor="middle">Hours</text>
+
+    <text x="320" y="30" fill="#a855f7" font-size="16" font-weight="700">Web Series</text>
+    <rect x="300" y="75" width="120" height="205" rx="6" fill="#a855f7"/>
+    <text x="360" y="180" fill="#ffffff" font-size="20" font-weight="700" text-anchor="middle">61.4K</text>
+    <text x="360" y="200" fill="#ffffff" font-size="12" text-anchor="middle">Hours</text>
+  </g>
+
+  <!-- Completion Rates -->
+  <rect x="1280" y="570" width="600" height="470" rx="10" fill="#131e3a" stroke="#1e2d5a" stroke-width="1.5"/>
+  <text x="1305" y="605" fill="#f8fafc" font-size="18" font-weight="700">Average Completion Rate by Genre</text>
+  <text x="1305" y="625" fill="#94a3b8" font-size="12">Audience retention and content drop-off benchmark</text>
+
+  <g transform="translate(1310, 670)">
+    <text x="0" y="25" fill="#cbd5e1" font-size="12">Drama</text>
+    <rect x="110" y="10" width="370" height="20" rx="3" fill="#10b981"/>
+    <text x="490" y="25" fill="#10b981" font-size="12" font-weight="700">82.4%</text>
+
+    <text x="0" y="65" fill="#cbd5e1" font-size="12">Thriller</text>
+    <rect x="110" y="50" width="360" height="20" rx="3" fill="#10b981"/>
+    <text x="480" y="65" fill="#10b981" font-size="12" font-weight="700">80.2%</text>
+
+    <text x="0" y="105" fill="#cbd5e1" font-size="12">Sci-Fi</text>
+    <rect x="110" y="90" width="350" height="20" rx="3" fill="#38bdf8"/>
+    <text x="470" y="105" fill="#38bdf8" font-size="12" font-weight="700">78.5%</text>
+
+    <text x="0" y="145" fill="#cbd5e1" font-size="12">Action</text>
+    <rect x="110" y="130" width="345" height="20" rx="3" fill="#38bdf8"/>
+    <text x="465" y="145" fill="#38bdf8" font-size="12" font-weight="700">77.1%</text>
+
+    <text x="0" y="185" fill="#cbd5e1" font-size="12">Comedy</text>
+    <rect x="110" y="170" width="330" height="20" rx="3" fill="#f59e0b"/>
+    <text x="450" y="185" fill="#f59e0b" font-size="12" font-weight="700">74.2%</text>
+
+    <text x="0" y="225" fill="#cbd5e1" font-size="12">Documentary</text>
+    <rect x="110" y="210" width="320" height="20" rx="3" fill="#f59e0b"/>
+    <text x="440" y="225" fill="#f59e0b" font-size="12" font-weight="700">71.8%</text>
+
+    <text x="0" y="265" fill="#cbd5e1" font-size="12">Romance</text>
+    <rect x="110" y="250" width="310" height="20" rx="3" fill="#ec4899"/>
+    <text x="430" y="265" fill="#ec4899" font-size="12" font-weight="700">69.5%</text>
+  </g>
+</svg>

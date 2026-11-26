@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StreamScope Power BI Dashboard Suite</title>
+  <style>
+    body { margin: 0; background: #070d1e; color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    header { background: #111c38; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1e293b; }
+    h1 { margin: 0; font-size: 20px; font-weight: 700; color: #38bdf8; }
+    .nav { display: flex; gap: 12px; }
+    button { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; padding: 8px 18px; border-radius: 6px; cursor: pointer; font-size: 14px; font-weight: 600; }
+    button.active, button:hover { background: #38bdf8; color: #0b1329; border-color: #38bdf8; }
+    .viewport { padding: 24px; display: flex; justify-content: center; }
+    .dashboard-container { max-width: 1400px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-radius: 12px; overflow: hidden; border: 1px solid #1e2d5a; }
+    .dashboard-page { display: none; width: 100%; height: auto; }
+    .dashboard-page.active { display: block; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>StreamScope OTT Analytics – Power BI Dashboard Suite</h1>
+    <div class="nav">
+      <button class="active" onclick="showPage('p1', this)">1. Executive Overview</button>
+      <button onclick="showPage('p2', this)">2. Content &amp; Engagement</button>
+      <button onclick="showPage('p3', this)">3. Retention &amp; Churn</button>
+    </div>
+  </header>
+  <div class="viewport">
+    <div class="dashboard-container">
+      <img id="p1" class="dashboard-page active" src="01_executive_overview.svg" alt="Executive Overview">
+      <img id="p2" class="dashboard-page" src="02_content_and_engagement.svg" alt="Content &amp; Engagement">
+      <img id="p3" class="dashboard-page" src="03_retention_and_churn.svg" alt="Retention &amp; Churn">
+    </div>
+  </div>
+  <script>
+    function showPage(id, btn) {
+      document.querySelectorAll('.dashboard-page').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav button').forEach(el => el.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>

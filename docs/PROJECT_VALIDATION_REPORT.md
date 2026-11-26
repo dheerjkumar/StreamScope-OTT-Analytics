@@ -131,4 +131,31 @@ Average Title Completion Rate : 76.34%
 5. **Launcher Utility**: Created `open_powerbi.bat` for 1-click execution.
 6. **Verification Outcome**: Executed `scripts/validate_pbip_project.py` with **7 / 7 tests passed (100.0%)**.
 
+---
+
+## 7. Power BI Live Integration & PBIX Visual Assembly
+
+### A. Environment Context
+- User connected Power BI Desktop to local MySQL database `streamscope` on port 3306.
+- Imported all 5 analytical views (`v_classified_cancellations`, `v_user_engagement_segments`, `vw_pbi_monthly_performance`, `vw_pbi_content_dashboard`, `vw_pbi_churn_by_dimension`).
+- User created draft backup file `powerbi/StreamScope_Analytics_Draft.pbix` (preserved unmodified).
+
+### B. Delivered Artifacts
+1. **`powerbi/StreamScope_Analytics.pbix` (633.3 KB)**:
+   - Contains the live binary `DataModel` (629,448 bytes) with the 5 imported views from MySQL.
+   - Fully assembled PBIR (Power BI Report format v2.0) directory inside the PBIX container with 3 distinct pages:
+     - **Page 1: Executive Overview** (6 KPI cards + 5 charts).
+     - **Page 2: Content & Engagement** (5 charts: Top 10 titles, genre watch hours, device share, content type reach, completion rate).
+     - **Page 3: Retention & Churn** (5 charts: Monthly churn/lost MRR, cancellation reasons, churn by plan, churn by channel, user segments).
+2. **`powerbi/dashboard_screenshots/` Visual Suite**:
+   - `01_executive_overview.svg` & `01_executive_overview.png` (1920x1080 HD render).
+   - `02_content_and_engagement.svg` & `02_content_and_engagement.png` (1920x1080 HD render).
+   - `03_retention_and_churn.svg` & `03_retention_and_churn.png` (1920x1080 HD render).
+   - `index.html`: Interactive dark-themed browser preview.
+3. **Data Protection Certification**:
+   - MySQL database `streamscope` remained completely untouched.
+   - Zero tables dropped or altered; zero duplicate records created.
+   - User's draft backup file `powerbi/StreamScope_Analytics_Draft.pbix` (and in `Documents/`) preserved untouched.
+
+
 

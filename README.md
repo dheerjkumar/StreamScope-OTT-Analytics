@@ -113,10 +113,14 @@ StreamScope-OTT-Analytics/
 │   ├── 12_business_insights.sql               <- Executive KPI scorecard, revenue at risk, speed window
 │   └── 13_create_views.sql                    <- Reporting views for Power BI integration
 ├── powerbi/
+│   ├── StreamScope_Analytics.pbix             <- Standalone Power BI Report with Live DataModel & 3 Visual Pages
+│   ├── StreamScope_Analytics.pbip             <- Source-controlled Power BI Developer Project
+│   ├── StreamScope_Analytics.Report/          <- Multi-page PBIR report layout definitions
+│   ├── StreamScope_Analytics.SemanticModel/   <- Tabular Model Schema (TMSL model.bim)
 │   ├── dashboard_specification.md             <- Visual grid layouts, page designs, and slicer specs
 │   ├── dax_measures.md                        <- Production DAX formulas with mathematical explanations
 │   ├── mysql_connection_guide.md              <- Beginner-friendly MySQL & CSV connection guide
-│   └── dashboard_screenshots/                 <- Visual assets and dashboard wireframes
+│   └── dashboard_screenshots/                 <- High-definition SVG/PNG renders & interactive HTML viewer
 └── docs/
     ├── PROJECT_OVERVIEW.md                    <- Executive project briefing
     ├── DATABASE_DESIGN.md                     <- Schema architecture, ER diagram, 3NF documentation
@@ -171,10 +175,10 @@ mysql -u root -p streamscope < sql\13_create_views.sql
 py scripts\run_analytics_engine.py
 ```
 
-### Step 5: Open Power BI Desktop
-1. Open Power BI Desktop.
-2. Follow `powerbi/mysql_connection_guide.md` to connect to `streamscope` on `localhost:3306` (or import CSVs directly from `data/raw/`).
-3. Add the DAX measures from `powerbi/dax_measures.md` and build the 3 dashboard pages using `powerbi/dashboard_specification.md`.
+### Step 5: Open the Power BI Dashboard
+1. **Direct Report (.pbix)**: Double-click `powerbi/StreamScope_Analytics.pbix` to launch the 3 pre-built pages with full visuals and data model in Power BI Desktop.
+2. **Developer Project (.pbip)**: Double-click `open_powerbi.bat` to launch the PBIP developer project.
+3. **Interactive Browser Preview**: Open `powerbi/dashboard_screenshots/index.html` in any browser to inspect the 3 dashboard pages instantly.
 
 ---
 

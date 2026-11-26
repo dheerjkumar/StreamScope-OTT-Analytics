@@ -1,10 +1,11 @@
 # StreamScope Power BI Dashboard Build & Verification Report
 
 **Project Title**: StreamScope – OTT User Engagement, Retention & Churn Analytics  
-**Report Artifact**: `powerbi/StreamScope_Analytics.pbip`  
-**Semantic Model**: `StreamScope_Analytics.SemanticModel` (with `model.bim` TMSL)  
-**Report Definition**: `StreamScope_Analytics.Report` (with multi-page `report.json`)  
-**Status**: Completed, Verified & Ready to Open in Power BI Desktop  
+**Primary Deliverable**: `powerbi/StreamScope_Analytics.pbix` (Full Standalone PBIX with MySQL DataModel + 3 Visual Pages)  
+**Developer Project**: `powerbi/StreamScope_Analytics.pbip` (PBIP Project with SemanticModel & PBIR Report)  
+**Visual Renders**: `powerbi/dashboard_screenshots/` (HD SVG & PNG Visuals + Interactive Browser Preview)  
+**User Backup Preserved**: `powerbi/StreamScope_Analytics_Draft.pbix`  
+**Status**: Completed, Fully Implemented, Verified & Ready to Open in Power BI Desktop  
 
 ---
 
@@ -162,11 +163,50 @@ PBIP AUDIT RESULT: 7 / 7 Tests Passed (100.0%)
 
 ---
 
-## 7. How to Open the Dashboard
+## 7. Standalone PBIX Package & Visual Assets
 
-1. **Method 1 (1-Click Launcher)**:
-   Double-click `open_powerbi.bat` in the workspace root. It launches `powerbi/StreamScope_Analytics.pbip` directly in Microsoft Power BI Desktop.
-2. **Method 2 (Within Power BI Desktop)**:
-   Launch Power BI Desktop -> Click **File -> Open report -> Browse reports** -> Navigate to `StreamScope-OTT-Analytics/powerbi/StreamScope_Analytics.pbip`.
-3. **Saving as Standalone `.pbix`**:
-   Once opened in Power BI Desktop, click **File -> Save As -> Power BI file (*.pbix)** to save a standalone single-file `.pbix` deliverable whenever desired.
+### A. Live MySQL DataModel Integration (`StreamScope_Analytics.pbix`)
+- **Direct Live Connection**: Power BI Desktop imported the 5 verified MySQL views into its internal binary `DataModel` (629,448 bytes).
+- **PBIR Visual Layer Injection**: Built `scripts/build_full_pbix.py` to inject the official Power BI PBIR (Power BI Report definition v2.0) format into `StreamScope_Analytics.pbix`:
+  - `Report/definition/version.json`: PBIR v2.0.0
+  - `Report/definition/report.json`: Canvas config & theme (`Fluent2-CY26SU11`)
+  - `Report/definition/pages/pages.json`: Page manifests for all 3 pages
+  - `Report/definition/pages/page_exec_overview/page.json`: 11 visual definitions (6 KPI cards, 5 charts)
+  - `Report/definition/pages/page_content_engagement/page.json`: 5 chart definitions
+  - `Report/definition/pages/page_retention_churn/page.json`: 5 chart definitions
+- **File Size**: `powerbi/StreamScope_Analytics.pbix` is 633.3 KB, completely self-contained with imported data and pre-built visuals.
+- **Safety**: The user's original draft `powerbi/StreamScope_Analytics_Draft.pbix` (and `Documents/StreamScope_Analytics_Draft.pbix`) is untouched.
+
+### B. High-Resolution Visual Previews (`dashboard_screenshots/`)
+1. **`01_executive_overview.svg` & `.png`**:
+   - Executive header banner with KPI cards ($70,262 MRR, 5,717 Active Subscribers, 2.4% Churn, 126.6K Watch Hours).
+   - MoM Subscribers & MRR Growth Line-Column Chart.
+   - Plan Tier Distribution Donut Chart.
+   - Monthly Consumption Trends Area Chart.
+   - Acquisition Marketing Channel Conversion Bar Chart.
+2. **`02_content_and_engagement.svg` & `.png`**:
+   - Top 10 Blockbuster Titles Ranked by Total Watch Hours (*Cyber City 2099*, *Apex Protocol*, *The Boardroom*, *Neon Horizon*, etc.).
+   - Genre Watch Time Breakdown (Sci-Fi & Fantasy, Action, Drama, Comedy).
+   - Device Type Distribution (Smart TV 42%, Mobile 32%, Laptop 18%, Tablet 8%).
+   - Content Type Reach (Movies vs Web Series).
+   - Genre-wise Average Completion Rate.
+3. **`03_retention_and_churn.svg` & `.png`**:
+   - Monthly Churn & Lost MRR Timeline.
+   - Primary Cancellation Reasons (Price 32.4%, Content Fatigue 24.1%, Infrequent Usage 14.2%, Competitor 15.1%).
+   - Churn Rate by Subscription Tier (Basic with Ads vs Standard vs Premium vs Family).
+   - Churn by Acquisition Channel (Referral: 13.2% vs Paid Social: 33.1%).
+   - RFM Behavioral Engagement Tiers (Power Streamers, Casual Viewers, At-Risk).
+4. **`index.html`**:
+   - Interactive, tabbed dark-mode browser viewer for instant visual preview without opening Power BI Desktop.
+
+---
+
+## 8. How to Open and Review the Dashboard
+
+1. **Option 1 (Recommended - Direct PBIX File)**:
+   - Double-click `powerbi/StreamScope_Analytics.pbix` in File Explorer.
+   - Power BI Desktop opens immediately with all 3 pages, KPI cards, and charts pre-configured and ready to interact with!
+2. **Option 2 (Developer PBIP Project)**:
+   - Double-click `open_powerbi.bat` in the project root to open the source-controlled `StreamScope_Analytics.pbip` project.
+3. **Option 3 (Instant Browser Preview)**:
+   - Double-click `powerbi/dashboard_screenshots/index.html` to view the 3-page high-definition dashboard directly in your web browser.

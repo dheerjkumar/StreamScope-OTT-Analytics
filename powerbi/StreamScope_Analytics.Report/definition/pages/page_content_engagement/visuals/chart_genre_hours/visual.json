@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "chart_genre_hours",
+  "position": {
+    "x": 970,
+    "y": 30,
+    "z": 21,
+    "width": 920,
+    "height": 500
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "streamscope vw_pbi_content_dashboard"
+                    }
+                  },
+                  "Property": "genre"
+                }
+              },
+              "queryRef": "streamscope vw_pbi_content_dashboard.genre",
+              "nativeSummaryFunction": 0
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "streamscope vw_pbi_content_dashboard"
+                        }
+                      },
+                      "Property": "total_watch_hours"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "0(streamscope vw_pbi_content_dashboard.total_watch_hours)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Total Streamed Watch Hours by Content Genre'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

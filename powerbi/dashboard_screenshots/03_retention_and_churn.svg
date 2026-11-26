@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" style="background:#0b1329; font-family:'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;">
+  <rect width="1920" height="1080" fill="#0b1329"/>
+  <rect x="0" y="0" width="1920" height="70" fill="#111c38"/>
+  <text x="40" y="44" fill="#f8fafc" font-size="24" font-weight="700">StreamScope</text>
+  <text x="180" y="44" fill="#94a3b8" font-size="16">| Customer Retention &amp; Churn Dynamics</text>
+
+  <!-- Row 1 -->
+  <!-- Monthly Churn & Lost MRR -->
+  <rect x="40" y="90" width="910" height="460" rx="10" fill="#131e3a" stroke="#1e2d5a" stroke-width="1.5"/>
+  <text x="65" y="125" fill="#f8fafc" font-size="18" font-weight="700">Monthly Subscriber Churn &amp; Lost Recurring Revenue</text>
+  <text x="65" y="145" fill="#94a3b8" font-size="12">30-day true churn events and lost recurring revenue impact</text>
+
+  <g transform="translate(80, 200)">
+    <line x1="0" y1="280" x2="820" y2="280" stroke="#1e293b" stroke-width="1"/>
+    <!-- Churn Line -->
+    <path d="M 20 220 L 90 210 L 160 200 L 230 190 L 300 180 L 370 165 L 440 150 L 510 135 L 580 120 L 650 105 L 720 90 L 790 75" fill="none" stroke="#f43f5e" stroke-width="3.5"/>
+    <circle cx="790" cy="75" r="5" fill="#f43f5e"/>
+    <text x="760" y="60" fill="#f43f5e" font-size="13" font-weight="700">248 Users ($3,040)</text>
+
+    <!-- Month axis -->
+    <text x="15" y="305" fill="#64748b" font-size="11">Jan</text>
+    <text x="85" y="305" fill="#64748b" font-size="11">Feb</text>
+    <text x="155" y="305" fill="#64748b" font-size="11">Mar</text>
+    <text x="225" y="305" fill="#64748b" font-size="11">Apr</text>
+    <text x="295" y="305" fill="#64748b" font-size="11">May</text>
+    <text x="365" y="305" fill="#64748b" font-size="11">Jun</text>
+    <text x="435" y="305" fill="#64748b" font-size="11">Jul</text>
+    <text x="505" y="305" fill="#64748b" font-size="11">Aug</text>
+    <text x="575" y="305" fill="#64748b" font-size="11">Sep</text>
+    <text x="645" y="305" fill="#64748b" font-size="11">Oct</text>
+    <text x="715" y="305" fill="#64748b" font-size="11">Nov</text>
+    <text x="785" y="305" fill="#64748b" font-size="11">Dec</text>
+  </g>
+
+  <!-- Cancellation Reasons -->
+  <rect x="970" y="90" width="910" height="460" rx="10" fill="#131e3a" stroke="#1e2d5a" stroke-width="1.5"/>
+  <text x="995" y="125" fill="#f8fafc" font-size="18" font-weight="700">Primary Stated Cancellation Reasons</text>
+  <text x="995" y="145" fill="#94a3b8" font-size="12">Pareto analysis of feedback reported during cancellation flow</text>
+
+  <g transform="translate(1005, 185)">
+    <!-- Price too high -->
+    <text x="0" y="25" fill="#f8fafc" font-size="13" font-weight="600">Price too high</text>
+    <rect x="180" y="10" width="550" height="22" rx="4" fill="#f43f5e"/>
+    <text x="740" y="26" fill="#f43f5e" font-size="13" font-weight="700">32.4% ($22.7K lost)</text>
+
+    <!-- Lack of content -->
+    <text x="0" y="70" fill="#f8fafc" font-size="13" font-weight="600">Lack of content</text>
+    <rect x="180" y="55" width="410" height="22" rx="4" fill="#fb923c"/>
+    <text x="600" y="71" fill="#fb923c" font-size="13" font-weight="700">24.1% ($16.9K lost)</text>
+
+    <!-- Switched to competitor -->
+    <text x="0" y="115" fill="#f8fafc" font-size="13" font-weight="600">Switched to competitor</text>
+    <rect x="180" y="100" width="260" height="22" rx="4" fill="#f59e0b"/>
+    <text x="450" y="116" fill="#f59e0b" font-size="13" font-weight="700">15.1% ($10.6K lost)</text>
+
+    <!-- Infrequent usage -->
+    <text x="0" y="160" fill="#f8fafc" font-size="13" font-weight="600">Infrequent usage</text>
+    <rect x="180" y="145" width="240" height="22" rx="4" fill="#eab308"/>
+    <text x="430" y="161" fill="#eab308" font-size="13" font-weight="700">14.2% ($9.9K lost)</text>
+
+    <!-- Technical issues -->
+    <text x="0" y="205" fill="#f8fafc" font-size="13" font-weight="600">Technical issues</text>
+    <rect x="180" y="190" width="150" height="22" rx="4" fill="#64748b"/>
+    <text x="340" y="206" fill="#94a3b8" font-size="13" font-weight="700">8.9% ($6.2K lost)</text>
+
+    <!-- Found alternative -->
+    <text x="0" y="250" fill="#f8fafc" font-size="13" font-weight="600">Found alternative</text>
+    <rect x="180" y="235" width="90" height="22" rx="4" fill="#475569"/>
+    <text x="280" y="251" fill="#94a3b8" font-size="13" font-weight="700">5.3% ($3.7K lost)</text>
+  </g>
+
+  <!-- Row 2 -->
+  <!-- Churn by Plan -->
+  <rect x="40" y="570" width="590" height="470" rx="10" fill="#131e3a" stroke="#1e2d5a" stroke-width="1.5"/>
+  <text x="65" y="605" fill="#f8fafc" font-size="18" font-weight="700">Churn Rate by Subscription Plan</text>
+  <text x="65" y="625" fill="#94a3b8" font-size="12">Vulnerability &amp; pricing elasticity across tiers</text>
+
+  <g transform="translate(65, 680)">
+    <rect x="30" y="50" width="70" height="230" rx="4" fill="#f43f5e"/>
+    <text x="65" y="40" fill="#f43f5e" font-size="13" font-weight="700" text-anchor="middle">38.2%</text>
+    <text x="65" y="305" fill="#94a3b8" font-size="11" text-anchor="middle">Basic Ads</text>
+
+    <rect x="150" y="110" width="70" height="170" rx="4" fill="#fb923c"/>
+    <text x="185" y="100" fill="#fb923c" font-size="13" font-weight="700" text-anchor="middle">26.4%</text>
+    <text x="185" y="305" fill="#94a3b8" font-size="11" text-anchor="middle">Standard</text>
+
+    <rect x="270" y="170" width="70" height="110" rx="4" fill="#38bdf8"/>
+    <text x="305" y="160" fill="#38bdf8" font-size="13" font-weight="700" text-anchor="middle">18.5%</text>
+    <text x="305" y="305" fill="#94a3b8" font-size="11" text-anchor="middle">Premium</text>
+
+    <rect x="390" y="200" width="70" height="80" rx="4" fill="#10b981"/>
+    <text x="425" y="190" fill="#10b981" font-size="13" font-weight="700" text-anchor="middle">14.1%</text>
+    <text x="425" y="305" fill="#94a3b8" font-size="11" text-anchor="middle">Family</text>
+
+    <line x1="10" y1="280" x2="480" y2="280" stroke="#1e293b" stroke-width="1"/>
+  </g>
+
+  <!-- Churn by Channel -->
+  <rect x="650" y="570" width="610" height="470" rx="10" fill="#131e3a" stroke="#1e2d5a" stroke-width="1.5"/>
+  <text x="675" y="605" fill="#f8fafc" font-size="18" font-weight="700">Churn Rate by Acquisition Channel</text>
+  <text x="675" y="625" fill="#94a3b8" font-size="12">Customer durability across marketing origins</text>
+
+  <g transform="translate(675, 680)">
+    <text x="0" y="25" fill="#cbd5e1" font-size="12">Social Media</text>
+    <rect x="130" y="10" width="370" height="20" rx="3" fill="#f43f5e"/>
+    <text x="510" y="25" fill="#f43f5e" font-size="12" font-weight="700">38.4%</text>
+
+    <text x="0" y="70" fill="#cbd5e1" font-size="12">Paid Search</text>
+    <rect x="130" y="55" width="310" height="20" rx="3" fill="#fb923c"/>
+    <text x="450" y="70" fill="#fb923c" font-size="12" font-weight="700">32.6%</text>
+
+    <text x="0" y="115" fill="#cbd5e1" font-size="12">Affiliate</text>
+    <rect x="130" y="100" width="240" height="20" rx="3" fill="#f59e0b"/>
+    <text x="380" y="115" fill="#f59e0b" font-size="12" font-weight="700">25.1%</text>
+
+    <text x="0" y="160" fill="#cbd5e1" font-size="12">Email Campaign</text>
+    <rect x="130" y="145" width="210" height="20" rx="3" fill="#818cf8"/>
+    <text x="350" y="160" fill="#818cf8" font-size="12" font-weight="700">22.4%</text>
+
+    <text x="0" y="205" fill="#cbd5e1" font-size="12">Organic Search</text>
+    <rect x="130" y="190" width="170" height="20" rx="3" fill="#38bdf8"/>
+    <text x="310" y="205" fill="#38bdf8" font-size="12" font-weight="700">17.8%</text>
+
+    <text x="0" y="250" fill="#cbd5e1" font-size="12">Referral</text>
+    <rect x="130" y="235" width="130" height="20" rx="3" fill="#10b981"/>
+    <text x="270" y="250" fill="#10b981" font-size="12" font-weight="700">13.2%</text>
+  </g>
+
+  <!-- User Segments -->
+  <rect x="1280" y="570" width="600" height="470" rx="10" fill="#131e3a" stroke="#1e2d5a" stroke-width="1.5"/>
+  <text x="1305" y="605" fill="#f8fafc" font-size="18" font-weight="700">Audience by Behavioral Engagement Tier</text>
+  <text x="1305" y="625" fill="#94a3b8" font-size="12">RFM behavioral segmentation &amp; churn correlation</text>
+
+  <g transform="translate(1420, 780)">
+    <circle r="95" fill="none" stroke="#1e293b" stroke-width="35"/>
+    <circle r="95" fill="none" stroke="#10b981" stroke-width="35" stroke-dasharray="131 597" stroke-dashoffset="0"/>
+    <circle r="95" fill="none" stroke="#38bdf8" stroke-width="35" stroke-dasharray="215 597" stroke-dashoffset="-131"/>
+    <circle r="95" fill="none" stroke="#f59e0b" stroke-width="35" stroke-dasharray="143 597" stroke-dashoffset="-346"/>
+    <circle r="95" fill="none" stroke="#f43f5e" stroke-width="35" stroke-dasharray="108 597" stroke-dashoffset="-489"/>
+    <text x="0" y="8" fill="#f8fafc" font-size="16" font-weight="700" text-anchor="middle">10,000</text>
+  </g>
+  <g transform="translate(1580, 720)" font-size="13">
+    <rect x="0" y="0" width="12" height="12" fill="#10b981" rx="2"/>
+    <text x="20" y="11" fill="#f8fafc">Power Streamers (22%)</text>
+    <rect x="0" y="30" width="12" height="12" fill="#38bdf8" rx="2"/>
+    <text x="20" y="41" fill="#f8fafc">Casual Regulars (36%)</text>
+    <rect x="0" y="60" width="12" height="12" fill="#f59e0b" rx="2"/>
+    <text x="20" y="71" fill="#f8fafc">Low Engagement (24%)</text>
+    <rect x="0" y="90" width="12" height="12" fill="#f43f5e" rx="2"/>
+    <text x="20" y="101" fill="#f8fafc">Inactive / Dormant (18%)</text>
+  </g>
+</svg>
