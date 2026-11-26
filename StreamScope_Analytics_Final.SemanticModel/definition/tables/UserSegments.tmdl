@@ -1,0 +1,76 @@
+table UserSegments
+	lineageTag: ad06e842-1311-43d4-be55-9b302d1be1e5
+
+	column user_id
+		dataType: int64
+		lineageTag: af0bffae-c9b5-4fa0-8e21-43c6de639287
+		summarizeBy: sum
+		sourceColumn: user_id
+
+	column signup_date
+		dataType: string
+		lineageTag: 54b68be0-10a4-4afa-862e-ca464e9fac68
+		summarizeBy: none
+		sourceColumn: signup_date
+
+	column country
+		dataType: string
+		lineageTag: 4fe25b1b-91e9-43b5-888a-08af49199dd5
+		summarizeBy: none
+		sourceColumn: country
+
+	column acquisition_channel
+		dataType: string
+		lineageTag: 8fe2ec00-af59-4cd2-9a2c-35f1334692db
+		summarizeBy: none
+		sourceColumn: acquisition_channel
+
+	column preferred_device
+		dataType: string
+		lineageTag: 4efdb739-ecc5-434c-8db4-61a640442698
+		summarizeBy: none
+		sourceColumn: preferred_device
+
+	column total_sessions
+		dataType: int64
+		formatString: #,##0
+		lineageTag: e4e02fea-44e5-4c03-b3d4-a0170558cfee
+		summarizeBy: sum
+		sourceColumn: total_sessions
+
+	column total_watch_hours
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: 7455ad05-f64f-4745-b990-e14462dd062e
+		summarizeBy: sum
+		sourceColumn: total_watch_hours
+
+	column avg_completion_pct
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 9e38da4e-74c7-4415-b47b-317e3def9a1e
+		summarizeBy: sum
+		sourceColumn: avg_completion_pct
+
+	column last_streamed_at
+		dataType: string
+		lineageTag: f0ed6a4b-00de-4347-8443-e891221cc488
+		summarizeBy: none
+		sourceColumn: last_streamed_at
+
+	column engagement_segment
+		dataType: string
+		lineageTag: 5ab7748f-9c45-4b1e-97d8-15319ec8b2a9
+		summarizeBy: none
+		sourceColumn: engagement_segment
+
+	partition UserSegments = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Dheeraj Kumar\OneDrive\Desktop\Documents\StreamScope-OTT-Analytics\powerbi\data\user_segments.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{"user_id", Int64.Type}, {"signup_date", type text}, {"country", type text}, {"acquisition_channel", type text}, {"preferred_device", type text}, {"total_sessions", Int64.Type}, {"total_watch_hours", type number}, {"avg_completion_pct", type number}, {"last_streamed_at", type text}, {"engagement_segment", type text}})
+				in
+				    ChangedType
+

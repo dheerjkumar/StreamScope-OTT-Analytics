@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "chart_churn_loss",
   "position": {
     "x": 30,
-    "y": 30,
-    "z": 30,
-    "width": 920,
-    "height": 500
+    "y": 500,
+    "z": 32,
+    "width": 900,
+    "height": 400
   },
   "visual": {
     "visualType": "lineChart",
@@ -19,13 +19,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "streamscope vw_pbi_monthly_performance"
+                      "Entity": "MonthlyPerformance"
                     }
                   },
                   "Property": "calendar_month"
                 }
               },
-              "queryRef": "streamscope vw_pbi_monthly_performance.calendar_month"
+              "queryRef": "MonthlyPerformance.calendar_month"
             }
           ]
         },
@@ -33,39 +33,16 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "streamscope vw_pbi_monthly_performance"
-                        }
-                      },
-                      "Property": "churned_subscribers"
+                    "SourceRef": {
+                      "Entity": "_Measures"
                     }
                   },
-                  "Function": 0
+                  "Property": "True Churned Subscribers"
                 }
               },
-              "queryRef": "0(streamscope vw_pbi_monthly_performance.churned_subscribers)"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "streamscope vw_pbi_monthly_performance"
-                        }
-                      },
-                      "Property": "lost_mrr"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "0(streamscope vw_pbi_monthly_performance.lost_mrr)"
+              "queryRef": "_Measures.True Churned Subscribers"
             }
           ]
         }
@@ -85,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Monthly Churned Subscribers & Lost Recurring Revenue Trend'"
+                  "Value": "'Monthly Churn Trend'"
                 }
               }
             }

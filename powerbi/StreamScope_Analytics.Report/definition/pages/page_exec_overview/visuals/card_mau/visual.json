@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "card_mau",
   "position": {
     "x": 650,
@@ -16,21 +16,16 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "streamscope vw_pbi_monthly_performance"
-                        }
-                      },
-                      "Property": "active_viewers_mau"
+                    "SourceRef": {
+                      "Entity": "_Measures"
                     }
                   },
-                  "Function": 2
+                  "Property": "Monthly Active Viewers (MAU)"
                 }
               },
-              "queryRef": "2(streamscope vw_pbi_monthly_performance.active_viewers_mau)"
+              "queryRef": "_Measures.Monthly Active Viewers (MAU)"
             }
           ]
         }

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "chart_reasons",
+  "position": {
+    "x": 950,
+    "y": 500,
+    "z": 33,
+    "height": 400,
+    "width": 500
+  },
+  "visual": {
+    "visualType": "pieChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ChurnByDimension"
+                    }
+                  },
+                  "Property": "cancellation_reason"
+                }
+              },
+              "queryRef": "ChurnByDimension.cancellation_reason",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "True Churned Subscribers"
+                }
+              },
+              "queryRef": "_Measures.True Churned Subscribers"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cancellation Reasons'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

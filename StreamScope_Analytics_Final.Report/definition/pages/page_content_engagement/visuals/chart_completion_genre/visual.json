@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "chart_completion_genre",
+  "position": {
+    "x": 500,
+    "y": 580,
+    "z": 24,
+    "height": 460,
+    "width": 700
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ContentPerformance"
+                    }
+                  },
+                  "Property": "genre"
+                }
+              },
+              "queryRef": "ContentPerformance.genre",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ContentPerformance"
+                        }
+                      },
+                      "Property": "avg_completion_percentage"
+                    }
+                  },
+                  "Function": 4
+                }
+              },
+              "queryRef": "Agg(ContentPerformance.avg_completion_percentage)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Avg Completion Rate by Genre'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

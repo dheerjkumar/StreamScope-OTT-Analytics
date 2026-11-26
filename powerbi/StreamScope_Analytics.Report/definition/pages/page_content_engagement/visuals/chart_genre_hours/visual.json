@@ -1,15 +1,15 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "chart_genre_hours",
   "position": {
     "x": 970,
-    "y": 30,
-    "z": 21,
+    "y": 100,
+    "z": 22,
     "width": 920,
-    "height": 500
+    "height": 460
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "columnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -19,13 +19,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "streamscope vw_pbi_content_dashboard"
+                      "Entity": "ContentPerformance"
                     }
                   },
                   "Property": "genre"
                 }
               },
-              "queryRef": "streamscope vw_pbi_content_dashboard.genre"
+              "queryRef": "ContentPerformance.genre"
             }
           ]
         },
@@ -38,7 +38,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "streamscope vw_pbi_content_dashboard"
+                          "Entity": "ContentPerformance"
                         }
                       },
                       "Property": "total_watch_hours"
@@ -47,7 +47,7 @@
                   "Function": 0
                 }
               },
-              "queryRef": "0(streamscope vw_pbi_content_dashboard.total_watch_hours)"
+              "queryRef": "Agg(ContentPerformance.total_watch_hours)"
             }
           ]
         }
@@ -67,7 +67,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total Streamed Watch Hours by Content Genre'"
+                  "Value": "'Genre-wise Watch Hours'"
                 }
               }
             }

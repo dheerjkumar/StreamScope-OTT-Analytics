@@ -1,0 +1,58 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "slicer_genre",
+  "position": {
+    "x": 30,
+    "y": 20,
+    "z": 20,
+    "height": 60,
+    "width": 420
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ContentPerformance"
+                    }
+                  },
+                  "Property": "genre"
+                }
+              },
+              "queryRef": "ContentPerformance.genre",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Filter by Genre'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

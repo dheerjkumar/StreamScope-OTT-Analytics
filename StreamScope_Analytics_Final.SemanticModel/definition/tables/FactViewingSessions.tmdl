@@ -1,0 +1,57 @@
+table FactViewingSessions
+	lineageTag: ee05178d-8aa2-429f-9490-c5db835c4b69
+
+	column session_id
+		dataType: int64
+		lineageTag: 912c29ce-fbf6-4848-81e5-68e7a7caeedf
+		summarizeBy: sum
+		sourceColumn: session_id
+
+	column user_id
+		dataType: int64
+		lineageTag: eda0351e-8a03-4875-b582-76ce208e79d2
+		summarizeBy: sum
+		sourceColumn: user_id
+
+	column content_id
+		dataType: int64
+		lineageTag: 204b44fa-1100-4320-92d2-3ed76e8eea93
+		summarizeBy: sum
+		sourceColumn: content_id
+
+	column started_at
+		dataType: string
+		lineageTag: d83d9e58-a4e7-4dfd-b479-adef2d52be47
+		summarizeBy: none
+		sourceColumn: started_at
+
+	column watch_minutes
+		dataType: int64
+		formatString: #,##0
+		lineageTag: e67b93f0-09d4-4d4d-8f2a-13f0bd855be0
+		summarizeBy: sum
+		sourceColumn: watch_minutes
+
+	column completion_percentage
+		dataType: double
+		formatString: 0.0%
+		lineageTag: a62db2da-0bcc-4429-9b30-9590ee08e8d8
+		summarizeBy: sum
+		sourceColumn: completion_percentage
+
+	column device_type
+		dataType: string
+		lineageTag: 5b37eec7-4ab3-4167-b1b2-d767fff683dd
+		summarizeBy: none
+		sourceColumn: device_type
+
+	partition FactViewingSessions = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Dheeraj Kumar\OneDrive\Desktop\Documents\StreamScope-OTT-Analytics\powerbi\data\fact_viewing_sessions.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{"session_id", Int64.Type}, {"user_id", Int64.Type}, {"content_id", Int64.Type}, {"started_at", type text}, {"watch_minutes", Int64.Type}, {"completion_percentage", type number}, {"device_type", type text}})
+				in
+				    ChangedType
+

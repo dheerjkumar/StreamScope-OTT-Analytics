@@ -5,84 +5,93 @@
       {
         "name": "PBI_ProTooling",
         "value": "[\"DevMode\"]"
+      },
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"_Measures\",\"MonthlyPerformance\",\"ContentPerformance\",\"ChurnByDimension\",\"UserSegments\",\"DimUsers\",\"DimPlans\",\"DimContent\",\"FactSubscriptions\",\"FactViewingSessions\"]"
       }
     ],
     "culture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
     "relationships": [
       {
         "name": "rel_subs_users",
         "fromTable": "FactSubscriptions",
         "fromColumn": "user_id",
+        "fromCardinality": "many",
         "toTable": "DimUsers",
         "toColumn": "user_id",
+        "toCardinality": "one",
         "isActive": true,
         "crossFilteringBehavior": "oneDirection",
-        "fromCardinality": "many",
-        "toCardinality": "one",
         "relyOnReferentialIntegrity": true
       },
       {
         "name": "rel_subs_plans",
         "fromTable": "FactSubscriptions",
         "fromColumn": "plan_id",
+        "fromCardinality": "many",
         "toTable": "DimPlans",
         "toColumn": "plan_id",
+        "toCardinality": "one",
         "isActive": true,
         "crossFilteringBehavior": "oneDirection",
-        "fromCardinality": "many",
-        "toCardinality": "one",
         "relyOnReferentialIntegrity": true
       },
       {
         "name": "rel_sess_users",
         "fromTable": "FactViewingSessions",
         "fromColumn": "user_id",
+        "fromCardinality": "many",
         "toTable": "DimUsers",
         "toColumn": "user_id",
+        "toCardinality": "one",
         "isActive": true,
         "crossFilteringBehavior": "oneDirection",
-        "fromCardinality": "many",
-        "toCardinality": "one",
         "relyOnReferentialIntegrity": true
       },
       {
         "name": "rel_sess_content",
         "fromTable": "FactViewingSessions",
         "fromColumn": "content_id",
+        "fromCardinality": "many",
         "toTable": "DimContent",
         "toColumn": "content_id",
+        "toCardinality": "one",
         "isActive": true,
         "crossFilteringBehavior": "oneDirection",
-        "fromCardinality": "many",
-        "toCardinality": "one",
         "relyOnReferentialIntegrity": true
       },
       {
         "name": "rel_churn_users",
         "fromTable": "ChurnByDimension",
         "fromColumn": "user_id",
+        "fromCardinality": "many",
         "toTable": "DimUsers",
         "toColumn": "user_id",
+        "toCardinality": "one",
         "isActive": true,
         "crossFilteringBehavior": "oneDirection",
-        "fromCardinality": "many",
-        "toCardinality": "one",
         "relyOnReferentialIntegrity": true
       },
       {
         "name": "rel_segments_users",
         "fromTable": "UserSegments",
         "fromColumn": "user_id",
+        "fromCardinality": "one",
         "toTable": "DimUsers",
         "toColumn": "user_id",
+        "toCardinality": "one",
         "isActive": true,
         "crossFilteringBehavior": "bothDirections",
-        "fromCardinality": "one",
-        "toCardinality": "one",
         "relyOnReferentialIntegrity": true
       }
     ],
+    "sourceQueryCulture": "en-IN",
     "tables": [
       {
         "name": "_Measures",

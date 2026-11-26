@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
+  "pageOrder": [
+    "page_exec_overview",
+    "page_content_engagement",
+    "page_retention_churn"
+  ],
+  "activePageName": "page_content_engagement"
+}

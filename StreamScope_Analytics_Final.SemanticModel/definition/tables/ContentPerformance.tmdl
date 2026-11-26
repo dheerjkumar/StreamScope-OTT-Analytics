@@ -1,0 +1,79 @@
+table ContentPerformance
+	lineageTag: 27a8acd1-d0b3-4b2c-ad54-af2009530474
+
+	column content_id
+		dataType: int64
+		lineageTag: 48293371-7a93-49d9-be1b-6fa5b2dd0f47
+		summarizeBy: sum
+		sourceColumn: content_id
+
+	column title
+		dataType: string
+		lineageTag: 1c4b3789-102a-4d12-8b4d-b983b7b65326
+		summarizeBy: none
+		sourceColumn: title
+
+	column genre
+		dataType: string
+		lineageTag: daa2661a-fe3d-4b9b-b365-fc1fa408121b
+		summarizeBy: none
+		sourceColumn: genre
+
+	column release_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 8f791291-1496-4bb8-9f77-ecaf6d1fa180
+		summarizeBy: sum
+		sourceColumn: release_year
+
+	column content_type
+		dataType: string
+		lineageTag: b28135d7-39de-4349-b96a-6e5dd6594b6e
+		summarizeBy: none
+		sourceColumn: content_type
+
+	column duration_minutes
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 8f51273f-4069-4a86-b548-317b98909a4c
+		summarizeBy: sum
+		sourceColumn: duration_minutes
+
+	column unique_viewers
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 01430920-38bc-4abe-a86c-cbe429f25dbf
+		summarizeBy: sum
+		sourceColumn: unique_viewers
+
+	column total_plays
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 8508215f-ea31-4310-a753-7dfc37bc2bba
+		summarizeBy: sum
+		sourceColumn: total_plays
+
+	column total_watch_hours
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: c9fc60b3-023d-4bf8-8902-c646cd3ce72f
+		summarizeBy: sum
+		sourceColumn: total_watch_hours
+
+	column avg_completion_percentage
+		dataType: double
+		formatString: 0.0%
+		lineageTag: ec316083-9ead-40e1-9d70-d3924f2bab05
+		summarizeBy: sum
+		sourceColumn: avg_completion_percentage
+
+	partition ContentPerformance = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Dheeraj Kumar\OneDrive\Desktop\Documents\StreamScope-OTT-Analytics\powerbi\data\content_performance.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{"content_id", Int64.Type}, {"title", type text}, {"genre", type text}, {"release_year", Int64.Type}, {"content_type", type text}, {"duration_minutes", Int64.Type}, {"unique_viewers", Int64.Type}, {"total_plays", Int64.Type}, {"total_watch_hours", type number}, {"avg_completion_percentage", type number}})
+				in
+				    ChangedType
+

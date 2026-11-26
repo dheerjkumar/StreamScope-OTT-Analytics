@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "StreamScope_Analytics_Final"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "2737fd1c-bbe8-4d38-9e57-ce1e8206b574"
+  }
+}

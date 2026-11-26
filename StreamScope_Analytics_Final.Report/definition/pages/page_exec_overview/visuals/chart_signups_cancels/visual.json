@@ -1,0 +1,117 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "chart_signups_cancels",
+  "position": {
+    "x": 650,
+    "y": 570,
+    "z": 10,
+    "height": 490,
+    "width": 630
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MonthlyPerformance"
+                    }
+                  },
+                  "Property": "calendar_month"
+                }
+              },
+              "queryRef": "MonthlyPerformance.calendar_month",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MonthlyPerformance"
+                        }
+                      },
+                      "Property": "new_registrations"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Agg(MonthlyPerformance.new_registrations)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Monthly New Registrations'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "41ba59f848650d7be1b2",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MonthlyPerformance"
+              }
+            },
+            "Property": "calendar_month"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f4cd00e97e1f81015dbd",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "MonthlyPerformance"
+                  }
+                },
+                "Property": "new_registrations"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

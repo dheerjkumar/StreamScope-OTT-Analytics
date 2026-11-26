@@ -1,15 +1,15 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "chart_channel_perf",
   "position": {
     "x": 1300,
-    "y": 610,
+    "y": 570,
     "z": 11,
     "width": 590,
-    "height": 440
+    "height": 490
   },
   "visual": {
-    "visualType": "barChart",
+    "visualType": "columnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -19,13 +19,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "streamscope vw_pbi_churn_by_dimension"
+                      "Entity": "DimUsers"
                     }
                   },
                   "Property": "acquisition_channel"
                 }
               },
-              "queryRef": "streamscope vw_pbi_churn_by_dimension.acquisition_channel"
+              "queryRef": "DimUsers.acquisition_channel"
             }
           ]
         },
@@ -33,21 +33,16 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "streamscope vw_pbi_churn_by_dimension"
-                        }
-                      },
-                      "Property": "user_id"
+                    "SourceRef": {
+                      "Entity": "_Measures"
                     }
                   },
-                  "Function": 5
+                  "Property": "Total Registered Users"
                 }
               },
-              "queryRef": "5(streamscope vw_pbi_churn_by_dimension.user_id)"
+              "queryRef": "_Measures.Total Registered Users"
             }
           ]
         }
@@ -67,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Customer Acquisition by Marketing Channel'"
+                  "Value": "'Users by Acquisition Channel'"
                 }
               }
             }

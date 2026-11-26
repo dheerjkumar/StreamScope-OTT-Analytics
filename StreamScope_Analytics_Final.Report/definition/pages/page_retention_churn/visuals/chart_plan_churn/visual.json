@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "chart_plan_churn",
+  "position": {
+    "x": 950,
+    "y": 20,
+    "z": 31,
+    "height": 460,
+    "width": 940
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimPlans"
+                    }
+                  },
+                  "Property": "plan_name"
+                }
+              },
+              "queryRef": "DimPlans.plan_name",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "True Churned Subscribers"
+                }
+              },
+              "queryRef": "_Measures.True Churned Subscribers"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'True Churn by Subscription Plan'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

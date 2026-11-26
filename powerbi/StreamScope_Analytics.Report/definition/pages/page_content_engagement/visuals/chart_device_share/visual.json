@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "chart_device_share",
   "position": {
     "x": 30,
-    "y": 550,
-    "z": 22,
-    "width": 590,
-    "height": 500
+    "y": 580,
+    "z": 23,
+    "width": 450,
+    "height": 460
   },
   "visual": {
     "visualType": "donutChart",
@@ -19,13 +19,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "streamscope v_user_engagement_segments"
+                      "Entity": "FactViewingSessions"
                     }
                   },
-                  "Property": "preferred_device"
+                  "Property": "device_type"
                 }
               },
-              "queryRef": "streamscope v_user_engagement_segments.preferred_device"
+              "queryRef": "FactViewingSessions.device_type"
             }
           ]
         },
@@ -33,21 +33,16 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "streamscope v_user_engagement_segments"
-                        }
-                      },
-                      "Property": "user_id"
+                    "SourceRef": {
+                      "Entity": "_Measures"
                     }
                   },
-                  "Function": 5
+                  "Property": "Total Viewing Sessions"
                 }
               },
-              "queryRef": "5(streamscope v_user_engagement_segments.user_id)"
+              "queryRef": "_Measures.Total Viewing Sessions"
             }
           ]
         }
@@ -67,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Audience Share by Preferred Streaming Device'"
+                  "Value": "'Device-wise Engagement Share'"
                 }
               }
             }

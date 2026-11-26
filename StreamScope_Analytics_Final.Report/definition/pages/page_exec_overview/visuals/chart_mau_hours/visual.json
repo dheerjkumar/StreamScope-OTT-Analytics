@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "chart_mau_hours",
+  "position": {
+    "x": 30,
+    "y": 150,
+    "z": 7,
+    "height": 400,
+    "width": 920
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MonthlyPerformance"
+                    }
+                  },
+                  "Property": "calendar_month"
+                }
+              },
+              "queryRef": "MonthlyPerformance.calendar_month",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Monthly Active Viewers (MAU)"
+                }
+              },
+              "queryRef": "_Measures.Monthly Active Viewers (MAU)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Monthly Active Viewers Trend'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e2c176e7d5065075052e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MonthlyPerformance"
+              }
+            },
+            "Property": "calendar_month"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "025e5b4a656680337cdc",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Monthly Active Viewers (MAU)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

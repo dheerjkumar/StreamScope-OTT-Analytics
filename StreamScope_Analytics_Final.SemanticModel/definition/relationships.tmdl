@@ -1,0 +1,32 @@
+relationship rel_subs_users
+	relyOnReferentialIntegrity
+	fromColumn: FactSubscriptions.user_id
+	toColumn: DimUsers.user_id
+
+relationship rel_subs_plans
+	relyOnReferentialIntegrity
+	fromColumn: FactSubscriptions.plan_id
+	toColumn: DimPlans.plan_id
+
+relationship rel_sess_users
+	relyOnReferentialIntegrity
+	fromColumn: FactViewingSessions.user_id
+	toColumn: DimUsers.user_id
+
+relationship rel_sess_content
+	relyOnReferentialIntegrity
+	fromColumn: FactViewingSessions.content_id
+	toColumn: DimContent.content_id
+
+relationship rel_churn_users
+	relyOnReferentialIntegrity
+	fromColumn: ChurnByDimension.user_id
+	toColumn: DimUsers.user_id
+
+relationship rel_segments_users
+	crossFilteringBehavior: bothDirections
+	relyOnReferentialIntegrity
+	fromCardinality: one
+	fromColumn: UserSegments.user_id
+	toColumn: DimUsers.user_id
+

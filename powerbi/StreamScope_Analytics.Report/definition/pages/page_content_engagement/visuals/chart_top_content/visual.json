@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "chart_top_content",
   "position": {
     "x": 30,
-    "y": 30,
-    "z": 20,
+    "y": 100,
+    "z": 21,
     "width": 920,
-    "height": 500
+    "height": 460
   },
   "visual": {
     "visualType": "barChart",
@@ -19,13 +19,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "streamscope vw_pbi_content_dashboard"
+                      "Entity": "ContentPerformance"
                     }
                   },
                   "Property": "title"
                 }
               },
-              "queryRef": "streamscope vw_pbi_content_dashboard.title"
+              "queryRef": "ContentPerformance.title"
             }
           ]
         },
@@ -38,7 +38,7 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "streamscope vw_pbi_content_dashboard"
+                          "Entity": "ContentPerformance"
                         }
                       },
                       "Property": "total_watch_hours"
@@ -47,7 +47,7 @@
                   "Function": 0
                 }
               },
-              "queryRef": "0(streamscope vw_pbi_content_dashboard.total_watch_hours)"
+              "queryRef": "Agg(ContentPerformance.total_watch_hours)"
             }
           ]
         }
@@ -67,7 +67,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Top Blockbuster Titles by Total Streamed Hours'"
+                  "Value": "'Top Titles by Total Streamed Hours'"
                 }
               }
             }

@@ -1,0 +1,68 @@
+table FactSubscriptions
+	lineageTag: d37837c4-bf52-4078-a740-69404c649aab
+
+	column subscription_id
+		dataType: int64
+		lineageTag: f84b80d1-8321-4457-a5d0-aa7b7923878d
+		summarizeBy: sum
+		sourceColumn: subscription_id
+
+	column user_id
+		dataType: int64
+		lineageTag: 8692b541-0cd2-4c51-8cc7-e375b5fe135f
+		summarizeBy: sum
+		sourceColumn: user_id
+
+	column plan_id
+		dataType: int64
+		lineageTag: 18a47a27-2dd2-4b63-ae4c-c2c3157d8305
+		summarizeBy: sum
+		sourceColumn: plan_id
+
+	column start_date
+		dataType: string
+		lineageTag: 8327937c-722b-4475-9e2f-cbce64d096a6
+		summarizeBy: none
+		sourceColumn: start_date
+
+	column end_date
+		dataType: string
+		lineageTag: 07d3b8a7-5c80-4503-b0e8-f87b1c28a3bd
+		summarizeBy: none
+		sourceColumn: end_date
+
+	column status
+		dataType: string
+		lineageTag: f9badbce-ac34-4d6a-8a6c-def361cbdedb
+		summarizeBy: none
+		sourceColumn: status
+
+	column billing_cycle
+		dataType: string
+		lineageTag: 7d9e7e0d-5ac6-4bab-95ce-3bfac51cd622
+		summarizeBy: none
+		sourceColumn: billing_cycle
+
+	column monthly_fee
+		dataType: double
+		formatString: $#,##0.00
+		lineageTag: 900d4f68-e706-4da0-99f9-058d280722e7
+		summarizeBy: sum
+		sourceColumn: monthly_fee
+
+	column cancellation_reason
+		dataType: string
+		lineageTag: af3198cc-370b-4320-8913-3f80011fbbfb
+		summarizeBy: none
+		sourceColumn: cancellation_reason
+
+	partition FactSubscriptions = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Dheeraj Kumar\OneDrive\Desktop\Documents\StreamScope-OTT-Analytics\powerbi\data\fact_subscriptions.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{"subscription_id", Int64.Type}, {"user_id", Int64.Type}, {"plan_id", Int64.Type}, {"start_date", type text}, {"end_date", type text}, {"status", type text}, {"billing_cycle", type text}, {"monthly_fee", type number}, {"cancellation_reason", type text}})
+				in
+				    ChangedType
+

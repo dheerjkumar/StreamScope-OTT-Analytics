@@ -1,0 +1,51 @@
+table DimContent
+	lineageTag: 6893f897-4a1d-46d3-8f35-b781a7184d0b
+
+	column content_id
+		dataType: int64
+		lineageTag: e6004c51-5ce6-4ca3-a510-322259c55ffa
+		summarizeBy: sum
+		sourceColumn: content_id
+
+	column title
+		dataType: string
+		lineageTag: 8f9cf27e-0bf6-4d23-bcd7-8e5a712d716c
+		summarizeBy: none
+		sourceColumn: title
+
+	column genre
+		dataType: string
+		lineageTag: 40da6121-dae5-46f1-bd5d-7de58bf68291
+		summarizeBy: none
+		sourceColumn: genre
+
+	column release_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c757aae-c657-4af5-9ec4-d219a4ed7ee1
+		summarizeBy: sum
+		sourceColumn: release_year
+
+	column content_type
+		dataType: string
+		lineageTag: 69273cb7-66d0-41c9-a814-08c1ceeac9d3
+		summarizeBy: none
+		sourceColumn: content_type
+
+	column duration_minutes
+		dataType: int64
+		formatString: #,##0
+		lineageTag: e3d7b7d7-03a1-4a69-80db-9d292b4c6952
+		summarizeBy: sum
+		sourceColumn: duration_minutes
+
+	partition DimContent = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Dheeraj Kumar\OneDrive\Desktop\Documents\StreamScope-OTT-Analytics\powerbi\data\dim_content.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{"content_id", Int64.Type}, {"title", type text}, {"genre", type text}, {"release_year", Int64.Type}, {"content_type", type text}, {"duration_minutes", Int64.Type}})
+				in
+				    ChangedType
+

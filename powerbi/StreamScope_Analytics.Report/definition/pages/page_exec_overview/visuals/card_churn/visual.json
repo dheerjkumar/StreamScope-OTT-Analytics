@@ -1,11 +1,11 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "card_churn",
   "position": {
     "x": 1580,
     "y": 20,
     "z": 6,
-    "width": 310,
+    "width": 290,
     "height": 110
   },
   "visual": {
@@ -16,21 +16,16 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "streamscope vw_pbi_monthly_performance"
-                        }
-                      },
-                      "Property": "churned_subscribers"
+                    "SourceRef": {
+                      "Entity": "_Measures"
                     }
                   },
-                  "Function": 0
+                  "Property": "Monthly Churn Rate %"
                 }
               },
-              "queryRef": "0(streamscope vw_pbi_monthly_performance.churned_subscribers)"
+              "queryRef": "_Measures.Monthly Churn Rate %"
             }
           ]
         }
@@ -50,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Total Churned Subscribers'"
+                  "Value": "'Monthly Churn Rate'"
                 }
               }
             }

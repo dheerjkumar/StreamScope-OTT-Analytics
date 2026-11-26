@@ -1,12 +1,12 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "chart_plan_dist",
   "position": {
     "x": 30,
-    "y": 610,
+    "y": 570,
     "z": 9,
     "width": 600,
-    "height": 440
+    "height": 490
   },
   "visual": {
     "visualType": "donutChart",
@@ -19,13 +19,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "streamscope vw_pbi_churn_by_dimension"
+                      "Entity": "DimPlans"
                     }
                   },
                   "Property": "plan_name"
                 }
               },
-              "queryRef": "streamscope vw_pbi_churn_by_dimension.plan_name"
+              "queryRef": "DimPlans.plan_name"
             }
           ]
         },
@@ -33,21 +33,16 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "streamscope vw_pbi_churn_by_dimension"
-                        }
-                      },
-                      "Property": "subscription_id"
+                    "SourceRef": {
+                      "Entity": "_Measures"
                     }
                   },
-                  "Function": 5
+                  "Property": "Active Paid Subscribers"
                 }
               },
-              "queryRef": "5(streamscope vw_pbi_churn_by_dimension.subscription_id)"
+              "queryRef": "_Measures.Active Paid Subscribers"
             }
           ]
         }
@@ -67,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Subscribers by Subscription Plan Tier'"
+                  "Value": "'Subscription Plan Distribution'"
                 }
               }
             }

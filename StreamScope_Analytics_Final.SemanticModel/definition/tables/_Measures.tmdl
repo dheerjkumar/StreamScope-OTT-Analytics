@@ -1,0 +1,93 @@
+table _Measures
+	lineageTag: fe1b2880-9ca7-49b0-bc50-bde1f9db9dbe
+
+	/// Total cumulative customer accounts registered.
+	measure 'Total Registered Users' = DISTINCTCOUNT(DimUsers[user_id])
+		formatString: #,##0
+		lineageTag: 4b9ae599-cccd-4762-af3e-e3e86fe11f9e
+
+	/// Unique users who purchased at least one paid subscription.
+	measure 'Converted Paying Subscribers' = CALCULATE(DISTINCTCOUNT(FactSubscriptions[user_id]), FactSubscriptions[status] IN {"Active", "Canceled"})
+		formatString: #,##0
+		lineageTag: 0fcbe718-bd43-4f63-a854-e20f8b61986c
+
+	/// Percentage of registered accounts converting to paying subscribers.
+	measure 'Conversion Rate %' = DIVIDE([Converted Paying Subscribers], [Total Registered Users], 0) * 100
+		formatString: 0.0%
+		lineageTag: bc0332d4-bb4c-41bd-8223-6bcf8c01708a
+
+	/// Currently active, paying subscribers.
+	measure 'Active Paid Subscribers' = CALCULATE(DISTINCTCOUNT(FactSubscriptions[user_id]), FactSubscriptions[status] = "Active")
+		formatString: #,##0
+		lineageTag: 1cc8584d-fb94-4d91-8fd7-59d7faa53e7d
+
+	/// Monthly Recurring Revenue run-rate from active subscriptions.
+	measure 'Current MRR' = CALCULATE(SUM(FactSubscriptions[monthly_fee]), FactSubscriptions[status] = "Active")
+		formatString: $#,##0
+		lineageTag: e26a8027-7c25-45a8-9d1c-83291404cb87
+
+	/// Average Revenue Per Paying Subscriber.
+	measure ARPU = DIVIDE([Current MRR], [Active Paid Subscribers], 0)
+		formatString: $#,##0.00
+		lineageTag: ad8308a6-3816-4bcb-a832-949afa6dc576
+
+	/// Cumulative video watch hours across all sessions.
+	measure 'Total Watch Hours' = DIVIDE(SUM(FactViewingSessions[watch_minutes]), 60, 0)
+		formatString: #,##0.0
+		lineageTag: d7149ec7-786c-4e77-9229-6103de913124
+
+	/// Total stream playback sessions.
+	measure 'Total Viewing Sessions' = COUNTROWS(FactViewingSessions)
+		formatString: #,##0
+		lineageTag: 0a0c32ae-7db1-40dc-8c8e-f3c70f51a571
+
+	/// Unique viewers who streamed in the period.
+	measure 'Monthly Active Viewers (MAU)' = DISTINCTCOUNT(FactViewingSessions[user_id])
+		formatString: #,##0
+		lineageTag: 134e82ad-10cf-4bde-8ce9-e8eb81005b68
+
+	/// Average video duration percentage completed.
+	measure 'Platform Completion Rate %' = AVERAGE(FactViewingSessions[completion_percentage])
+		formatString: 0.0%
+		lineageTag: 8e6bf9b6-da02-4bc4-8d56-4c762d8bd99e
+
+	/// Mean watch minutes per active viewer.
+	measure 'Average Watch Time Per Viewer' = DIVIDE(SUM(FactViewingSessions[watch_minutes]), [Monthly Active Viewers (MAU)], 0)
+		formatString: #,##0.0
+		lineageTag: b0acc75a-fb17-497a-a1bd-9acad3d6b48a
+
+	/// Canceled subscribers who did not restart within 30 days.
+	measure 'True Churned Subscribers' = CALCULATE(DISTINCTCOUNT(ChurnByDimension[user_id]), ChurnByDimension[is_true_churn] = 1)
+		formatString: #,##0
+		lineageTag: 490b8147-42da-4659-8826-2882df9eacc3
+
+	/// Proportion of active subscriber base churned.
+	measure 'Monthly Churn Rate %' = DIVIDE([True Churned Subscribers], [Active Paid Subscribers], 0) * 100
+		formatString: 0.0%
+		lineageTag: 6061a997-6b61-4e7d-b36a-dabde25b6785
+
+	/// Complement of monthly churn rate.
+	measure 'Subscriber Retention Rate %' = IF(NOT(ISBLANK([Monthly Churn Rate %])), 100 - [Monthly Churn Rate %], BLANK())
+		formatString: 0.0%
+		lineageTag: b3cf5468-c032-430d-808b-6078b0ef9d7a
+
+	/// Subscribers who returned after >30 days.
+	measure 'Reactivated Subscribers' = CALCULATE(DISTINCTCOUNT(ChurnByDimension[user_id]), ChurnByDimension[is_reactivated] = 1)
+		formatString: #,##0
+		lineageTag: 9142c11b-0d53-4a3c-8f80-edd5776af41a
+
+	column RowId
+		dataType: int64
+		isHidden
+		lineageTag: 25e6ac01-8044-4be1-8659-a759708d26dd
+		sourceColumn: RowId
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMlSKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [RowId = _t]),
+				    ChangedType = Table.TransformColumnTypes(Source,{{"RowId", Int64.Type}})
+				in
+				    ChangedType
+

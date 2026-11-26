@@ -1,15 +1,15 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "chart_subs_mrr",
   "position": {
-    "x": 30,
+    "x": 970,
     "y": 150,
-    "z": 7,
+    "z": 8,
     "width": 920,
-    "height": 440
+    "height": 400
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "lineChart",
     "query": {
       "queryState": {
         "Category": {
@@ -19,13 +19,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "streamscope vw_pbi_monthly_performance"
+                      "Entity": "MonthlyPerformance"
                     }
                   },
                   "Property": "calendar_month"
                 }
               },
-              "queryRef": "streamscope vw_pbi_monthly_performance.calendar_month"
+              "queryRef": "MonthlyPerformance.calendar_month"
             }
           ]
         },
@@ -33,39 +33,16 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "streamscope vw_pbi_monthly_performance"
-                        }
-                      },
-                      "Property": "active_subscribers"
+                    "SourceRef": {
+                      "Entity": "_Measures"
                     }
                   },
-                  "Function": 0
+                  "Property": "Current MRR"
                 }
               },
-              "queryRef": "0(streamscope vw_pbi_monthly_performance.active_subscribers)"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "streamscope vw_pbi_monthly_performance"
-                        }
-                      },
-                      "Property": "estimated_mrr"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "0(streamscope vw_pbi_monthly_performance.estimated_mrr)"
+              "queryRef": "_Measures.Current MRR"
             }
           ]
         }
@@ -85,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Active Subscribers & Monthly Revenue Run-Rate Trend'"
+                  "Value": "'Monthly Revenue (MRR) Trend'"
                 }
               }
             }

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "card_mrr",
   "position": {
     "x": 1270,
@@ -16,21 +16,16 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "streamscope vw_pbi_monthly_performance"
-                        }
-                      },
-                      "Property": "estimated_mrr"
+                    "SourceRef": {
+                      "Entity": "_Measures"
                     }
                   },
-                  "Function": 2
+                  "Property": "Current MRR"
                 }
               },
-              "queryRef": "2(streamscope vw_pbi_monthly_performance.estimated_mrr)"
+              "queryRef": "_Measures.Current MRR"
             }
           ]
         }
@@ -50,7 +45,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Monthly Recurring Revenue (MRR)'"
+                  "Value": "'Estimated MRR'"
                 }
               }
             }

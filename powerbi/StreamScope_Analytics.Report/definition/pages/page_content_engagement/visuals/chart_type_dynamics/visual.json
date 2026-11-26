@@ -1,15 +1,15 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "chart_type_dynamics",
   "position": {
-    "x": 640,
-    "y": 550,
-    "z": 23,
-    "width": 630,
-    "height": 500
+    "x": 1220,
+    "y": 580,
+    "z": 25,
+    "width": 670,
+    "height": 460
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "columnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -19,13 +19,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "streamscope vw_pbi_content_dashboard"
+                      "Entity": "ContentPerformance"
                     }
                   },
                   "Property": "content_type"
                 }
               },
-              "queryRef": "streamscope vw_pbi_content_dashboard.content_type"
+              "queryRef": "ContentPerformance.content_type"
             }
           ]
         },
@@ -38,34 +38,16 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "streamscope vw_pbi_content_dashboard"
+                          "Entity": "ContentPerformance"
                         }
                       },
-                      "Property": "unique_viewers"
+                      "Property": "total_watch_hours"
                     }
                   },
                   "Function": 0
                 }
               },
-              "queryRef": "0(streamscope vw_pbi_content_dashboard.unique_viewers)"
-            },
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "streamscope vw_pbi_content_dashboard"
-                        }
-                      },
-                      "Property": "total_plays"
-                    }
-                  },
-                  "Function": 0
-                }
-              },
-              "queryRef": "0(streamscope vw_pbi_content_dashboard.total_plays)"
+              "queryRef": "Agg(ContentPerformance.total_watch_hours)"
             }
           ]
         }
@@ -85,7 +67,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Unique Viewers & Total Plays by Content Type'"
+                  "Value": "'Watch Hours by Content Type (Movie vs Series)'"
                 }
               }
             }

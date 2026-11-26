@@ -1,15 +1,15 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "chart_reasons",
   "position": {
-    "x": 970,
-    "y": 30,
-    "z": 31,
-    "width": 920,
-    "height": 500
+    "x": 950,
+    "y": 500,
+    "z": 33,
+    "width": 500,
+    "height": 400
   },
   "visual": {
-    "visualType": "barChart",
+    "visualType": "pieChart",
     "query": {
       "queryState": {
         "Category": {
@@ -19,13 +19,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "streamscope vw_pbi_churn_by_dimension"
+                      "Entity": "ChurnByDimension"
                     }
                   },
                   "Property": "cancellation_reason"
                 }
               },
-              "queryRef": "streamscope vw_pbi_churn_by_dimension.cancellation_reason"
+              "queryRef": "ChurnByDimension.cancellation_reason"
             }
           ]
         },
@@ -33,21 +33,16 @@
           "projections": [
             {
               "field": {
-                "Aggregation": {
+                "Measure": {
                   "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "streamscope vw_pbi_churn_by_dimension"
-                        }
-                      },
-                      "Property": "subscription_id"
+                    "SourceRef": {
+                      "Entity": "_Measures"
                     }
                   },
-                  "Function": 5
+                  "Property": "True Churned Subscribers"
                 }
               },
-              "queryRef": "5(streamscope vw_pbi_churn_by_dimension.subscription_id)"
+              "queryRef": "_Measures.True Churned Subscribers"
             }
           ]
         }
@@ -67,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Primary Stated Customer Cancellation Reasons'"
+                  "Value": "'Cancellation Reasons'"
                 }
               }
             }

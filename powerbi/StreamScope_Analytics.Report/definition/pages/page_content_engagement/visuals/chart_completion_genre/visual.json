@@ -1,15 +1,15 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "chart_completion_genre",
   "position": {
-    "x": 1290,
-    "y": 550,
+    "x": 500,
+    "y": 580,
     "z": 24,
-    "width": 600,
-    "height": 500
+    "width": 700,
+    "height": 460
   },
   "visual": {
-    "visualType": "barChart",
+    "visualType": "columnChart",
     "query": {
       "queryState": {
         "Category": {
@@ -19,13 +19,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "streamscope vw_pbi_content_dashboard"
+                      "Entity": "ContentPerformance"
                     }
                   },
                   "Property": "genre"
                 }
               },
-              "queryRef": "streamscope vw_pbi_content_dashboard.genre"
+              "queryRef": "ContentPerformance.genre"
             }
           ]
         },
@@ -38,16 +38,16 @@
                     "Column": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "streamscope vw_pbi_content_dashboard"
+                          "Entity": "ContentPerformance"
                         }
                       },
                       "Property": "avg_completion_percentage"
                     }
                   },
-                  "Function": 1
+                  "Function": 4
                 }
               },
-              "queryRef": "1(streamscope vw_pbi_content_dashboard.avg_completion_percentage)"
+              "queryRef": "Agg(ContentPerformance.avg_completion_percentage)"
             }
           ]
         }
@@ -67,7 +67,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Average Title Completion Rate by Genre'"
+                  "Value": "'Avg Completion Rate by Genre'"
                 }
               }
             }

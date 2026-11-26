@@ -1,0 +1,107 @@
+table ChurnByDimension
+	lineageTag: 260d9d22-beb0-4e55-9cb6-e7291d16c549
+
+	column subscription_id
+		dataType: int64
+		lineageTag: bec32927-1ce9-44ea-9c44-cdc6928c5595
+		summarizeBy: sum
+		sourceColumn: subscription_id
+
+	column user_id
+		dataType: int64
+		lineageTag: 29160633-d5ee-4353-ae92-4a009f28e909
+		summarizeBy: sum
+		sourceColumn: user_id
+
+	column country
+		dataType: string
+		lineageTag: 7a98bfd4-3590-4b1a-a22e-27ce4c5ee4f3
+		summarizeBy: none
+		sourceColumn: country
+
+	column acquisition_channel
+		dataType: string
+		lineageTag: c39b3fdc-583f-4309-beee-26487e60d301
+		summarizeBy: none
+		sourceColumn: acquisition_channel
+
+	column preferred_device
+		dataType: string
+		lineageTag: 49096214-ca95-4f49-84fa-c8dbe3394548
+		summarizeBy: none
+		sourceColumn: preferred_device
+
+	column plan_name
+		dataType: string
+		lineageTag: 47c10257-74a0-4314-80d0-d65861f6b638
+		summarizeBy: none
+		sourceColumn: plan_name
+
+	column monthly_price
+		dataType: double
+		formatString: $#,##0.00
+		lineageTag: 44687695-aa4d-4990-85fb-0ff6fea1d784
+		summarizeBy: sum
+		sourceColumn: monthly_price
+
+	column start_date
+		dataType: string
+		lineageTag: 6aeca711-e0fa-4d64-bdbc-80a5253534d8
+		summarizeBy: none
+		sourceColumn: start_date
+
+	column end_date
+		dataType: string
+		lineageTag: 6b25fd64-4186-42d7-95e1-87ead76d5e4c
+		summarizeBy: none
+		sourceColumn: end_date
+
+	column status
+		dataType: string
+		lineageTag: 3bdc29d5-998a-49e2-a633-e88910b52970
+		summarizeBy: none
+		sourceColumn: status
+
+	column billing_cycle
+		dataType: string
+		lineageTag: 84a825d2-b612-43d7-9e25-95aa3b1e7960
+		summarizeBy: none
+		sourceColumn: billing_cycle
+
+	column monthly_fee
+		dataType: double
+		formatString: $#,##0.00
+		lineageTag: 23c939bb-e3c6-4138-8c1f-e65464be3cb4
+		summarizeBy: sum
+		sourceColumn: monthly_fee
+
+	column cancellation_reason
+		dataType: string
+		lineageTag: 0ebe47a8-73f4-407c-b735-be01b32126ce
+		summarizeBy: none
+		sourceColumn: cancellation_reason
+
+	column is_true_churn
+		dataType: int64
+		formatString: 0
+		lineageTag: 0933a930-d36a-4b52-9a17-07d400d1ce60
+		summarizeBy: sum
+		sourceColumn: is_true_churn
+
+	column is_reactivated
+		dataType: int64
+		formatString: 0
+		lineageTag: 312a83a5-7d35-45a6-a22c-c6a934fc75d2
+		summarizeBy: sum
+		sourceColumn: is_reactivated
+
+	partition ChurnByDimension = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Dheeraj Kumar\OneDrive\Desktop\Documents\StreamScope-OTT-Analytics\powerbi\data\churn_by_dimension.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{"subscription_id", Int64.Type}, {"user_id", Int64.Type}, {"country", type text}, {"acquisition_channel", type text}, {"preferred_device", type text}, {"plan_name", type text}, {"monthly_price", type number}, {"start_date", type text}, {"end_date", type text}, {"status", type text}, {"billing_cycle", type text}, {"monthly_fee", type number}, {"cancellation_reason", type text}, {"is_true_churn", Int64.Type}, {"is_reactivated", Int64.Type}})
+				in
+				    ChangedType
+

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "chart_genre_hours",
+  "position": {
+    "x": 970,
+    "y": 100,
+    "z": 22,
+    "height": 460,
+    "width": 920
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ContentPerformance"
+                    }
+                  },
+                  "Property": "genre"
+                }
+              },
+              "queryRef": "ContentPerformance.genre",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ContentPerformance"
+                        }
+                      },
+                      "Property": "total_watch_hours"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Agg(ContentPerformance.total_watch_hours)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Genre-wise Watch Hours'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

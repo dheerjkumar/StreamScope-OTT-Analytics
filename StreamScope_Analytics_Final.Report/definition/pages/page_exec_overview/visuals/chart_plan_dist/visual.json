@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "chart_plan_dist",
+  "position": {
+    "x": 30,
+    "y": 570,
+    "z": 9,
+    "height": 490,
+    "width": 600
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DimPlans"
+                    }
+                  },
+                  "Property": "plan_name"
+                }
+              },
+              "queryRef": "DimPlans.plan_name",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Active Paid Subscribers"
+                }
+              },
+              "queryRef": "_Measures.Active Paid Subscribers"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Subscription Plan Distribution'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3cdf506518b5291164a0",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DimPlans"
+              }
+            },
+            "Property": "plan_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1962936e31d4c55397df",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Measures"
+              }
+            },
+            "Property": "Active Paid Subscribers"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

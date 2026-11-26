@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "chart_segments",
+  "position": {
+    "x": 1470,
+    "y": 500,
+    "z": 34,
+    "height": 400,
+    "width": 420
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "UserSegments"
+                    }
+                  },
+                  "Property": "engagement_segment"
+                }
+              },
+              "queryRef": "UserSegments.engagement_segment",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Active Paid Subscribers"
+                }
+              },
+              "queryRef": "_Measures.Active Paid Subscribers"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'User Engagement Segments'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

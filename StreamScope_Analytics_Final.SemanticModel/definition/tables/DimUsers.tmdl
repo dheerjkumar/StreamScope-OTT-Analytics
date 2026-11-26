@@ -1,0 +1,49 @@
+table DimUsers
+	lineageTag: 0a123597-a5bd-4046-9230-b914db2d28ef
+
+	column user_id
+		dataType: int64
+		lineageTag: e92fc271-8aac-4919-abe9-22533281a007
+		summarizeBy: sum
+		sourceColumn: user_id
+
+	column signup_date
+		dataType: string
+		lineageTag: 102de08f-97e1-4bd6-8275-c034600b12ca
+		summarizeBy: none
+		sourceColumn: signup_date
+
+	column country
+		dataType: string
+		lineageTag: 88fdb389-ef8e-4d6c-93a6-fd00c2b5b5be
+		summarizeBy: none
+		sourceColumn: country
+
+	column age_group
+		dataType: string
+		lineageTag: 53500bbe-5b10-46f4-80c1-794e6188e014
+		summarizeBy: none
+		sourceColumn: age_group
+
+	column acquisition_channel
+		dataType: string
+		lineageTag: 386c6b79-8978-4118-bd6c-af379d57bcfe
+		summarizeBy: none
+		sourceColumn: acquisition_channel
+
+	column preferred_device
+		dataType: string
+		lineageTag: b999262a-062f-42f5-847a-d45c469e43b0
+		summarizeBy: none
+		sourceColumn: preferred_device
+
+	partition DimUsers = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Dheeraj Kumar\OneDrive\Desktop\Documents\StreamScope-OTT-Analytics\powerbi\data\dim_users.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{"user_id", Int64.Type}, {"signup_date", type text}, {"country", type text}, {"age_group", type text}, {"acquisition_channel", type text}, {"preferred_device", type text}})
+				in
+				    ChangedType
+

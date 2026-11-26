@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
+  "name": "chart_device_share",
+  "position": {
+    "x": 30,
+    "y": 580,
+    "z": 23,
+    "height": 460,
+    "width": 450
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FactViewingSessions"
+                    }
+                  },
+                  "Property": "device_type"
+                }
+              },
+              "queryRef": "FactViewingSessions.device_type",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Total Viewing Sessions"
+                }
+              },
+              "queryRef": "_Measures.Total Viewing Sessions"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Device-wise Engagement Share'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

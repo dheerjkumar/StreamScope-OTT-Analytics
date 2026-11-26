@@ -1,0 +1,75 @@
+table MonthlyPerformance
+	lineageTag: f0c1b89f-2bf3-47cf-ba9a-69dd3e673519
+
+	column calendar_month
+		dataType: string
+		lineageTag: ee6b3bd2-73d7-47b2-bb1a-dec4e27caa86
+		summarizeBy: none
+		sourceColumn: calendar_month
+
+	column new_registrations
+		dataType: int64
+		formatString: #,##0
+		lineageTag: caea6059-900e-4d22-9305-14185af02fef
+		summarizeBy: sum
+		sourceColumn: new_registrations
+
+	column active_subscribers
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 1b5e5424-1fee-4fef-ac2a-3d04bebfb2b9
+		summarizeBy: sum
+		sourceColumn: active_subscribers
+
+	column estimated_mrr
+		dataType: double
+		formatString: $#,##0.00
+		lineageTag: 15a1d444-e418-4279-a3c7-a3d6eff607e1
+		summarizeBy: sum
+		sourceColumn: estimated_mrr
+
+	column active_viewers_mau
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 9a954b6a-5a17-4ad3-ba2e-fe7341859674
+		summarizeBy: sum
+		sourceColumn: active_viewers_mau
+
+	column total_sessions
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 09125751-c3f9-485f-a8f4-05fba6fd6dd4
+		summarizeBy: sum
+		sourceColumn: total_sessions
+
+	column total_watch_hours
+		dataType: double
+		formatString: #,##0.0
+		lineageTag: 5dba6ee4-dab3-4912-9f3d-265c5e1412df
+		summarizeBy: sum
+		sourceColumn: total_watch_hours
+
+	column churned_subscribers
+		dataType: int64
+		formatString: #,##0
+		lineageTag: 159cf498-d218-42a4-b903-a14117344127
+		summarizeBy: sum
+		sourceColumn: churned_subscribers
+
+	column lost_mrr
+		dataType: double
+		formatString: $#,##0.00
+		lineageTag: 212b250c-92bd-4b3e-b0dc-278773fac260
+		summarizeBy: sum
+		sourceColumn: lost_mrr
+
+	partition MonthlyPerformance = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Dheeraj Kumar\OneDrive\Desktop\Documents\StreamScope-OTT-Analytics\powerbi\data\monthly_performance.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{"calendar_month", type text}, {"new_registrations", Int64.Type}, {"active_subscribers", Int64.Type}, {"estimated_mrr", type number}, {"active_viewers_mau", Int64.Type}, {"total_sessions", Int64.Type}, {"total_watch_hours", type number}, {"churned_subscribers", Int64.Type}, {"lost_mrr", type number}})
+				in
+				    ChangedType
+
