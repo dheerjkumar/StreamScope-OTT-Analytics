@@ -25,8 +25,7 @@
                   "Property": "calendar_month"
                 }
               },
-              "queryRef": "streamscope vw_pbi_monthly_performance.calendar_month",
-              "nativeSummaryFunction": 0
+              "queryRef": "streamscope vw_pbi_monthly_performance.calendar_month"
             }
           ]
         },

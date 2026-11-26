@@ -1,7 +1,7 @@
 # StreamScope Project Validation & Verification Report
 
 **Verification Date**: 2026-11-26  
-**Status**: All 22 Verification & Integrity Checks Passed (100.0%) | View Dependency Audit Complete  
+**Status**: All 22 Verification & Integrity Checks Passed (100.0%) | PBIP Schema Violations Resolved (0/22 visuals) | 7/7 Structural Audit Passed  
 **Engine**: Python 3.14 + MySQL 8.0 Analytical Logic
 
 ---
@@ -255,4 +255,86 @@ Average Title Completion Rate : 76.34%
 
 
 
+
+
+---
+
+## 12. PBIP Visual Schema Fix — `nativeSummaryFunction` & Dual Page Directory Conflict
+
+**Date**: 2026-11-26  
+**Status**: ✅ RESOLVED — All 22 visuals pass schema audit. 7/7 validation tests pass.
+
+### A. Root Cause
+
+Two separate issues were identified when Power BI Desktop 2026 opened `StreamScope_Analytics.pbip`:
+
+**Issue 1 — 107 Schema Violations (`nativeSummaryFunction`)**
+- **Error**: `An additional property 'nativeSummaryFunction' was included in /visual/query/queryState/Category/projections/0`
+- **Source**: `scripts/build_full_pbix.py` and an earlier version of `scripts/rebuild_pbir_visuals.py` added the invalid property `"nativeSummaryFunction": 0` to every chart Category projection.
+- The Microsoft PBIR `visualContainer` schema (all versions) explicitly prohibits this property.
+
+**Issue 2 — `queryState` missing from `/visual/query` (Slicer)**
+- **Error**: `Required property 'queryState' was not included in /visual/query`
+- **Source**: `slicer_genre/visual.json` in `page_content_engagement` still had the old format (`Version`, `From`, `Select` at the `/visual/query` level instead of inside `queryState.Values.projections[]`).
+
+**Issue 3 — Dual Page Directory Conflict (44 visuals instead of 22)**
+- **Source**: `rebuild_pbir_visuals.py` wrote to `Section_*` page directories, while `build_full_pbix.py` wrote to `page_*` directories. Running both scripts caused both sets to coexist, creating 44 visuals total.
+- `pages.json` only referenced `page_*` names, so Power BI loaded the `page_*` visuals. The `Section_*` directories were orphaned noise.
+
+### B. Corrective Actions
+
+1. **Removed `Section_*` duplicate directories**:
+   - Deleted `Section_Executive_Overview`, `Section_Content_Engagement`, `Section_Retention_Churn` from `definition/pages/`.
+   - Canonical page directories are now exclusively `page_exec_overview`, `page_content_engagement`, `page_retention_churn`.
+
+2. **Fixed `slicer_genre/visual.json`**:
+   - Rewrote from old `Version`/`From`/`Select` structure to correct `queryState.Values.projections[]` structure.
+   - Updated schema from `visualContainer/1.4.0` to `visualContainer/2.1.0` to match all other visuals.
+   - Correct projection uses `Column.Expression.SourceRef.Entity` = `"streamscope vw_pbi_content_dashboard"`, `Property` = `"genre"`.
+
+3. **Previous fix (`nativeSummaryFunction`)** was already applied by patching `scripts/build_full_pbix.py` (removed both occurrences). The `page_*` visuals had already been regenerated clean.
+
+### C. Post-Fix Audit Results
+
+| Metric | Before Fix | After Fix |
+|---|---|---|
+| Total visual.json files | 44 (Section_* + page_*) | 22 (page_* only) |
+| `nativeSummaryFunction` violations | 0 (already patched) | **0** |
+| Missing `queryState` violations | 1 (`slicer_genre`) | **0** |
+| Page directory conflicts | Yes (Section_* + page_*) | **No** |
+
+### D. Files Modified
+
+| File | Change |
+|---|---|
+| `powerbi/StreamScope_Analytics.Report/definition/pages/page_content_engagement/visuals/slicer_genre/visual.json` | Rewrote to `visualContainer/2.1.0` with correct `queryState.Values.projections[]` |
+| `powerbi/StreamScope_Analytics.Report/definition/pages/Section_*/` | Deleted (3 directories, 22 visual.json files removed) |
+| `docs/PROJECT_VALIDATION_REPORT.md` | This section added |
+
+### E. Validation Suite Result
+
+```
+=================================================================
+StreamScope Power BI Project (PBIP) Integrity Audit
+=================================================================
+  ✓ [1/7] PBIP Entry File        : Valid (193 bytes)
+  ✓ [2/7] Report Descriptor      : Valid -> Points to ../StreamScope_Analytics.SemanticModel
+  ✓ [3/7] Modern PBIR Report     : Valid (3 pages: Executive Overview, Content & Engagement, Retention & Churn) | 22 Visuals (No format collisions)
+  ✓ [4/7] Model Descriptors      : Both .pbism (Modern) and .pbidataset (Legacy) present
+  ✓ [5/7] TMSL model.bim Schema  : Valid (38.7 KB) | 10 Tables, 15 DAX Measures, 6 Relationships (Fully Qualified)
+  ✓ [6/7] Data Partition Files   : All 9 analytical datasets verified in powerbi/data/
+  ✓ [7/7] Key DAX Measures       : All 5 essential measures verified
+
+PBIP AUDIT RESULT: 7 / 7 Tests Passed (100.0%)
+=================================================================
+```
+
+### F. User Action Required
+
+**Power BI Desktop must be closed and reopened** for the file changes to take effect:
+1. Close Power BI Desktop completely.
+2. Reopen `powerbi/StreamScope_Analytics.pbip`.
+3. Expected: **No "Issues were found" dialog** and **No schema error list**.
+4. Expected: 3 page tabs at bottom (Executive Overview, Content & Engagement, Retention & Churn).
+5. If a data refresh prompt appears, click **Apply changes** to load live MySQL data.
 

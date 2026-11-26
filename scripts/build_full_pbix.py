@@ -103,8 +103,7 @@ def make_category_y_chart(visual_id, x, y, w, h, z, visual_type, title, cat_enti
                             "Property": cat_prop
                         }
                     },
-                    "queryRef": f"{cat_entity}.{cat_prop}",
-                    "nativeSummaryFunction": 0
+                    "queryRef": f"{cat_entity}.{cat_prop}"
                 }
             ]
         },
@@ -170,8 +169,7 @@ def make_multi_y_chart(visual_id, x, y, w, h, z, visual_type, title, cat_entity,
                             "Property": cat_prop
                         }
                     },
-                    "queryRef": f"{cat_entity}.{cat_prop}",
-                    "nativeSummaryFunction": 0
+                    "queryRef": f"{cat_entity}.{cat_prop}"
                 }
             ]
         },

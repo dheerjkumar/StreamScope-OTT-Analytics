@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
   "name": "slicer_genre",
   "position": {
     "x": 30,
@@ -11,29 +11,27 @@
   "visual": {
     "visualType": "slicer",
     "query": {
-      "Version": 2,
-      "From": [
-        {
-          "Name": "t",
-          "Entity": "streamscope vw_pbi_content_dashboard",
-          "Type": 0
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "streamscope vw_pbi_content_dashboard"
+                    }
+                  },
+                  "Property": "genre"
+                }
+              },
+              "queryRef": "streamscope vw_pbi_content_dashboard.genre"
+            }
+          ]
         }
-      ],
-      "Select": [
-        {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Source": "t"
-              }
-            },
-            "Property": "genre"
-          },
-          "Name": "streamscope vw_pbi_content_dashboard.genre"
-        }
-      ]
+      }
     },
-    "objects": {
+    "visualContainerObjects": {
       "title": [
         {
           "properties": {

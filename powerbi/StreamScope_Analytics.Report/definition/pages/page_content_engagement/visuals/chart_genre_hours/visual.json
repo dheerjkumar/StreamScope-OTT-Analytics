@@ -25,8 +25,7 @@
                   "Property": "genre"
                 }
               },
-              "queryRef": "streamscope vw_pbi_content_dashboard.genre",
-              "nativeSummaryFunction": 0
+              "queryRef": "streamscope vw_pbi_content_dashboard.genre"
             }
           ]
         },

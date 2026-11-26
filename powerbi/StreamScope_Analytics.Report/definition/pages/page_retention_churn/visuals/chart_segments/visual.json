@@ -25,8 +25,7 @@
                   "Property": "engagement_segment"
                 }
               },
-              "queryRef": "streamscope v_user_engagement_segments.engagement_segment",
-              "nativeSummaryFunction": 0
+              "queryRef": "streamscope v_user_engagement_segments.engagement_segment"
             }
           ]
         },

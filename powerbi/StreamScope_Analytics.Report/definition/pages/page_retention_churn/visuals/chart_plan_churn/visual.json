@@ -25,8 +25,7 @@
                   "Property": "plan_name"
                 }
               },
-              "queryRef": "streamscope vw_pbi_churn_by_dimension.plan_name",
-              "nativeSummaryFunction": 0
+              "queryRef": "streamscope vw_pbi_churn_by_dimension.plan_name"
             }
           ]
         },
