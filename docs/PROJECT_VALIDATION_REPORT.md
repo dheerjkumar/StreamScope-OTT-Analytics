@@ -226,6 +226,32 @@ Average Title Completion Rate : 76.34%
    - Re-compiled `powerbi/StreamScope_Analytics.pbix` (634.0 KB) incorporating the 22 visuals while preserving the user's active MySQL `DataModel`.
    - Preserved `powerbi/StreamScope_Analytics_Draft.pbix` 100% untouched.
 
+---
+
+## 10. PBIR vs. PBIR-Legacy Format Collision Resolution
+
+### A. Root Cause Analysis
+- **Error Observed in Power BI Desktop**:
+  ```
+  Issues were found
+  You cannot have both PBIR and PBIR-Legacy formats in the same PBIP.
+  Please remove the 'C:\Users\Dheeraj Kumar\OneDrive\Desktop\Documents\StreamScope-OTT-Analytics\powerbi\StreamScope_Analytics.Report\report.json' file.
+  ```
+- **Underlying Cause**: Power BI Desktop 2026 detects whether a project uses the modern PBIR directory structure (`definition/`) or the legacy single-file format (`report.json` in the report root). Having both files present in the same `.Report` directory causes a schema collision because Power BI cannot determine which format takes precedence.
+
+### B. Corrective Action
+1. **Removed Legacy Collision File**:
+   - Safely archived legacy `powerbi/StreamScope_Analytics.Report/report.json` to `report.json.legacy.bak` and removed it from the root.
+2. **Modern PBIR Structure Retained**:
+   - `powerbi/StreamScope_Analytics.Report/definition/` exclusively governs the report presentation:
+     - `version.json`: PBIR version 2.0.0 metadata.
+     - `report.json`: Modern theme and canvas collection.
+     - `pages/pages.json`: Defines page manifest and order for all 3 pages (`Section_Executive_Overview`, `Section_Content_Engagement`, `Section_Retention_Churn`).
+     - `pages/<PageName>/visuals/<VisualName>/visual.json`: Contains all 22 interactive visual specifications.
+3. **Audit Verification**:
+   - `scripts/validate_pbip_project.py` verified 100% pass across all 7 audit stages with zero format collisions.
+
+
 
 
 

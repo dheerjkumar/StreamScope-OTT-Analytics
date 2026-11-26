@@ -56,22 +56,36 @@ def validate_pbip():
     else:
         print(f"  ✗ [2/7] definition.pbir missing!")
 
-    # Test 3: Report Visual Layout (report.json)
+    # Test 3: Report Visual Layout (Modern PBIR format)
     total_tests += 1
-    report_json_file = os.path.join(BASE_PBI, "StreamScope_Analytics.Report", "report.json")
-    if os.path.exists(report_json_file) and os.path.getsize(report_json_file) > 1000:
-        with open(report_json_file, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            pages = data.get("sections", []) or data.get("pages", [])
-            total_visuals = sum(len(p.get("visualContainers", [])) for p in pages)
-            page_names = [p.get("displayName") for p in pages]
-            if len(pages) == 3 and total_visuals >= 15:
-                print(f"  ✓ [3/7] Report Layout JSON     : Valid ({len(pages)} pages: {', '.join(page_names)}) | {total_visuals} Visuals")
+    pages_dir = os.path.join(BASE_PBI, "StreamScope_Analytics.Report", "definition", "pages")
+    pages_json_file = os.path.join(pages_dir, "pages.json")
+    if os.path.exists(pages_json_file):
+        with open(pages_json_file, "r", encoding="utf-8") as f:
+            manifest = json.load(f)
+            page_order = manifest.get("pageOrder", [])
+            total_visuals = 0
+            page_names = []
+            for p in page_order:
+                p_file = os.path.join(pages_dir, p, "page.json")
+                if os.path.exists(p_file):
+                    p_data = json.load(open(p_file, encoding="utf-8"))
+                    page_names.append(p_data.get("displayName", p))
+                vis_dir = os.path.join(pages_dir, p, "visuals")
+                if os.path.exists(vis_dir):
+                    total_visuals += len(os.listdir(vis_dir))
+            
+            # Check for legacy collision
+            legacy_report_json = os.path.join(BASE_PBI, "StreamScope_Analytics.Report", "report.json")
+            if os.path.exists(legacy_report_json):
+                print(f"  ✗ [3/7] Collision: Legacy report.json present alongside PBIR definition/!")
+            elif len(page_order) == 3 and total_visuals >= 20:
+                print(f"  ✓ [3/7] Modern PBIR Report     : Valid ({len(page_order)} pages: {', '.join(page_names)}) | {total_visuals} Visuals (No format collisions)")
                 tests_passed += 1
             else:
-                print(f"  ✗ [3/7] Report pages/visuals count unexpected: {len(pages)} pages, {total_visuals} visuals")
+                print(f"  ✗ [3/7] PBIR pages/visuals count unexpected: {len(page_order)} pages, {total_visuals} visuals")
     else:
-        print(f"  ✗ [3/7] report.json missing or empty!")
+        print(f"  ✗ [3/7] PBIR definition/pages/pages.json missing!")
 
     # Test 4: Semantic Model Descriptors (definition.pbism & definition.pbidataset)
     total_tests += 1
