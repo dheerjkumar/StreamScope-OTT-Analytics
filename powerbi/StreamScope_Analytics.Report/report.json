@@ -1,0 +1,231 @@
+{
+  "config": "{\"version\": \"5.55\", \"themeCollection\": {\"baseTheme\": {\"name\": \"Executive\", \"version\": \"5.55\", \"type\": 2}}}",
+  "layoutOptimization": 0,
+  "pages": [
+    {
+      "name": "Page_Executive_Overview",
+      "displayName": "Executive Overview",
+      "filters": "[]",
+      "height": 720,
+      "width": 1280,
+      "visualContainers": [
+        {
+          "x": 10,
+          "y": 10,
+          "z": 0,
+          "width": 150,
+          "height": 85,
+          "config": "{\"name\": \"9b822c096b9341c0\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 10, \"y\": 10, \"z\": 0, \"width\": 150, \"height\": 85}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Total Registered Users\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Total Users'\"}}}}}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m\"}}, \"Property\": \"Total Registered Users\"}, \"Name\": \"_Measures.Total Registered Users\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 168,
+          "y": 10,
+          "z": 1,
+          "width": 150,
+          "height": 85,
+          "config": "{\"name\": \"2a4f4c2bd9214d21\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 168, \"y\": 10, \"z\": 1, \"width\": 150, \"height\": 85}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Active Paid Subscribers\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Active Subscribers'\"}}}}}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m\"}}, \"Property\": \"Active Paid Subscribers\"}, \"Name\": \"_Measures.Active Paid Subscribers\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 326,
+          "y": 10,
+          "z": 2,
+          "width": 150,
+          "height": 85,
+          "config": "{\"name\": \"559ea67534a54a48\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 326, \"y\": 10, \"z\": 2, \"width\": 150, \"height\": 85}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Monthly Active Viewers (MAU)\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Monthly Viewers'\"}}}}}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m\"}}, \"Property\": \"Monthly Active Viewers (MAU)\"}, \"Name\": \"_Measures.Monthly Active Viewers (MAU)\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 484,
+          "y": 10,
+          "z": 3,
+          "width": 150,
+          "height": 85,
+          "config": "{\"name\": \"0b00fe0015854304\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 484, \"y\": 10, \"z\": 3, \"width\": 150, \"height\": 85}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Total Watch Hours\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Watch Hours'\"}}}}}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m\"}}, \"Property\": \"Total Watch Hours\"}, \"Name\": \"_Measures.Total Watch Hours\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 642,
+          "y": 10,
+          "z": 4,
+          "width": 150,
+          "height": 85,
+          "config": "{\"name\": \"20b267b93757433f\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 642, \"y\": 10, \"z\": 4, \"width\": 150, \"height\": 85}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Average Watch Time Per Viewer\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Avg Watch Time'\"}}}}}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m\"}}, \"Property\": \"Average Watch Time Per Viewer\"}, \"Name\": \"_Measures.Average Watch Time Per Viewer\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 800,
+          "y": 10,
+          "z": 5,
+          "width": 150,
+          "height": 85,
+          "config": "{\"name\": \"6638e9db598849cf\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 800, \"y\": 10, \"z\": 5, \"width\": 150, \"height\": 85}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Current MRR\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Current MRR'\"}}}}}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m\"}}, \"Property\": \"Current MRR\"}, \"Name\": \"_Measures.Current MRR\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 958,
+          "y": 10,
+          "z": 6,
+          "width": 150,
+          "height": 85,
+          "config": "{\"name\": \"6ddfa72b681d4e16\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 958, \"y\": 10, \"z\": 6, \"width\": 150, \"height\": 85}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Monthly Churn Rate %\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Monthly Churn %'\"}}}}}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m\"}}, \"Property\": \"Monthly Churn Rate %\"}, \"Name\": \"_Measures.Monthly Churn Rate %\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 1116,
+          "y": 10,
+          "z": 7,
+          "width": 150,
+          "height": 85,
+          "config": "{\"name\": \"4c09ea34673b4cd8\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 1116, \"y\": 10, \"z\": 7, \"width\": 150, \"height\": 85}}], \"singleVisual\": {\"visualType\": \"card\", \"projections\": {\"Values\": [{\"queryRef\": \"_Measures.Platform Completion Rate %\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Completion Rate'\"}}}}}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"m\", \"Entity\": \"_Measures\", \"Type\": 0}], \"Select\": [{\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"m\"}}, \"Property\": \"Platform Completion Rate %\"}, \"Name\": \"_Measures.Platform Completion Rate %\"}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 10,
+          "y": 105,
+          "z": 10,
+          "width": 620,
+          "height": 290,
+          "config": "{\"name\": \"5d48b2f71bfa41c1\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 10, \"y\": 105, \"z\": 10, \"width\": 620, \"height\": 290}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"MonthlyPerformance.calendar_month\"}], \"Y\": [{\"queryRef\": \"MonthlyPerformance.active_subscribers\"}, {\"queryRef\": \"MonthlyPerformance.estimated_mrr\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Active Subscribers & Monthly Revenue Run-Rate Trend'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 640,
+          "y": 105,
+          "z": 11,
+          "width": 630,
+          "height": 290,
+          "config": "{\"name\": \"9674a192c19f48bb\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 105, \"z\": 11, \"width\": 630, \"height\": 290}}], \"singleVisual\": {\"visualType\": \"donutChart\", \"projections\": {\"Category\": [{\"queryRef\": \"ChurnByDimension.plan_name\"}], \"Y\": [{\"queryRef\": \"_Measures.Active Paid Subscribers\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Active Paid Subscribers by Plan Tier'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 10,
+          "y": 405,
+          "z": 12,
+          "width": 620,
+          "height": 295,
+          "config": "{\"name\": \"8f4bab02ec704c8c\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 10, \"y\": 405, \"z\": 12, \"width\": 620, \"height\": 295}}], \"singleVisual\": {\"visualType\": \"areaChart\", \"projections\": {\"Category\": [{\"queryRef\": \"MonthlyPerformance.calendar_month\"}], \"Y\": [{\"queryRef\": \"MonthlyPerformance.active_viewers_mau\"}, {\"queryRef\": \"MonthlyPerformance.total_watch_hours\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Monthly Active Viewers (MAU) & Watch Hours Trend'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 640,
+          "y": 405,
+          "z": 13,
+          "width": 630,
+          "height": 295,
+          "config": "{\"name\": \"3090dc58e5684992\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 405, \"z\": 13, \"width\": 630, \"height\": 295}}], \"singleVisual\": {\"visualType\": \"barChart\", \"projections\": {\"Category\": [{\"queryRef\": \"DimUsers.acquisition_channel\"}], \"Y\": [{\"queryRef\": \"_Measures.Converted Paying Subscribers\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Subscribers by Acquisition Marketing Channel'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ]
+    },
+    {
+      "name": "Page_Content_Engagement",
+      "displayName": "Content & Engagement",
+      "filters": "[]",
+      "height": 720,
+      "width": 1280,
+      "visualContainers": [
+        {
+          "x": 10,
+          "y": 10,
+          "z": 20,
+          "width": 620,
+          "height": 340,
+          "config": "{\"name\": \"3b9ceb17e887450b\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 10, \"y\": 10, \"z\": 20, \"width\": 620, \"height\": 340}}], \"singleVisual\": {\"visualType\": \"barChart\", \"projections\": {\"Category\": [{\"queryRef\": \"ContentPerformance.title\"}], \"Y\": [{\"queryRef\": \"ContentPerformance.total_watch_hours\"}], \"Tooltips\": [{\"queryRef\": \"ContentPerformance.avg_completion_percentage\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Top 10 Blockbuster Titles by Total Watch Hours'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 640,
+          "y": 10,
+          "z": 21,
+          "width": 630,
+          "height": 340,
+          "config": "{\"name\": \"2eb601aa66984dd4\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 10, \"z\": 21, \"width\": 630, \"height\": 340}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"ContentPerformance.genre\"}], \"Y\": [{\"queryRef\": \"ContentPerformance.total_watch_hours\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Total Streamed Hours by Content Genre'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 10,
+          "y": 360,
+          "z": 22,
+          "width": 400,
+          "height": 340,
+          "config": "{\"name\": \"983fd9f524a24495\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 10, \"y\": 360, \"z\": 22, \"width\": 400, \"height\": 340}}], \"singleVisual\": {\"visualType\": \"donutChart\", \"projections\": {\"Category\": [{\"queryRef\": \"FactViewingSessions.device_type\"}], \"Y\": [{\"queryRef\": \"_Measures.Total Viewing Sessions\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Streaming Sessions by Device Type'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 420,
+          "y": 360,
+          "z": 23,
+          "width": 420,
+          "height": 340,
+          "config": "{\"name\": \"4d88b1d328f0413b\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 420, \"y\": 360, \"z\": 23, \"width\": 420, \"height\": 340}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"ContentPerformance.content_type\"}], \"Y\": [{\"queryRef\": \"ContentPerformance.unique_viewers\"}, {\"queryRef\": \"ContentPerformance.total_plays\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Unique Viewers & Plays by Content Type'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 850,
+          "y": 360,
+          "z": 24,
+          "width": 420,
+          "height": 340,
+          "config": "{\"name\": \"85a8aaff40f34550\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 850, \"y\": 360, \"z\": 24, \"width\": 420, \"height\": 340}}], \"singleVisual\": {\"visualType\": \"barChart\", \"projections\": {\"Category\": [{\"queryRef\": \"ContentPerformance.genre\"}], \"Y\": [{\"queryRef\": \"ContentPerformance.avg_completion_percentage\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Average Completion Percentage by Genre'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ]
+    },
+    {
+      "name": "Page_Retention_Churn",
+      "displayName": "Retention & Churn",
+      "filters": "[]",
+      "height": 720,
+      "width": 1280,
+      "visualContainers": [
+        {
+          "x": 10,
+          "y": 10,
+          "z": 30,
+          "width": 620,
+          "height": 340,
+          "config": "{\"name\": \"878a9f02c59d455c\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 10, \"y\": 10, \"z\": 30, \"width\": 620, \"height\": 340}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"projections\": {\"Category\": [{\"queryRef\": \"MonthlyPerformance.calendar_month\"}], \"Y\": [{\"queryRef\": \"MonthlyPerformance.churned_subscribers\"}, {\"queryRef\": \"MonthlyPerformance.lost_mrr\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Monthly Churned Subscribers & Lost MRR Trend'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 640,
+          "y": 10,
+          "z": 31,
+          "width": 630,
+          "height": 340,
+          "config": "{\"name\": \"8d69c1e3827a4de8\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 640, \"y\": 10, \"z\": 31, \"width\": 630, \"height\": 340}}], \"singleVisual\": {\"visualType\": \"barChart\", \"projections\": {\"Category\": [{\"queryRef\": \"ChurnByDimension.cancellation_reason\"}], \"Y\": [{\"queryRef\": \"_Measures.True Churned Subscribers\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Primary Stated Cancellation Reasons'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 10,
+          "y": 360,
+          "z": 32,
+          "width": 400,
+          "height": 340,
+          "config": "{\"name\": \"ce60c157d1904ef2\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 10, \"y\": 360, \"z\": 32, \"width\": 400, \"height\": 340}}], \"singleVisual\": {\"visualType\": \"clusteredColumnChart\", \"projections\": {\"Category\": [{\"queryRef\": \"ChurnByDimension.plan_name\"}], \"Y\": [{\"queryRef\": \"ChurnByDimension.is_true_churn\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Canceled Subscriptions by Plan Tier'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 420,
+          "y": 360,
+          "z": 33,
+          "width": 420,
+          "height": 340,
+          "config": "{\"name\": \"260a9f0b90f34b9e\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 420, \"y\": 360, \"z\": 33, \"width\": 420, \"height\": 340}}], \"singleVisual\": {\"visualType\": \"barChart\", \"projections\": {\"Category\": [{\"queryRef\": \"ChurnByDimension.acquisition_channel\"}], \"Y\": [{\"queryRef\": \"ChurnByDimension.is_true_churn\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Churn Events by Customer Acquisition Channel'\"}}}}}]}}}",
+          "filters": "[]"
+        },
+        {
+          "x": 850,
+          "y": 360,
+          "z": 34,
+          "width": 420,
+          "height": 340,
+          "config": "{\"name\": \"8e1e2724e46e41b6\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 850, \"y\": 360, \"z\": 34, \"width\": 420, \"height\": 340}}], \"singleVisual\": {\"visualType\": \"donutChart\", \"projections\": {\"Category\": [{\"queryRef\": \"UserSegments.engagement_segment\"}], \"Y\": [{\"queryRef\": \"_Measures.Total Registered Users\"}]}, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Audience by Behavioral Engagement Tier'\"}}}}}]}}}",
+          "filters": "[]"
+        }
+      ]
+    }
+  ]
+}

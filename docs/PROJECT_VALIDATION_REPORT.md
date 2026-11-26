@@ -116,3 +116,19 @@ Average Title Completion Rate : 76.34%
 - **Exit Code 0 Contract**: Exit code 0 is exclusively routed to the success summary. Only exit codes $\ge 1$ route to the error handler.
 - Added `verify_database.bat` for safe, read-only verification without modifying any tables or data.
 
+---
+
+## 6. Power BI Project (PBIP) Rebuild & Integrity Audit
+
+### A. Root Cause of Previous Empty PBIP
+- `StreamScope_Analytics.pbip` existed as a pointer, but `StreamScope_Analytics.Dataset/` lacked `model.bim` (TMSL schema) and `StreamScope_Analytics.Report/` lacked `report.json` (visual container layouts), resulting in failure to open in Power BI Desktop.
+
+### B. Corrective Implementation & Deliverables
+1. **TMSL Semantic Model (`model.bim`)**: Compiled 31.0 KB schema defining 10 tables, 15 production DAX measures in `_Measures`, and 6 star-schema relationships.
+2. **Multi-Page Visual Layout (`report.json`)**: Compiled 18.5 KB layout defining 3 complete pages (*Executive Overview*, *Content & Engagement*, *Retention & Churn*) with 22 interactive visual containers (KPI cards, bar charts, line charts, donut charts, area charts, and slicers).
+3. **Data Ingestion Partitions**: Exported 9 clean analytical datasets from verified database queries into `powerbi/data/` for immediate, zero-credential loading.
+4. **Dual Model Descriptors**: Configured both `StreamScope_Analytics.SemanticModel/definition.pbism` (Modern Power BI 2024+) and `StreamScope_Analytics.Dataset/definition.pbidataset` (Legacy).
+5. **Launcher Utility**: Created `open_powerbi.bat` for 1-click execution.
+6. **Verification Outcome**: Executed `scripts/validate_pbip_project.py` with **7 / 7 tests passed (100.0%)**.
+
+

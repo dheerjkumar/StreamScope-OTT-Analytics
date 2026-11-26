@@ -1,0 +1,81 @@
+content_id,title,genre,release_year,content_type,duration_minutes,unique_viewers,total_plays,total_watch_hours,avg_completion_percentage
+1,Cyber City 2099,Sci-Fi & Fantasy,2024,Web Series,55,2584,3491,2415.1,76.38
+2,Neon Horizon,Sci-Fi & Fantasy,2019,Movie,124,2577,3443,5396.7,76.24
+3,The Quantum Paradox,Sci-Fi & Fantasy,2019,Movie,138,1492,1714,2972.4,75.76
+4,Chronicles of Aethelgard,Sci-Fi & Fantasy,2024,Web Series,60,1501,1738,1304.8,75.91
+5,Starlight Colony,Sci-Fi & Fantasy,2021,Web Series,50,1476,1688,1060.4,76.37
+6,Solaris Drift,Sci-Fi & Fantasy,2020,Movie,112,1482,1754,2474.3,76.02
+7,Temporal Echoes,Sci-Fi & Fantasy,2020,Movie,105,1482,1728,2297.9,76.47
+8,The AI Prophecy,Sci-Fi & Fantasy,2020,Web Series,48,1449,1695,1024.8,76.63
+9,Deep Orbit,Sci-Fi & Fantasy,2024,Movie,128,1506,1747,2832.2,76.37
+10,Vortex,Sci-Fi & Fantasy,2019,Web Series,52,1446,1687,1093.1,75.72
+11,Apex Protocol,Action & Adventure,2024,Movie,118,2629,3511,5269.3,76.73
+12,Redline Velocity,Action & Adventure,2024,Movie,126,2536,3326,5324.5,76.62
+13,Shadow Syndicate,Action & Adventure,2023,Web Series,54,1447,1688,1139.2,75.91
+14,The Extraction Unit,Action & Adventure,2019,Movie,110,1484,1714,2401.9,76.9
+15,Strike Force: Omega,Action & Adventure,2023,Movie,132,1586,1843,3068.9,76.07
+16,Vanguard Reborn,Action & Adventure,2022,Web Series,58,1506,1752,1275.4,76.18
+17,Rogue Agent,Action & Adventure,2019,Movie,115,1527,1768,2571.7,76.32
+18,Mountain Siege,Action & Adventure,2019,Movie,108,1546,1797,2485.3,77.3
+19,Ironclad Horizon,Action & Adventure,2019,Movie,140,1493,1719,3039.6,76.14
+20,Zero Hour Escape,Action & Adventure,2020,Web Series,45,1489,1741,987.8,76.75
+21,The Boardroom,Drama,2020,Web Series,58,2611,3434,2500.3,76.18
+22,Echoes of Silence,Drama,2023,Movie,135,1518,1761,2981.1,75.6
+23,Autumn in Paris,Drama,2023,Movie,110,1473,1714,2378.4,76.15
+24,Dynasty of Steel,Drama,2019,Web Series,62,1535,1767,1382.4,76.52
+25,The Last Conductor,Drama,2023,Movie,122,1498,1729,2652.2,75.84
+26,Behind the Gavel,Drama,2020,Web Series,50,1524,1772,1104.0,75.77
+27,Shattered Glass,Drama,2024,Movie,104,1519,1762,2309.1,76.09
+28,The Family Ledger,Drama,2024,Web Series,56,1512,1742,1225.9,76.3
+29,Letters to Nowhere,Drama,2024,Movie,116,1489,1736,2544.7,76.25
+30,A Quiet Storm,Drama,2023,Movie,98,1521,1783,2212.0,76.47
+31,Office Pandemonium,Comedy,2022,Web Series,30,2602,3491,1306.6,76.54
+32,Roommates & Ruin,Comedy,2020,Web Series,28,883,967,335.3,76.14
+33,The Accidental Billionaire,Comedy,2022,Movie,96,877,956,1159.9,76.36
+34,Sunday Roast,Comedy,2023,Movie,102,909,989,1279.9,76.62
+35,Startup Mayhem,Comedy,2021,Web Series,32,955,1044,417.7,76.56
+36,Grandpa Goes Viral,Comedy,2025,Movie,90,938,1021,1160.0,76.31
+37,Wedding Crashes Again,Comedy,2025,Movie,94,860,932,1115.6,76.93
+38,Couch Detectives,Comedy,2019,Web Series,35,912,989,432.0,76.28
+39,Double Date Disaster,Comedy,2025,Movie,88,881,960,1062.0,76.0
+40,Suburban Shenanigans,Comedy,2025,Web Series,26,962,1044,336.9,76.31
+41,The Vanishing Room,Thriller & Mystery,2020,Movie,114,2611,3472,4996.7,76.18
+42,Midnight Caller,Thriller & Mystery,2024,Web Series,46,881,954,557.2,77.27
+43,Cold Harbor Secrets,Thriller & Mystery,2022,Web Series,52,904,996,645.5,75.75
+44,Blind Alley,Thriller & Mystery,2021,Movie,108,932,1022,1394.9,76.29
+45,Whispers in the Dark,Thriller & Mystery,2021,Movie,120,879,958,1467.2,77.0
+46,The Cipher Key,Thriller & Mystery,2020,Web Series,49,877,956,582.8,75.66
+47,Blackmail Boulevard,Thriller & Mystery,2020,Movie,102,854,935,1216.1,77.0
+48,The Silent Witness,Thriller & Mystery,2025,Movie,118,859,933,1386.4,75.99
+49,Fog on the Thames,Thriller & Mystery,2021,Web Series,55,887,952,659.6,76.51
+50,Deception Bay,Thriller & Mystery,2019,Movie,110,883,950,1315.2,75.97
+51,Planet Wild: Oceans,Documentary,2019,Web Series,50,2608,3484,2181.4,76.13
+52,Silicon Pioneers,Documentary,2022,Movie,95,923,1028,1229.7,76.06
+53,Formula Velocity,Documentary,2019,Web Series,45,883,962,539.4,75.85
+54,The Deep Cosmos,Documentary,2021,Movie,105,870,957,1283.9,77.14
+55,Culinary Masters,Documentary,2025,Web Series,42,894,964,509.8,76.74
+56,Rise of the Champions,Documentary,2021,Movie,112,890,977,1401.8,77.32
+57,Ancient Wonders Unveiled,Documentary,2023,Web Series,55,879,952,662.5,76.86
+58,The Code Breakers,Documentary,2021,Movie,88,830,906,1014.7,76.93
+59,Art of the Heist,Documentary,2025,Web Series,48,906,987,590.4,75.8
+60,Guardians of the Forest,Documentary,2019,Movie,92,871,945,1093.1,75.99
+61,Cyber Samurai,Animation,2024,Web Series,24,2509,3368,1003.7,76.6
+62,The Cloud Kingdom,Animation,2022,Movie,92,879,955,1112.3,76.49
+63,Pixel Pals,Animation,2023,Web Series,22,902,976,265.5,76.46
+64,The Iron Dragon,Animation,2019,Movie,104,944,1042,1377.3,76.74
+65,Cosmic Critters,Animation,2022,Web Series,25,927,1015,316.1,76.75
+66,Starfall Quest,Animation,2019,Movie,86,899,984,1058.3,75.62
+67,Mech Warriors Academy,Animation,2023,Web Series,28,873,952,328.1,75.66
+68,Tales of the Spirit Forest,Animation,2021,Movie,98,899,979,1212.7,76.35
+69,Dreamscape Explorers,Animation,2025,Web Series,24,922,998,296.3,76.27
+70,The Golden Feather,Animation,2024,Movie,84,894,981,1049.9,77.04
+71,Summer in Florence,Romance,2023,Movie,106,2521,3379,4540.2,76.53
+72,Coffee & Serendipity,Romance,2025,Movie,94,848,903,1072.5,76.36
+73,Heartstrings,Romance,2021,Web Series,44,864,944,519.5,76.19
+74,The Art of Falling,Romance,2023,Movie,100,868,953,1208.0,76.52
+75,Under Manhattan Lights,Romance,2020,Movie,112,890,975,1377.4,76.13
+76,Written in the Stars,Romance,2024,Web Series,40,869,942,472.5,76.49
+77,Second Chance Cafe,Romance,2019,Movie,98,948,1033,1261.5,75.27
+78,Winter Waltz,Romance,2019,Movie,104,915,993,1313.3,76.78
+79,A Sunset Promise,Romance,2024,Movie,92,924,998,1159.1,76.29
+80,Destined for You,Romance,2020,Web Series,48,906,1004,604.7,76.33

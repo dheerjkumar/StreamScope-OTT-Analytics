@@ -35,6 +35,7 @@ data/processed/
 # Power BI local cache / recovery
 *.pbit
 *.pbix.temp
+powerbi_backup/
 
 # IDE & Editor settings
 .vscode/

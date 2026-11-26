@@ -2,7 +2,7 @@
   "version": "1.0",
   "datasetReference": {
     "byPath": {
-      "path": "../StreamScope_Analytics.Dataset"
+      "path": "../StreamScope_Analytics.SemanticModel"
     }
   }
 }
