@@ -9,7 +9,79 @@
 USE streamscope;
 
 -- -------------------------------------------------------------
--- VIEW 1: vw_pbi_monthly_performance
+-- BASE VIEW 1: v_classified_cancellations
+-- Prerequisite View: Implements the 30-Day True Churn Rule
+-- Evaluates whether a canceled subscription represents genuine churn
+-- or a fast renewal/reactivation within <= 30 days.
+-- -------------------------------------------------------------
+CREATE OR REPLACE VIEW v_classified_cancellations AS
+SELECT
+    s1.subscription_id,
+    s1.user_id,
+    s1.plan_id,
+    s1.start_date,
+    s1.end_date,
+    s1.monthly_fee,
+    s1.cancellation_reason,
+    MIN(s2.start_date) AS next_sub_start_date,
+    DATEDIFF(MIN(s2.start_date), s1.end_date) AS days_to_next_sub,
+    CASE
+        -- If user never started another subscription, or started after > 30 days -> True Churn
+        WHEN MIN(s2.start_date) IS NULL OR DATEDIFF(MIN(s2.start_date), s1.end_date) > 30 THEN 1
+        ELSE 0
+    END AS is_true_churn,
+    CASE
+        WHEN MIN(s2.start_date) IS NOT NULL AND DATEDIFF(MIN(s2.start_date), s1.end_date) > 30 THEN 1
+        ELSE 0
+    END AS is_subsequently_reactivated
+FROM subscriptions s1
+LEFT JOIN subscriptions s2 
+    ON s1.user_id = s2.user_id 
+    AND s2.start_date > s1.end_date
+WHERE s1.status = 'Canceled' AND s1.end_date IS NOT NULL
+GROUP BY s1.subscription_id, s1.user_id, s1.plan_id, s1.start_date, s1.end_date, s1.monthly_fee, s1.cancellation_reason;
+
+-- -------------------------------------------------------------
+-- BASE VIEW 2: v_user_engagement_segments
+-- Prerequisite View: Rule-Based Customer Behavioral Segmentation
+-- Categorizes users into 4 tiers based on streaming volume & sessions.
+-- -------------------------------------------------------------
+CREATE OR REPLACE VIEW v_user_engagement_segments AS
+WITH user_streaming_summary AS (
+    SELECT
+        u.user_id,
+        u.signup_date,
+        u.country,
+        u.acquisition_channel,
+        u.preferred_device,
+        COUNT(vs.session_id) AS total_sessions,
+        COALESCE(ROUND(SUM(vs.watch_minutes) / 60.0, 1), 0.0) AS total_watch_hours,
+        COALESCE(ROUND(AVG(vs.completion_percentage), 2), 0.0) AS avg_completion_pct,
+        MAX(vs.started_at) AS last_streamed_at
+    FROM users u
+    LEFT JOIN viewing_sessions vs ON u.user_id = vs.user_id
+    GROUP BY u.user_id, u.signup_date, u.country, u.acquisition_channel, u.preferred_device
+)
+SELECT
+    user_id,
+    signup_date,
+    country,
+    acquisition_channel,
+    preferred_device,
+    total_sessions,
+    total_watch_hours,
+    avg_completion_pct,
+    last_streamed_at,
+    CASE
+        WHEN total_watch_hours >= 30.0 AND total_sessions >= 20 THEN 'Highly Engaged'
+        WHEN total_watch_hours >= 10.0 AND total_sessions >= 8  THEN 'Moderately Engaged'
+        WHEN total_sessions >= 1                                THEN 'Low Engagement'
+        ELSE 'Inactive'
+    END AS engagement_segment
+FROM user_streaming_summary;
+
+-- -------------------------------------------------------------
+-- REPORTING VIEW 1: vw_pbi_monthly_performance
 -- Feeds Dashboard 1 (Executive Overview) monthly trend visuals
 -- -------------------------------------------------------------
 CREATE OR REPLACE VIEW vw_pbi_monthly_performance AS
@@ -79,7 +151,7 @@ LEFT JOIN churns c ON ms.y_m = c.y_m
 ORDER BY ms.y_m;
 
 -- -------------------------------------------------------------
--- VIEW 2: vw_pbi_content_dashboard
+-- REPORTING VIEW 2: vw_pbi_content_dashboard
 -- Feeds Dashboard 2 (Content & Engagement)
 -- -------------------------------------------------------------
 CREATE OR REPLACE VIEW vw_pbi_content_dashboard AS
@@ -99,7 +171,7 @@ LEFT JOIN viewing_sessions vs ON c.content_id = vs.content_id
 GROUP BY c.content_id, c.title, c.genre, c.release_year, c.content_type, c.duration_minutes;
 
 -- -------------------------------------------------------------
--- VIEW 3: vw_pbi_churn_by_dimension
+-- REPORTING VIEW 3: vw_pbi_churn_by_dimension
 -- Feeds Dashboard 3 (Retention & Churn)
 -- -------------------------------------------------------------
 CREATE OR REPLACE VIEW vw_pbi_churn_by_dimension AS
@@ -124,4 +196,15 @@ JOIN users u ON s.user_id = u.user_id
 JOIN plans p ON s.plan_id = p.plan_id
 LEFT JOIN v_classified_cancellations vc ON s.subscription_id = vc.subscription_id;
 
-SELECT 'All reporting views created successfully.' AS status;
+-- -------------------------------------------------------------
+-- VIEW CREATION VERIFICATION SUMMARY
+-- -------------------------------------------------------------
+SELECT 'v_classified_cancellations' AS view_name, 'Created successfully' AS status
+UNION ALL
+SELECT 'v_user_engagement_segments', 'Created successfully'
+UNION ALL
+SELECT 'vw_pbi_monthly_performance', 'Created successfully'
+UNION ALL
+SELECT 'vw_pbi_content_dashboard', 'Created successfully'
+UNION ALL
+SELECT 'vw_pbi_churn_by_dimension', 'Created successfully';

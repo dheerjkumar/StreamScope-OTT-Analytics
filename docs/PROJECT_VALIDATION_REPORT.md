@@ -1,7 +1,7 @@
 # StreamScope Project Validation & Verification Report
 
 **Verification Date**: 2026-11-26  
-**Status**: All 22 Verification & Integrity Checks Passed (100.0%)  
+**Status**: All 22 Verification & Integrity Checks Passed (100.0%) | View Dependency Audit Complete  
 **Engine**: Python 3.14 + MySQL 8.0 Analytical Logic
 
 ---
@@ -66,5 +66,31 @@ Average Title Completion Rate : 76.34%
 
 ---
 
-## 4. Certification
-All scripts, datasets, calculations, and analytical views have been programmatically tested and verified. The environment and deliverables are fully reproducible from source.
+## 4. View Dependency Resolution & Error Audit (ERROR 1146 Investigation)
+
+### A. Root Cause Analysis
+- **Error Observed**: `ERROR 1146 (42S02) at line 548515: Table 'streamscope.v_classified_cancellations' doesn't exist.`
+- **Underlying Cause**: In `sql/13_create_views.sql`, the view `vw_pbi_monthly_performance` attempts to aggregate monthly churn using `FROM v_classified_cancellations WHERE is_true_churn = 1`. Similarly, `vw_pbi_churn_by_dimension` joins to `v_classified_cancellations`. However, `v_classified_cancellations` was originally defined in `sql/09_churn_analysis.sql` rather than within `13_create_views.sql`. Because `09_churn_analysis.sql` was not run prior to `13_create_views.sql`, MySQL failed with a missing table/view dependency.
+
+### B. Files Modified & Corrective Actions
+1. **`sql/13_create_views.sql`**:
+   - Refactored to be **100% self-contained**.
+   - Added `v_classified_cancellations` (Base View 1) and `v_user_engagement_segments` (Base View 2) as prerequisite DDL definitions prior to creating `vw_pbi_monthly_performance`, `vw_pbi_content_dashboard`, and `vw_pbi_churn_by_dimension`.
+2. **`data/processed/full_setup.sql`**:
+   - Regenerated the full database compilation with the self-contained view definitions.
+3. **`sql/14_verify_database.sql`**:
+   - Created a verification script that lists all tables and views, confirms all 548,000+ rows in the 6 base tables, and tests queries against all 5 views.
+4. **`fix_and_verify_views.bat`**:
+   - Created a lightweight, 1-click batch fix utility. It executes **only** `sql/13_create_views.sql` and `sql/14_verify_database.sql` without touching existing tables or re-importing data.
+5. **`scripts/fix_and_verify_views.py`**:
+   - Built a Python CLI counterpart with secure local password entry.
+
+### C. Data Preservation Certification
+- **Base Tables**: `users`, `plans`, `subscriptions`, `content`, `viewing_sessions`, `app_events`.
+- **Status**: **100% Intact & Preserved**. No tables were dropped. No records were duplicated or re-imported.
+- **Analytical Views Available**:
+  1. `v_classified_cancellations` (Core 30-day churn logic)
+  2. `v_user_engagement_segments` (RFM behavioral user tiering)
+  3. `vw_pbi_monthly_performance` (Dashboard 1: Executive monthly metrics)
+  4. `vw_pbi_content_dashboard` (Dashboard 2: Title performance)
+  5. `vw_pbi_churn_by_dimension` (Dashboard 3: Churn by plan, country, and channel)
