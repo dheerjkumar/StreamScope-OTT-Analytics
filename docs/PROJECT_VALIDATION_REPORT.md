@@ -94,3 +94,25 @@ Average Title Completion Rate : 76.34%
   3. `vw_pbi_monthly_performance` (Dashboard 1: Executive monthly metrics)
   4. `vw_pbi_content_dashboard` (Dashboard 2: Title performance)
   5. `vw_pbi_churn_by_dimension` (Dashboard 3: Churn by plan, country, and channel)
+
+---
+
+## 5. Batch Script Error-Handling Resolution & Exit Code Audit
+
+### A. Root Cause Analysis
+- **Behavior Observed**: In `load_database.bat`, the terminal printed both the `SUCCESS` banner and `[ERROR] Execution failed with code 0.`
+- **Underlying Cause**: In Windows Command Prompt (`cmd.exe`), enclosing parentheses within an `if ( ... ) else ( ... )` block (specifically `echo - 6 Tables Created (users, plans, subscriptions, content, viewing_sessions, app_events)`) caused the interpreter to treat the closing parenthesis of `app_events)` as the end of the `if` block. This resulted in an execution fall-through into the `else` branch even though `errorlevel` was `0`.
+
+### B. Corrective Implementation
+- Refactored `load_database.bat` from nested parenthesized blocks to standard label-based control flow:
+  ```bat
+  if errorlevel 1 goto ON_ERROR
+  REM Success Banner
+  goto SCRIPT_END
+  :ON_ERROR
+  REM Error Banner
+  :SCRIPT_END
+  ```
+- **Exit Code 0 Contract**: Exit code 0 is exclusively routed to the success summary. Only exit codes $\ge 1$ route to the error handler.
+- Added `verify_database.bat` for safe, read-only verification without modifying any tables or data.
+

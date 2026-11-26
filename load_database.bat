@@ -14,20 +14,26 @@ echo.
 
 "C:\Program Files\MySQL\MySQL Server 8.0\bin\mysql.exe" -u root -p < data\processed\full_setup.sql
 
-if %errorlevel% equ 0 (
-    echo.
-    echo ===================================================================
-    echo  SUCCESS: streamscope database created, populated, and verified!
-    echo ===================================================================
-    echo  - 6 Tables Created (users, plans, subscriptions, content, viewing_sessions, app_events)
-    echo  - 548,000+ Records Imported
-    echo  - Analytical Views for Power BI Created
-    echo  - Automated Data Quality Checks Passed
-    echo ===================================================================
-) else (
-    echo.
-    echo [ERROR] Execution failed with code %errorlevel%.
-    echo Please verify your MySQL password and ensure MySQL service is running.
-)
+if errorlevel 1 goto ON_ERROR
+
+echo.
+echo ===================================================================
+echo  SUCCESS: streamscope database created, populated, and verified!
+echo ===================================================================
+echo  - 6 Tables Created: users, plans, subscriptions, content, viewing_sessions, app_events
+echo  - 548,000+ Records Imported
+echo  - 5 Analytical Views Created: v_classified_cancellations, v_user_engagement_segments, vw_pbi_monthly_performance, vw_pbi_content_dashboard, vw_pbi_churn_by_dimension
+echo  - Automated Data Quality Checks Passed
+echo ===================================================================
+goto SCRIPT_END
+
+:ON_ERROR
+echo.
+echo ===================================================================
+echo  [ERROR] Database execution failed with exit code %errorlevel%.
+echo  Please verify your MySQL root password and ensure MySQL service is running.
+echo ===================================================================
+
+:SCRIPT_END
 echo.
 pause
