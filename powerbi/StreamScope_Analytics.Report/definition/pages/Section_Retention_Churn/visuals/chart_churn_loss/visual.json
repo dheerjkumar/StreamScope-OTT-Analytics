@@ -1,0 +1,91 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "chart_churn_loss",
+  "position": {
+    "x": 30.0,
+    "y": 90.0,
+    "z": 17.0,
+    "width": 920.0,
+    "height": 460.0
+  },
+  "visual": {
+    "visualType": "lineStackedColumnComboChart",
+    "query": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "t1",
+          "Entity": "MonthlyPerformance",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "t1"
+              }
+            },
+            "Property": "calendar_month"
+          },
+          "Name": "MonthlyPerformance.calendar_month"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "t1"
+                  }
+                },
+                "Property": "lost_mrr"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(MonthlyPerformance.lost_mrr)"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "t2"
+                  }
+                },
+                "Property": "churned_subscribers"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(MonthlyPerformance.churned_subscribers)"
+        }
+      ]
+    },
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Monthly Churned Subscribers & Lost Revenue Trend'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

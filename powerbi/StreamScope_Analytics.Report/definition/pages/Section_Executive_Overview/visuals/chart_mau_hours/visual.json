@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "chart_mau_hours",
+  "position": {
+    "x": 30.0,
+    "y": 630.0,
+    "z": 9.0,
+    "width": 920.0,
+    "height": 410.0
+  },
+  "visual": {
+    "visualType": "areaChart",
+    "query": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "t1",
+          "Entity": "MonthlyPerformance",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "t1"
+              }
+            },
+            "Property": "calendar_month"
+          },
+          "Name": "MonthlyPerformance.calendar_month"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "t1"
+                  }
+                },
+                "Property": "total_watch_hours"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(MonthlyPerformance.total_watch_hours)"
+        }
+      ]
+    },
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Monthly Active Viewers (MAU) & Watch Hours Dynamics'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,9 +1,88 @@
 {
-  "name": "StreamScope_Analytics",
-  "compatibilityLevel": 1567,
+  "compatibilityLevel": 1606,
   "model": {
+    "annotations": [
+      {
+        "name": "PBI_ProTooling",
+        "value": "[\"DevMode\"]"
+      }
+    ],
     "culture": "en-US",
     "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "relationships": [
+      {
+        "name": "rel_subs_users",
+        "fromTable": "FactSubscriptions",
+        "fromColumn": "user_id",
+        "toTable": "DimUsers",
+        "toColumn": "user_id",
+        "isActive": true,
+        "crossFilteringBehavior": "oneDirection",
+        "fromCardinality": "many",
+        "toCardinality": "one",
+        "relyOnReferentialIntegrity": true
+      },
+      {
+        "name": "rel_subs_plans",
+        "fromTable": "FactSubscriptions",
+        "fromColumn": "plan_id",
+        "toTable": "DimPlans",
+        "toColumn": "plan_id",
+        "isActive": true,
+        "crossFilteringBehavior": "oneDirection",
+        "fromCardinality": "many",
+        "toCardinality": "one",
+        "relyOnReferentialIntegrity": true
+      },
+      {
+        "name": "rel_sess_users",
+        "fromTable": "FactViewingSessions",
+        "fromColumn": "user_id",
+        "toTable": "DimUsers",
+        "toColumn": "user_id",
+        "isActive": true,
+        "crossFilteringBehavior": "oneDirection",
+        "fromCardinality": "many",
+        "toCardinality": "one",
+        "relyOnReferentialIntegrity": true
+      },
+      {
+        "name": "rel_sess_content",
+        "fromTable": "FactViewingSessions",
+        "fromColumn": "content_id",
+        "toTable": "DimContent",
+        "toColumn": "content_id",
+        "isActive": true,
+        "crossFilteringBehavior": "oneDirection",
+        "fromCardinality": "many",
+        "toCardinality": "one",
+        "relyOnReferentialIntegrity": true
+      },
+      {
+        "name": "rel_churn_users",
+        "fromTable": "ChurnByDimension",
+        "fromColumn": "user_id",
+        "toTable": "DimUsers",
+        "toColumn": "user_id",
+        "isActive": true,
+        "crossFilteringBehavior": "oneDirection",
+        "fromCardinality": "many",
+        "toCardinality": "one",
+        "relyOnReferentialIntegrity": true
+      },
+      {
+        "name": "rel_segments_users",
+        "fromTable": "UserSegments",
+        "fromColumn": "user_id",
+        "toTable": "DimUsers",
+        "toColumn": "user_id",
+        "isActive": true,
+        "crossFilteringBehavior": "bothDirections",
+        "fromCardinality": "one",
+        "toCardinality": "one",
+        "relyOnReferentialIntegrity": true
+      }
+    ],
     "tables": [
       {
         "name": "_Measures",
@@ -11,8 +90,117 @@
           {
             "name": "RowId",
             "dataType": "int64",
-            "sourceColumn": "RowId",
-            "isHidden": true
+            "isHidden": true,
+            "lineageTag": "25e6ac01-8044-4be1-8659-a759708d26dd",
+            "sourceColumn": "RowId"
+          }
+        ],
+        "lineageTag": "fe1b2880-9ca7-49b0-bc50-bde1f9db9dbe",
+        "measures": [
+          {
+            "name": "Total Registered Users",
+            "description": "Total cumulative customer accounts registered.",
+            "expression": "DISTINCTCOUNT(DimUsers[user_id])",
+            "formatString": "#,##0",
+            "lineageTag": "4b9ae599-cccd-4762-af3e-e3e86fe11f9e"
+          },
+          {
+            "name": "Converted Paying Subscribers",
+            "description": "Unique users who purchased at least one paid subscription.",
+            "expression": "CALCULATE(DISTINCTCOUNT(FactSubscriptions[user_id]), FactSubscriptions[status] IN {\"Active\", \"Canceled\"})",
+            "formatString": "#,##0",
+            "lineageTag": "0fcbe718-bd43-4f63-a854-e20f8b61986c"
+          },
+          {
+            "name": "Conversion Rate %",
+            "description": "Percentage of registered accounts converting to paying subscribers.",
+            "expression": "DIVIDE([Converted Paying Subscribers], [Total Registered Users], 0) * 100",
+            "formatString": "0.0%",
+            "lineageTag": "bc0332d4-bb4c-41bd-8223-6bcf8c01708a"
+          },
+          {
+            "name": "Active Paid Subscribers",
+            "description": "Currently active, paying subscribers.",
+            "expression": "CALCULATE(DISTINCTCOUNT(FactSubscriptions[user_id]), FactSubscriptions[status] = \"Active\")",
+            "formatString": "#,##0",
+            "lineageTag": "1cc8584d-fb94-4d91-8fd7-59d7faa53e7d"
+          },
+          {
+            "name": "Current MRR",
+            "description": "Monthly Recurring Revenue run-rate from active subscriptions.",
+            "expression": "CALCULATE(SUM(FactSubscriptions[monthly_fee]), FactSubscriptions[status] = \"Active\")",
+            "formatString": "$#,##0",
+            "lineageTag": "e26a8027-7c25-45a8-9d1c-83291404cb87"
+          },
+          {
+            "name": "ARPU",
+            "description": "Average Revenue Per Paying Subscriber.",
+            "expression": "DIVIDE([Current MRR], [Active Paid Subscribers], 0)",
+            "formatString": "$#,##0.00",
+            "lineageTag": "ad8308a6-3816-4bcb-a832-949afa6dc576"
+          },
+          {
+            "name": "Total Watch Hours",
+            "description": "Cumulative video watch hours across all sessions.",
+            "expression": "DIVIDE(SUM(FactViewingSessions[watch_minutes]), 60, 0)",
+            "formatString": "#,##0.0",
+            "lineageTag": "d7149ec7-786c-4e77-9229-6103de913124"
+          },
+          {
+            "name": "Total Viewing Sessions",
+            "description": "Total stream playback sessions.",
+            "expression": "COUNTROWS(FactViewingSessions)",
+            "formatString": "#,##0",
+            "lineageTag": "0a0c32ae-7db1-40dc-8c8e-f3c70f51a571"
+          },
+          {
+            "name": "Monthly Active Viewers (MAU)",
+            "description": "Unique viewers who streamed in the period.",
+            "expression": "DISTINCTCOUNT(FactViewingSessions[user_id])",
+            "formatString": "#,##0",
+            "lineageTag": "134e82ad-10cf-4bde-8ce9-e8eb81005b68"
+          },
+          {
+            "name": "Platform Completion Rate %",
+            "description": "Average video duration percentage completed.",
+            "expression": "AVERAGE(FactViewingSessions[completion_percentage])",
+            "formatString": "0.0%",
+            "lineageTag": "8e6bf9b6-da02-4bc4-8d56-4c762d8bd99e"
+          },
+          {
+            "name": "Average Watch Time Per Viewer",
+            "description": "Mean watch minutes per active viewer.",
+            "expression": "DIVIDE(SUM(FactViewingSessions[watch_minutes]), [Monthly Active Viewers (MAU)], 0)",
+            "formatString": "#,##0.0",
+            "lineageTag": "b0acc75a-fb17-497a-a1bd-9acad3d6b48a"
+          },
+          {
+            "name": "True Churned Subscribers",
+            "description": "Canceled subscribers who did not restart within 30 days.",
+            "expression": "CALCULATE(DISTINCTCOUNT(ChurnByDimension[user_id]), ChurnByDimension[is_true_churn] = 1)",
+            "formatString": "#,##0",
+            "lineageTag": "490b8147-42da-4659-8826-2882df9eacc3"
+          },
+          {
+            "name": "Monthly Churn Rate %",
+            "description": "Proportion of active subscriber base churned.",
+            "expression": "DIVIDE([True Churned Subscribers], [Active Paid Subscribers], 0) * 100",
+            "formatString": "0.0%",
+            "lineageTag": "6061a997-6b61-4e7d-b36a-dabde25b6785"
+          },
+          {
+            "name": "Subscriber Retention Rate %",
+            "description": "Complement of monthly churn rate.",
+            "expression": "IF(NOT(ISBLANK([Monthly Churn Rate %])), 100 - [Monthly Churn Rate %], BLANK())",
+            "formatString": "0.0%",
+            "lineageTag": "b3cf5468-c032-430d-808b-6078b0ef9d7a"
+          },
+          {
+            "name": "Reactivated Subscribers",
+            "description": "Subscribers who returned after >30 days.",
+            "expression": "CALCULATE(DISTINCTCOUNT(ChurnByDimension[user_id]), ChurnByDimension[is_reactivated] = 1)",
+            "formatString": "#,##0",
+            "lineageTag": "9142c11b-0d53-4a3c-8f80-edd5776af41a"
           }
         ],
         "partitions": [
@@ -20,850 +208,791 @@
             "name": "_Measures",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
                 "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i45WMlSKjQUA\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [RowId = _t]),",
                 "    ChangedType = Table.TransformColumnTypes(Source,{{\"RowId\", Int64.Type}})",
                 "in",
                 "    ChangedType"
-              ]
+              ],
+              "type": "m"
             }
-          }
-        ],
-        "measures": [
-          {
-            "name": "Total Registered Users",
-            "expression": "DISTINCTCOUNT(DimUsers[user_id])",
-            "formatString": "#,##0",
-            "description": "Total cumulative customer accounts registered."
-          },
-          {
-            "name": "Converted Paying Subscribers",
-            "expression": "CALCULATE(DISTINCTCOUNT(FactSubscriptions[user_id]), FactSubscriptions[status] IN {\"Active\", \"Canceled\"})",
-            "formatString": "#,##0",
-            "description": "Unique users who purchased at least one paid subscription."
-          },
-          {
-            "name": "Conversion Rate %",
-            "expression": "DIVIDE([Converted Paying Subscribers], [Total Registered Users], 0) * 100",
-            "formatString": "0.0%",
-            "description": "Percentage of registered accounts converting to paying subscribers."
-          },
-          {
-            "name": "Active Paid Subscribers",
-            "expression": "CALCULATE(DISTINCTCOUNT(FactSubscriptions[user_id]), FactSubscriptions[status] = \"Active\")",
-            "formatString": "#,##0",
-            "description": "Currently active, paying subscribers."
-          },
-          {
-            "name": "Current MRR",
-            "expression": "CALCULATE(SUM(FactSubscriptions[monthly_fee]), FactSubscriptions[status] = \"Active\")",
-            "formatString": "$#,##0",
-            "description": "Monthly Recurring Revenue run-rate from active subscriptions."
-          },
-          {
-            "name": "ARPU",
-            "expression": "DIVIDE([Current MRR], [Active Paid Subscribers], 0)",
-            "formatString": "$#,##0.00",
-            "description": "Average Revenue Per Paying Subscriber."
-          },
-          {
-            "name": "Total Watch Hours",
-            "expression": "DIVIDE(SUM(FactViewingSessions[watch_minutes]), 60, 0)",
-            "formatString": "#,##0.0",
-            "description": "Cumulative video watch hours across all sessions."
-          },
-          {
-            "name": "Total Viewing Sessions",
-            "expression": "COUNTROWS(FactViewingSessions)",
-            "formatString": "#,##0",
-            "description": "Total stream playback sessions."
-          },
-          {
-            "name": "Monthly Active Viewers (MAU)",
-            "expression": "DISTINCTCOUNT(FactViewingSessions[user_id])",
-            "formatString": "#,##0",
-            "description": "Unique viewers who streamed in the period."
-          },
-          {
-            "name": "Platform Completion Rate %",
-            "expression": "AVERAGE(FactViewingSessions[completion_percentage])",
-            "formatString": "0.0%",
-            "description": "Average video duration percentage completed."
-          },
-          {
-            "name": "Average Watch Time Per Viewer",
-            "expression": "DIVIDE(SUM(FactViewingSessions[watch_minutes]), [Monthly Active Viewers (MAU)], 0)",
-            "formatString": "#,##0.0",
-            "description": "Mean watch minutes per active viewer."
-          },
-          {
-            "name": "True Churned Subscribers",
-            "expression": "CALCULATE(DISTINCTCOUNT(ChurnByDimension[user_id]), ChurnByDimension[is_true_churn] = 1)",
-            "formatString": "#,##0",
-            "description": "Canceled subscribers who did not restart within 30 days."
-          },
-          {
-            "name": "Monthly Churn Rate %",
-            "expression": "DIVIDE([True Churned Subscribers], [Active Paid Subscribers], 0) * 100",
-            "formatString": "0.0%",
-            "description": "Proportion of active subscriber base churned."
-          },
-          {
-            "name": "Subscriber Retention Rate %",
-            "expression": "IF(NOT(ISBLANK([Monthly Churn Rate %])), 100 - [Monthly Churn Rate %], BLANK())",
-            "formatString": "0.0%",
-            "description": "Complement of monthly churn rate."
-          },
-          {
-            "name": "Reactivated Subscribers",
-            "expression": "CALCULATE(DISTINCTCOUNT(ChurnByDimension[user_id]), ChurnByDimension[is_reactivated] = 1)",
-            "formatString": "#,##0",
-            "description": "Subscribers who returned after >30 days."
           }
         ]
       },
       {
         "name": "MonthlyPerformance",
-        "isHidden": false,
         "columns": [
           {
             "name": "calendar_month",
             "dataType": "string",
+            "lineageTag": "ee6b3bd2-73d7-47b2-bb1a-dec4e27caa86",
             "sourceColumn": "calendar_month",
             "summarizeBy": "none"
           },
           {
             "name": "new_registrations",
             "dataType": "int64",
+            "formatString": "#,##0",
+            "lineageTag": "caea6059-900e-4d22-9305-14185af02fef",
             "sourceColumn": "new_registrations",
-            "summarizeBy": "sum",
-            "formatString": "#,##0"
+            "summarizeBy": "sum"
           },
           {
             "name": "active_subscribers",
             "dataType": "int64",
+            "formatString": "#,##0",
+            "lineageTag": "1b5e5424-1fee-4fef-ac2a-3d04bebfb2b9",
             "sourceColumn": "active_subscribers",
-            "summarizeBy": "sum",
-            "formatString": "#,##0"
+            "summarizeBy": "sum"
           },
           {
             "name": "estimated_mrr",
             "dataType": "double",
+            "formatString": "$#,##0.00",
+            "lineageTag": "15a1d444-e418-4279-a3c7-a3d6eff607e1",
             "sourceColumn": "estimated_mrr",
-            "summarizeBy": "sum",
-            "formatString": "$#,##0.00"
+            "summarizeBy": "sum"
           },
           {
             "name": "active_viewers_mau",
             "dataType": "int64",
+            "formatString": "#,##0",
+            "lineageTag": "9a954b6a-5a17-4ad3-ba2e-fe7341859674",
             "sourceColumn": "active_viewers_mau",
-            "summarizeBy": "sum",
-            "formatString": "#,##0"
+            "summarizeBy": "sum"
           },
           {
             "name": "total_sessions",
             "dataType": "int64",
+            "formatString": "#,##0",
+            "lineageTag": "09125751-c3f9-485f-a8f4-05fba6fd6dd4",
             "sourceColumn": "total_sessions",
-            "summarizeBy": "sum",
-            "formatString": "#,##0"
+            "summarizeBy": "sum"
           },
           {
             "name": "total_watch_hours",
             "dataType": "double",
+            "formatString": "#,##0.0",
+            "lineageTag": "5dba6ee4-dab3-4912-9f3d-265c5e1412df",
             "sourceColumn": "total_watch_hours",
-            "summarizeBy": "sum",
-            "formatString": "#,##0.0"
+            "summarizeBy": "sum"
           },
           {
             "name": "churned_subscribers",
             "dataType": "int64",
+            "formatString": "#,##0",
+            "lineageTag": "159cf498-d218-42a4-b903-a14117344127",
             "sourceColumn": "churned_subscribers",
-            "summarizeBy": "sum",
-            "formatString": "#,##0"
+            "summarizeBy": "sum"
           },
           {
             "name": "lost_mrr",
             "dataType": "double",
+            "formatString": "$#,##0.00",
+            "lineageTag": "212b250c-92bd-4b3e-b0dc-278773fac260",
             "sourceColumn": "lost_mrr",
-            "summarizeBy": "sum",
-            "formatString": "$#,##0.00"
+            "summarizeBy": "sum"
           }
         ],
+        "lineageTag": "f0c1b89f-2bf3-47cf-ba9a-69dd3e673519",
         "partitions": [
           {
             "name": "MonthlyPerformance",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:/Users/Dheeraj Kumar/OneDrive/Desktop/Documents/StreamScope-OTT-Analytics/powerbi/data/monthly_performance.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\Dheeraj Kumar\\OneDrive\\Desktop\\Documents\\StreamScope-OTT-Analytics\\powerbi\\data\\monthly_performance.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
                 "    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{\"calendar_month\", type text}, {\"new_registrations\", Int64.Type}, {\"active_subscribers\", Int64.Type}, {\"estimated_mrr\", type number}, {\"active_viewers_mau\", Int64.Type}, {\"total_sessions\", Int64.Type}, {\"total_watch_hours\", type number}, {\"churned_subscribers\", Int64.Type}, {\"lost_mrr\", type number}})",
                 "in",
                 "    ChangedType"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "ContentPerformance",
-        "isHidden": false,
         "columns": [
           {
             "name": "content_id",
             "dataType": "int64",
+            "lineageTag": "48293371-7a93-49d9-be1b-6fa5b2dd0f47",
             "sourceColumn": "content_id",
             "summarizeBy": "sum"
           },
           {
             "name": "title",
             "dataType": "string",
+            "lineageTag": "1c4b3789-102a-4d12-8b4d-b983b7b65326",
             "sourceColumn": "title",
             "summarizeBy": "none"
           },
           {
             "name": "genre",
             "dataType": "string",
+            "lineageTag": "daa2661a-fe3d-4b9b-b365-fc1fa408121b",
             "sourceColumn": "genre",
             "summarizeBy": "none"
           },
           {
             "name": "release_year",
             "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "8f791291-1496-4bb8-9f77-ecaf6d1fa180",
             "sourceColumn": "release_year",
-            "summarizeBy": "sum",
-            "formatString": "0"
+            "summarizeBy": "sum"
           },
           {
             "name": "content_type",
             "dataType": "string",
+            "lineageTag": "b28135d7-39de-4349-b96a-6e5dd6594b6e",
             "sourceColumn": "content_type",
             "summarizeBy": "none"
           },
           {
             "name": "duration_minutes",
             "dataType": "int64",
+            "formatString": "#,##0",
+            "lineageTag": "8f51273f-4069-4a86-b548-317b98909a4c",
             "sourceColumn": "duration_minutes",
-            "summarizeBy": "sum",
-            "formatString": "#,##0"
+            "summarizeBy": "sum"
           },
           {
             "name": "unique_viewers",
             "dataType": "int64",
+            "formatString": "#,##0",
+            "lineageTag": "01430920-38bc-4abe-a86c-cbe429f25dbf",
             "sourceColumn": "unique_viewers",
-            "summarizeBy": "sum",
-            "formatString": "#,##0"
+            "summarizeBy": "sum"
           },
           {
             "name": "total_plays",
             "dataType": "int64",
+            "formatString": "#,##0",
+            "lineageTag": "8508215f-ea31-4310-a753-7dfc37bc2bba",
             "sourceColumn": "total_plays",
-            "summarizeBy": "sum",
-            "formatString": "#,##0"
+            "summarizeBy": "sum"
           },
           {
             "name": "total_watch_hours",
             "dataType": "double",
+            "formatString": "#,##0.0",
+            "lineageTag": "c9fc60b3-023d-4bf8-8902-c646cd3ce72f",
             "sourceColumn": "total_watch_hours",
-            "summarizeBy": "sum",
-            "formatString": "#,##0.0"
+            "summarizeBy": "sum"
           },
           {
             "name": "avg_completion_percentage",
             "dataType": "double",
+            "formatString": "0.0%",
+            "lineageTag": "ec316083-9ead-40e1-9d70-d3924f2bab05",
             "sourceColumn": "avg_completion_percentage",
-            "summarizeBy": "sum",
-            "formatString": "0.0%"
+            "summarizeBy": "sum"
           }
         ],
+        "lineageTag": "27a8acd1-d0b3-4b2c-ad54-af2009530474",
         "partitions": [
           {
             "name": "ContentPerformance",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:/Users/Dheeraj Kumar/OneDrive/Desktop/Documents/StreamScope-OTT-Analytics/powerbi/data/content_performance.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\Dheeraj Kumar\\OneDrive\\Desktop\\Documents\\StreamScope-OTT-Analytics\\powerbi\\data\\content_performance.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
                 "    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{\"content_id\", Int64.Type}, {\"title\", type text}, {\"genre\", type text}, {\"release_year\", Int64.Type}, {\"content_type\", type text}, {\"duration_minutes\", Int64.Type}, {\"unique_viewers\", Int64.Type}, {\"total_plays\", Int64.Type}, {\"total_watch_hours\", type number}, {\"avg_completion_percentage\", type number}})",
                 "in",
                 "    ChangedType"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "ChurnByDimension",
-        "isHidden": false,
         "columns": [
           {
             "name": "subscription_id",
             "dataType": "int64",
+            "lineageTag": "bec32927-1ce9-44ea-9c44-cdc6928c5595",
             "sourceColumn": "subscription_id",
             "summarizeBy": "sum"
           },
           {
             "name": "user_id",
             "dataType": "int64",
+            "lineageTag": "29160633-d5ee-4353-ae92-4a009f28e909",
             "sourceColumn": "user_id",
             "summarizeBy": "sum"
           },
           {
             "name": "country",
             "dataType": "string",
+            "lineageTag": "7a98bfd4-3590-4b1a-a22e-27ce4c5ee4f3",
             "sourceColumn": "country",
             "summarizeBy": "none"
           },
           {
             "name": "acquisition_channel",
             "dataType": "string",
+            "lineageTag": "c39b3fdc-583f-4309-beee-26487e60d301",
             "sourceColumn": "acquisition_channel",
             "summarizeBy": "none"
           },
           {
             "name": "preferred_device",
             "dataType": "string",
+            "lineageTag": "49096214-ca95-4f49-84fa-c8dbe3394548",
             "sourceColumn": "preferred_device",
             "summarizeBy": "none"
           },
           {
             "name": "plan_name",
             "dataType": "string",
+            "lineageTag": "47c10257-74a0-4314-80d0-d65861f6b638",
             "sourceColumn": "plan_name",
             "summarizeBy": "none"
           },
           {
             "name": "monthly_price",
             "dataType": "double",
+            "formatString": "$#,##0.00",
+            "lineageTag": "44687695-aa4d-4990-85fb-0ff6fea1d784",
             "sourceColumn": "monthly_price",
-            "summarizeBy": "sum",
-            "formatString": "$#,##0.00"
+            "summarizeBy": "sum"
           },
           {
             "name": "start_date",
             "dataType": "string",
+            "lineageTag": "6aeca711-e0fa-4d64-bdbc-80a5253534d8",
             "sourceColumn": "start_date",
             "summarizeBy": "none"
           },
           {
             "name": "end_date",
             "dataType": "string",
+            "lineageTag": "6b25fd64-4186-42d7-95e1-87ead76d5e4c",
             "sourceColumn": "end_date",
             "summarizeBy": "none"
           },
           {
             "name": "status",
             "dataType": "string",
+            "lineageTag": "3bdc29d5-998a-49e2-a633-e88910b52970",
             "sourceColumn": "status",
             "summarizeBy": "none"
           },
           {
             "name": "billing_cycle",
             "dataType": "string",
+            "lineageTag": "84a825d2-b612-43d7-9e25-95aa3b1e7960",
             "sourceColumn": "billing_cycle",
             "summarizeBy": "none"
           },
           {
             "name": "monthly_fee",
             "dataType": "double",
+            "formatString": "$#,##0.00",
+            "lineageTag": "23c939bb-e3c6-4138-8c1f-e65464be3cb4",
             "sourceColumn": "monthly_fee",
-            "summarizeBy": "sum",
-            "formatString": "$#,##0.00"
+            "summarizeBy": "sum"
           },
           {
             "name": "cancellation_reason",
             "dataType": "string",
+            "lineageTag": "0ebe47a8-73f4-407c-b735-be01b32126ce",
             "sourceColumn": "cancellation_reason",
             "summarizeBy": "none"
           },
           {
             "name": "is_true_churn",
             "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "0933a930-d36a-4b52-9a17-07d400d1ce60",
             "sourceColumn": "is_true_churn",
-            "summarizeBy": "sum",
-            "formatString": "0"
+            "summarizeBy": "sum"
           },
           {
             "name": "is_reactivated",
             "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "312a83a5-7d35-45a6-a22c-c6a934fc75d2",
             "sourceColumn": "is_reactivated",
-            "summarizeBy": "sum",
-            "formatString": "0"
+            "summarizeBy": "sum"
           }
         ],
+        "lineageTag": "260d9d22-beb0-4e55-9cb6-e7291d16c549",
         "partitions": [
           {
             "name": "ChurnByDimension",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:/Users/Dheeraj Kumar/OneDrive/Desktop/Documents/StreamScope-OTT-Analytics/powerbi/data/churn_by_dimension.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\Dheeraj Kumar\\OneDrive\\Desktop\\Documents\\StreamScope-OTT-Analytics\\powerbi\\data\\churn_by_dimension.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
                 "    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{\"subscription_id\", Int64.Type}, {\"user_id\", Int64.Type}, {\"country\", type text}, {\"acquisition_channel\", type text}, {\"preferred_device\", type text}, {\"plan_name\", type text}, {\"monthly_price\", type number}, {\"start_date\", type text}, {\"end_date\", type text}, {\"status\", type text}, {\"billing_cycle\", type text}, {\"monthly_fee\", type number}, {\"cancellation_reason\", type text}, {\"is_true_churn\", Int64.Type}, {\"is_reactivated\", Int64.Type}})",
                 "in",
                 "    ChangedType"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "UserSegments",
-        "isHidden": false,
         "columns": [
           {
             "name": "user_id",
             "dataType": "int64",
+            "lineageTag": "af0bffae-c9b5-4fa0-8e21-43c6de639287",
             "sourceColumn": "user_id",
             "summarizeBy": "sum"
           },
           {
             "name": "signup_date",
             "dataType": "string",
+            "lineageTag": "54b68be0-10a4-4afa-862e-ca464e9fac68",
             "sourceColumn": "signup_date",
             "summarizeBy": "none"
           },
           {
             "name": "country",
             "dataType": "string",
+            "lineageTag": "4fe25b1b-91e9-43b5-888a-08af49199dd5",
             "sourceColumn": "country",
             "summarizeBy": "none"
           },
           {
             "name": "acquisition_channel",
             "dataType": "string",
+            "lineageTag": "8fe2ec00-af59-4cd2-9a2c-35f1334692db",
             "sourceColumn": "acquisition_channel",
             "summarizeBy": "none"
           },
           {
             "name": "preferred_device",
             "dataType": "string",
+            "lineageTag": "4efdb739-ecc5-434c-8db4-61a640442698",
             "sourceColumn": "preferred_device",
             "summarizeBy": "none"
           },
           {
             "name": "total_sessions",
             "dataType": "int64",
+            "formatString": "#,##0",
+            "lineageTag": "e4e02fea-44e5-4c03-b3d4-a0170558cfee",
             "sourceColumn": "total_sessions",
-            "summarizeBy": "sum",
-            "formatString": "#,##0"
+            "summarizeBy": "sum"
           },
           {
             "name": "total_watch_hours",
             "dataType": "double",
+            "formatString": "#,##0.0",
+            "lineageTag": "7455ad05-f64f-4745-b990-e14462dd062e",
             "sourceColumn": "total_watch_hours",
-            "summarizeBy": "sum",
-            "formatString": "#,##0.0"
+            "summarizeBy": "sum"
           },
           {
             "name": "avg_completion_pct",
             "dataType": "double",
+            "formatString": "0.0%",
+            "lineageTag": "9e38da4e-74c7-4415-b47b-317e3def9a1e",
             "sourceColumn": "avg_completion_pct",
-            "summarizeBy": "sum",
-            "formatString": "0.0%"
+            "summarizeBy": "sum"
           },
           {
             "name": "last_streamed_at",
             "dataType": "string",
+            "lineageTag": "f0ed6a4b-00de-4347-8443-e891221cc488",
             "sourceColumn": "last_streamed_at",
             "summarizeBy": "none"
           },
           {
             "name": "engagement_segment",
             "dataType": "string",
+            "lineageTag": "5ab7748f-9c45-4b1e-97d8-15319ec8b2a9",
             "sourceColumn": "engagement_segment",
             "summarizeBy": "none"
           }
         ],
+        "lineageTag": "ad06e842-1311-43d4-be55-9b302d1be1e5",
         "partitions": [
           {
             "name": "UserSegments",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:/Users/Dheeraj Kumar/OneDrive/Desktop/Documents/StreamScope-OTT-Analytics/powerbi/data/user_segments.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\Dheeraj Kumar\\OneDrive\\Desktop\\Documents\\StreamScope-OTT-Analytics\\powerbi\\data\\user_segments.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
                 "    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{\"user_id\", Int64.Type}, {\"signup_date\", type text}, {\"country\", type text}, {\"acquisition_channel\", type text}, {\"preferred_device\", type text}, {\"total_sessions\", Int64.Type}, {\"total_watch_hours\", type number}, {\"avg_completion_pct\", type number}, {\"last_streamed_at\", type text}, {\"engagement_segment\", type text}})",
                 "in",
                 "    ChangedType"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "DimUsers",
-        "isHidden": false,
         "columns": [
           {
             "name": "user_id",
             "dataType": "int64",
+            "lineageTag": "e92fc271-8aac-4919-abe9-22533281a007",
             "sourceColumn": "user_id",
             "summarizeBy": "sum"
           },
           {
             "name": "signup_date",
             "dataType": "string",
+            "lineageTag": "102de08f-97e1-4bd6-8275-c034600b12ca",
             "sourceColumn": "signup_date",
             "summarizeBy": "none"
           },
           {
             "name": "country",
             "dataType": "string",
+            "lineageTag": "88fdb389-ef8e-4d6c-93a6-fd00c2b5b5be",
             "sourceColumn": "country",
             "summarizeBy": "none"
           },
           {
             "name": "age_group",
             "dataType": "string",
+            "lineageTag": "53500bbe-5b10-46f4-80c1-794e6188e014",
             "sourceColumn": "age_group",
             "summarizeBy": "none"
           },
           {
             "name": "acquisition_channel",
             "dataType": "string",
+            "lineageTag": "386c6b79-8978-4118-bd6c-af379d57bcfe",
             "sourceColumn": "acquisition_channel",
             "summarizeBy": "none"
           },
           {
             "name": "preferred_device",
             "dataType": "string",
+            "lineageTag": "b999262a-062f-42f5-847a-d45c469e43b0",
             "sourceColumn": "preferred_device",
             "summarizeBy": "none"
           }
         ],
+        "lineageTag": "0a123597-a5bd-4046-9230-b914db2d28ef",
         "partitions": [
           {
             "name": "DimUsers",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:/Users/Dheeraj Kumar/OneDrive/Desktop/Documents/StreamScope-OTT-Analytics/powerbi/data/dim_users.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\Dheeraj Kumar\\OneDrive\\Desktop\\Documents\\StreamScope-OTT-Analytics\\powerbi\\data\\dim_users.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
                 "    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{\"user_id\", Int64.Type}, {\"signup_date\", type text}, {\"country\", type text}, {\"age_group\", type text}, {\"acquisition_channel\", type text}, {\"preferred_device\", type text}})",
                 "in",
                 "    ChangedType"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "DimPlans",
-        "isHidden": false,
         "columns": [
           {
             "name": "plan_id",
             "dataType": "int64",
+            "lineageTag": "9647bdd0-1a61-4fec-b183-971786b407dc",
             "sourceColumn": "plan_id",
             "summarizeBy": "sum"
           },
           {
             "name": "plan_name",
             "dataType": "string",
+            "lineageTag": "e069e95e-6495-4b6a-87e1-88bcf2dcf932",
             "sourceColumn": "plan_name",
             "summarizeBy": "none"
           },
           {
             "name": "monthly_price",
             "dataType": "double",
+            "formatString": "$#,##0.00",
+            "lineageTag": "a4011d8f-6753-40d4-9057-9a4fea402801",
             "sourceColumn": "monthly_price",
-            "summarizeBy": "sum",
-            "formatString": "$#,##0.00"
+            "summarizeBy": "sum"
           },
           {
             "name": "max_screens",
             "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "d17e1ca7-5c46-4d05-bc42-933a236ef8a3",
             "sourceColumn": "max_screens",
-            "summarizeBy": "sum",
-            "formatString": "0"
+            "summarizeBy": "sum"
           },
           {
             "name": "video_quality",
             "dataType": "string",
+            "lineageTag": "5ce6618d-bc99-45d2-ba8d-9b420f7ee49e",
             "sourceColumn": "video_quality",
             "summarizeBy": "none"
           }
         ],
+        "lineageTag": "396661a0-24b1-488e-bf1e-61a909194fa5",
         "partitions": [
           {
             "name": "DimPlans",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:/Users/Dheeraj Kumar/OneDrive/Desktop/Documents/StreamScope-OTT-Analytics/powerbi/data/dim_plans.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\Dheeraj Kumar\\OneDrive\\Desktop\\Documents\\StreamScope-OTT-Analytics\\powerbi\\data\\dim_plans.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
                 "    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{\"plan_id\", Int64.Type}, {\"plan_name\", type text}, {\"monthly_price\", type number}, {\"max_screens\", Int64.Type}, {\"video_quality\", type text}})",
                 "in",
                 "    ChangedType"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "DimContent",
-        "isHidden": false,
         "columns": [
           {
             "name": "content_id",
             "dataType": "int64",
+            "lineageTag": "e6004c51-5ce6-4ca3-a510-322259c55ffa",
             "sourceColumn": "content_id",
             "summarizeBy": "sum"
           },
           {
             "name": "title",
             "dataType": "string",
+            "lineageTag": "8f9cf27e-0bf6-4d23-bcd7-8e5a712d716c",
             "sourceColumn": "title",
             "summarizeBy": "none"
           },
           {
             "name": "genre",
             "dataType": "string",
+            "lineageTag": "40da6121-dae5-46f1-bd5d-7de58bf68291",
             "sourceColumn": "genre",
             "summarizeBy": "none"
           },
           {
             "name": "release_year",
             "dataType": "int64",
+            "formatString": "0",
+            "lineageTag": "7c757aae-c657-4af5-9ec4-d219a4ed7ee1",
             "sourceColumn": "release_year",
-            "summarizeBy": "sum",
-            "formatString": "0"
+            "summarizeBy": "sum"
           },
           {
             "name": "content_type",
             "dataType": "string",
+            "lineageTag": "69273cb7-66d0-41c9-a814-08c1ceeac9d3",
             "sourceColumn": "content_type",
             "summarizeBy": "none"
           },
           {
             "name": "duration_minutes",
             "dataType": "int64",
+            "formatString": "#,##0",
+            "lineageTag": "e3d7b7d7-03a1-4a69-80db-9d292b4c6952",
             "sourceColumn": "duration_minutes",
-            "summarizeBy": "sum",
-            "formatString": "#,##0"
+            "summarizeBy": "sum"
           }
         ],
+        "lineageTag": "6893f897-4a1d-46d3-8f35-b781a7184d0b",
         "partitions": [
           {
             "name": "DimContent",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:/Users/Dheeraj Kumar/OneDrive/Desktop/Documents/StreamScope-OTT-Analytics/powerbi/data/dim_content.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\Dheeraj Kumar\\OneDrive\\Desktop\\Documents\\StreamScope-OTT-Analytics\\powerbi\\data\\dim_content.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
                 "    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{\"content_id\", Int64.Type}, {\"title\", type text}, {\"genre\", type text}, {\"release_year\", Int64.Type}, {\"content_type\", type text}, {\"duration_minutes\", Int64.Type}})",
                 "in",
                 "    ChangedType"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "FactSubscriptions",
-        "isHidden": false,
         "columns": [
           {
             "name": "subscription_id",
             "dataType": "int64",
+            "lineageTag": "f84b80d1-8321-4457-a5d0-aa7b7923878d",
             "sourceColumn": "subscription_id",
             "summarizeBy": "sum"
           },
           {
             "name": "user_id",
             "dataType": "int64",
+            "lineageTag": "8692b541-0cd2-4c51-8cc7-e375b5fe135f",
             "sourceColumn": "user_id",
             "summarizeBy": "sum"
           },
           {
             "name": "plan_id",
             "dataType": "int64",
+            "lineageTag": "18a47a27-2dd2-4b63-ae4c-c2c3157d8305",
             "sourceColumn": "plan_id",
             "summarizeBy": "sum"
           },
           {
             "name": "start_date",
             "dataType": "string",
+            "lineageTag": "8327937c-722b-4475-9e2f-cbce64d096a6",
             "sourceColumn": "start_date",
             "summarizeBy": "none"
           },
           {
             "name": "end_date",
             "dataType": "string",
+            "lineageTag": "07d3b8a7-5c80-4503-b0e8-f87b1c28a3bd",
             "sourceColumn": "end_date",
             "summarizeBy": "none"
           },
           {
             "name": "status",
             "dataType": "string",
+            "lineageTag": "f9badbce-ac34-4d6a-8a6c-def361cbdedb",
             "sourceColumn": "status",
             "summarizeBy": "none"
           },
           {
             "name": "billing_cycle",
             "dataType": "string",
+            "lineageTag": "7d9e7e0d-5ac6-4bab-95ce-3bfac51cd622",
             "sourceColumn": "billing_cycle",
             "summarizeBy": "none"
           },
           {
             "name": "monthly_fee",
             "dataType": "double",
+            "formatString": "$#,##0.00",
+            "lineageTag": "900d4f68-e706-4da0-99f9-058d280722e7",
             "sourceColumn": "monthly_fee",
-            "summarizeBy": "sum",
-            "formatString": "$#,##0.00"
+            "summarizeBy": "sum"
           },
           {
             "name": "cancellation_reason",
             "dataType": "string",
+            "lineageTag": "af3198cc-370b-4320-8913-3f80011fbbfb",
             "sourceColumn": "cancellation_reason",
             "summarizeBy": "none"
           }
         ],
+        "lineageTag": "d37837c4-bf52-4078-a740-69404c649aab",
         "partitions": [
           {
             "name": "FactSubscriptions",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:/Users/Dheeraj Kumar/OneDrive/Desktop/Documents/StreamScope-OTT-Analytics/powerbi/data/fact_subscriptions.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\Dheeraj Kumar\\OneDrive\\Desktop\\Documents\\StreamScope-OTT-Analytics\\powerbi\\data\\fact_subscriptions.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
                 "    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{\"subscription_id\", Int64.Type}, {\"user_id\", Int64.Type}, {\"plan_id\", Int64.Type}, {\"start_date\", type text}, {\"end_date\", type text}, {\"status\", type text}, {\"billing_cycle\", type text}, {\"monthly_fee\", type number}, {\"cancellation_reason\", type text}})",
                 "in",
                 "    ChangedType"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
       },
       {
         "name": "FactViewingSessions",
-        "isHidden": false,
         "columns": [
           {
             "name": "session_id",
             "dataType": "int64",
+            "lineageTag": "912c29ce-fbf6-4848-81e5-68e7a7caeedf",
             "sourceColumn": "session_id",
             "summarizeBy": "sum"
           },
           {
             "name": "user_id",
             "dataType": "int64",
+            "lineageTag": "eda0351e-8a03-4875-b582-76ce208e79d2",
             "sourceColumn": "user_id",
             "summarizeBy": "sum"
           },
           {
             "name": "content_id",
             "dataType": "int64",
+            "lineageTag": "204b44fa-1100-4320-92d2-3ed76e8eea93",
             "sourceColumn": "content_id",
             "summarizeBy": "sum"
           },
           {
             "name": "started_at",
             "dataType": "string",
+            "lineageTag": "d83d9e58-a4e7-4dfd-b479-adef2d52be47",
             "sourceColumn": "started_at",
             "summarizeBy": "none"
           },
           {
             "name": "watch_minutes",
             "dataType": "int64",
+            "formatString": "#,##0",
+            "lineageTag": "e67b93f0-09d4-4d4d-8f2a-13f0bd855be0",
             "sourceColumn": "watch_minutes",
-            "summarizeBy": "sum",
-            "formatString": "#,##0"
+            "summarizeBy": "sum"
           },
           {
             "name": "completion_percentage",
             "dataType": "double",
+            "formatString": "0.0%",
+            "lineageTag": "a62db2da-0bcc-4429-9b30-9590ee08e8d8",
             "sourceColumn": "completion_percentage",
-            "summarizeBy": "sum",
-            "formatString": "0.0%"
+            "summarizeBy": "sum"
           },
           {
             "name": "device_type",
             "dataType": "string",
+            "lineageTag": "5b37eec7-4ab3-4167-b1b2-d767fff683dd",
             "sourceColumn": "device_type",
             "summarizeBy": "none"
           }
         ],
+        "lineageTag": "ee05178d-8aa2-429f-9490-c5db835c4b69",
         "partitions": [
           {
             "name": "FactViewingSessions",
             "mode": "import",
             "source": {
-              "type": "m",
               "expression": [
                 "let",
-                "    Source = Csv.Document(File.Contents(\"C:/Users/Dheeraj Kumar/OneDrive/Desktop/Documents/StreamScope-OTT-Analytics/powerbi/data/fact_viewing_sessions.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.None]),",
+                "    Source = Csv.Document(File.Contents(\"C:\\Users\\Dheeraj Kumar\\OneDrive\\Desktop\\Documents\\StreamScope-OTT-Analytics\\powerbi\\data\\fact_viewing_sessions.csv\"), [Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
                 "    PromotedHeaders = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
                 "    ChangedType = Table.TransformColumnTypes(PromotedHeaders, {{\"session_id\", Int64.Type}, {\"user_id\", Int64.Type}, {\"content_id\", Int64.Type}, {\"started_at\", type text}, {\"watch_minutes\", Int64.Type}, {\"completion_percentage\", type number}, {\"device_type\", type text}})",
                 "in",
                 "    ChangedType"
-              ]
+              ],
+              "type": "m"
             }
           }
         ]
-      }
-    ],
-    "relationships": [
-      {
-        "name": "rel_subs_users",
-        "fromTable": "FactSubscriptions",
-        "fromColumn": "user_id",
-        "toTable": "DimUsers",
-        "toColumn": "user_id"
-      },
-      {
-        "name": "rel_subs_plans",
-        "fromTable": "FactSubscriptions",
-        "fromColumn": "plan_id",
-        "toTable": "DimPlans",
-        "toColumn": "plan_id"
-      },
-      {
-        "name": "rel_sess_users",
-        "fromTable": "FactViewingSessions",
-        "fromColumn": "user_id",
-        "toTable": "DimUsers",
-        "toColumn": "user_id"
-      },
-      {
-        "name": "rel_sess_content",
-        "fromTable": "FactViewingSessions",
-        "fromColumn": "content_id",
-        "toTable": "DimContent",
-        "toColumn": "content_id"
-      },
-      {
-        "name": "rel_churn_users",
-        "fromTable": "ChurnByDimension",
-        "fromColumn": "user_id",
-        "toTable": "DimUsers",
-        "toColumn": "user_id"
-      },
-      {
-        "name": "rel_segments_users",
-        "fromTable": "UserSegments",
-        "fromColumn": "user_id",
-        "toTable": "DimUsers",
-        "toColumn": "user_id"
       }
     ]
   }

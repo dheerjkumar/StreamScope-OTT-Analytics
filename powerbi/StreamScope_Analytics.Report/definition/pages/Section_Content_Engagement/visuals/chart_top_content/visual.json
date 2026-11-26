@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "chart_top_content",
+  "position": {
+    "x": 30.0,
+    "y": 90.0,
+    "z": 12.0,
+    "width": 920.0,
+    "height": 460.0
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "t1",
+          "Entity": "ContentPerformance",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "t1"
+              }
+            },
+            "Property": "title"
+          },
+          "Name": "ContentPerformance.title"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "t1"
+                  }
+                },
+                "Property": "total_watch_hours"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(ContentPerformance.total_watch_hours)"
+        }
+      ]
+    },
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top 10 Blockbuster Titles by Streamed Watch Hours'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

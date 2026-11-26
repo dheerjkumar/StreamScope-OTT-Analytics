@@ -301,6 +301,24 @@ def build_pages_and_visuals():
         "streamscope vw_pbi_content_dashboard", "avg_completion_percentage", func_name=1
     )
 
+    # Visual 6: Content Genre Interactive Slicer
+    p2_visuals["slicer_genre"] = {
+        "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+        "name": "slicer_genre",
+        "position": {"x": 30, "y": 20, "z": 25, "width": 420, "height": 60},
+        "visual": {
+            "visualType": "slicer",
+            "query": {
+                "Version": 2,
+                "From": [{"Name": "t", "Entity": "streamscope vw_pbi_content_dashboard", "Type": 0}],
+                "Select": [{"Column": {"Expression": {"SourceRef": {"Source": "t"}}, "Property": "genre"}, "Name": "streamscope vw_pbi_content_dashboard.genre"}]
+            },
+            "objects": {
+                "title": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}}, "text": {"expr": {"Literal": {"Value": "'Filter by Genre'"}}}}}]
+            }
+        }
+    }
+
     pages_dict[p2_id] = {
         "displayName": "Content & Engagement",
         "visuals": p2_visuals

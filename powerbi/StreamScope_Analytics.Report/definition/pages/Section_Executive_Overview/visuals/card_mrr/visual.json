@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "card_mrr",
+  "position": {
+    "x": 1270.0,
+    "y": 90.0,
+    "z": 5.0,
+    "width": 290.0,
+    "height": 110.0
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "t1",
+          "Entity": "_Measures",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "t1"
+              }
+            },
+            "Property": "Current MRR"
+          },
+          "Name": "_Measures.Current MRR"
+        }
+      ]
+    },
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Active Run-Rate (MRR)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

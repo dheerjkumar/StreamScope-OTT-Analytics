@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "StreamScope_Analytics"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "54eb2438-b97a-4b12-b738-a91f8d47a75a"
+  }
+}

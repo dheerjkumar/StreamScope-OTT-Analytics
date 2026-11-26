@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "chart_channel_perf",
+  "position": {
+    "x": 970.0,
+    "y": 630.0,
+    "z": 10.0,
+    "width": 450.0,
+    "height": 410.0
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "t1",
+          "Entity": "DimUsers",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "t1"
+              }
+            },
+            "Property": "acquisition_channel"
+          },
+          "Name": "DimUsers.acquisition_channel"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "t1"
+                  }
+                },
+                "Property": "user_id"
+              }
+            },
+            "Function": 5
+          },
+          "Name": "Count(DimUsers.user_id)"
+        }
+      ]
+    },
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Signups by Marketing Acquisition Channel'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

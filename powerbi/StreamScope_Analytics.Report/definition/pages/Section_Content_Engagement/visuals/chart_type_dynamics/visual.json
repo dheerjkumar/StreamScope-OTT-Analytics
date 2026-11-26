@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "chart_type_dynamics",
+  "position": {
+    "x": 650.0,
+    "y": 570.0,
+    "z": 15.0,
+    "width": 600.0,
+    "height": 470.0
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "t1",
+          "Entity": "ContentPerformance",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "t1"
+              }
+            },
+            "Property": "content_type"
+          },
+          "Name": "ContentPerformance.content_type"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "t1"
+                  }
+                },
+                "Property": "unique_viewers"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(ContentPerformance.unique_viewers)"
+        }
+      ]
+    },
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Unique Viewers & Stream Plays by Content Format'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.4.0/schema.json",
+  "name": "chart_plan_churn",
+  "position": {
+    "x": 30.0,
+    "y": 570.0,
+    "z": 19.0,
+    "width": 600.0,
+    "height": 470.0
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "Version": 2,
+      "From": [
+        {
+          "Name": "t1",
+          "Entity": "ChurnByDimension",
+          "Type": 0
+        }
+      ],
+      "Select": [
+        {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Source": "t1"
+              }
+            },
+            "Property": "plan_name"
+          },
+          "Name": "ChurnByDimension.plan_name"
+        },
+        {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Source": "t1"
+                  }
+                },
+                "Property": "is_true_churn"
+              }
+            },
+            "Function": 0
+          },
+          "Name": "Sum(ChurnByDimension.is_true_churn)"
+        }
+      ]
+    },
+    "objects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cancellations by Subscription Plan Tier'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

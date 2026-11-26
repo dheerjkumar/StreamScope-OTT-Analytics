@@ -62,7 +62,7 @@ def validate_pbip():
     if os.path.exists(report_json_file) and os.path.getsize(report_json_file) > 1000:
         with open(report_json_file, "r", encoding="utf-8") as f:
             data = json.load(f)
-            pages = data.get("pages", [])
+            pages = data.get("sections", []) or data.get("pages", [])
             total_visuals = sum(len(p.get("visualContainers", [])) for p in pages)
             page_names = [p.get("displayName") for p in pages]
             if len(pages) == 3 and total_visuals >= 15:
@@ -92,8 +92,12 @@ def validate_pbip():
             tables = data["model"].get("tables", [])
             rels = data["model"].get("relationships", [])
             msrs = next((t.get("measures", []) for t in tables if t["name"] == "_Measures"), [])
-            print(f"  ✓ [5/7] TMSL model.bim Schema  : Valid ({os.path.getsize(bim_file)/1024:.1f} KB) | {len(tables)} Tables, {len(msrs)} DAX Measures, {len(rels)} Relationships")
-            tests_passed += 1
+            valid_rels = all(r.get("isActive") is True and "crossFilteringBehavior" in r and "fromCardinality" in r for r in rels)
+            if valid_rels and len(rels) == 6:
+                print(f"  ✓ [5/7] TMSL model.bim Schema  : Valid ({os.path.getsize(bim_file)/1024:.1f} KB) | {len(tables)} Tables, {len(msrs)} DAX Measures, {len(rels)} Relationships (Fully Qualified)")
+                tests_passed += 1
+            else:
+                print(f"  ✗ [5/7] Relationships incomplete or invalid metadata!")
     else:
         print(f"  ✗ [5/7] model.bim missing or empty!")
 

@@ -198,6 +198,35 @@ Average Title Completion Rate : 76.34%
    - MySQL database and all tables/views remained completely untouched.
    - Draft PBIX file `powerbi/StreamScope_Analytics_Draft.pbix` remained completely untouched.
 
+---
+
+## 9. PBIP Report Canvas & Relationship Warning Resolution
+
+### A. Root Cause Analysis
+1. **Blank Report Canvas**:
+   - In `powerbi/StreamScope_Analytics.Report/report.json`, the `sections` array was empty (`"sections": []`). In PBIP format (PBIR v1), Power BI Desktop requires pages to be defined as `sections` containing `visualContainers`.
+2. **Warning: "One or more relationships have been modified and need to be refreshed manually"**:
+   - The Tabular Model Schema (`model.bim`) lacked explicit relationship metadata (`isActive: true`, `crossFilteringBehavior: "oneDirection"`, `fromCardinality`, `toCardinality`, `relyOnReferentialIntegrity: true`). Without these properties, VertiPaq marks relationships as dirty/unrefreshed.
+3. **Warning: "Some of the tables have incomplete or no data"**:
+   - M partition expressions used Unix forward slashes (`C:/Users/...`) and `QuoteStyle.None`, causing Power Query on Windows to fail file resolution or misparse quoted CSV text fields with commas.
+
+### B. Corrective Implementation
+1. **Full PBIP `report.json` Assembly (`scripts/repair_pbip_and_report.py`)**:
+   - Built complete `report.json` (72.8 KB) with **3 sections** and all **22 interactive visual containers**:
+     - **Section 1: Executive Overview** (6 KPI cards + 5 charts = 11 visuals).
+     - **Section 2: Content & Engagement** (5 charts + 1 genre slicer = 6 visuals).
+     - **Section 3: Retention & Churn** (5 charts = 5 visuals).
+   - Mapped all projections, aggregations, queries, and layout coordinates to exact semantic model entities and measures.
+2. **Dual PBIR v2.0 Synchronization**:
+   - Synchronized all 22 visuals into `powerbi/StreamScope_Analytics.Report/definition/pages/` with `page.json` and `visual.json` definitions.
+3. **Semantic Model Partition & Relationship Hardening (`model.bim`)**:
+   - Updated all 9 CSV partition expressions to use Windows paths (`C:\Users\Dheeraj Kumar\...`) and `QuoteStyle.Csv`.
+   - Explicitly configured all 6 star-schema relationships with `"isActive": true`, `"crossFilteringBehavior"`, `"fromCardinality": "many"`, `"toCardinality": "one"`, and `"relyOnReferentialIntegrity": true`.
+4. **Standalone PBIX Rebuild (`StreamScope_Analytics.pbix`)**:
+   - Re-compiled `powerbi/StreamScope_Analytics.pbix` (634.0 KB) incorporating the 22 visuals while preserving the user's active MySQL `DataModel`.
+   - Preserved `powerbi/StreamScope_Analytics_Draft.pbix` 100% untouched.
+
+
 
 
 
