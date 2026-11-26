@@ -1,0 +1,101 @@
+user_id,signup_date,country,age_group,acquisition_channel,preferred_device
+1,2025-08-18,Australia,45-54,Email Campaign,Smart TV
+2,2025-09-07,United States,25-34,Paid Search,Mobile
+3,2025-03-03,Canada,25-34,Organic Search,Mobile
+4,2025-10-15,India,18-24,Social Media,Laptop
+5,2025-09-03,India,25-34,Organic Search,Laptop
+6,2025-08-03,United States,25-34,Email Campaign,Mobile
+7,2025-03-28,India,25-34,Referral,Mobile
+8,2025-05-19,Australia,18-24,Social Media,Laptop
+9,2025-04-01,United States,35-44,Paid Search,Smart TV
+10,2025-06-08,United States,25-34,Affiliate,Mobile
+11,2025-09-26,India,35-44,Social Media,Smart TV
+12,2025-01-14,India,35-44,Affiliate,Laptop
+13,2025-03-17,Canada,45-54,Social Media,Smart TV
+14,2025-04-03,Australia,45-54,Email Campaign,Mobile
+15,2025-03-19,United States,55+,Referral,Smart TV
+16,2025-06-28,United States,35-44,Referral,Tablet
+17,2025-03-23,Canada,55+,Organic Search,Mobile
+18,2025-11-07,Germany,35-44,Paid Search,Mobile
+19,2025-07-22,United States,45-54,Social Media,Smart TV
+20,2025-02-03,United Kingdom,25-34,Organic Search,Mobile
+21,2025-03-01,United States,25-34,Social Media,Smart TV
+22,2025-06-22,India,45-54,Paid Search,Smart TV
+23,2025-05-28,United States,35-44,Social Media,Smart TV
+24,2025-02-23,Canada,35-44,Organic Search,Mobile
+25,2025-03-18,United States,25-34,Organic Search,Smart TV
+26,2025-09-22,United States,35-44,Email Campaign,Smart TV
+27,2025-06-23,United States,18-24,Referral,Smart TV
+28,2025-06-11,Germany,45-54,Organic Search,Smart TV
+29,2025-10-15,India,25-34,Paid Search,Mobile
+30,2025-07-20,United Kingdom,18-24,Organic Search,Smart TV
+31,2025-02-26,United States,18-24,Social Media,Laptop
+32,2025-02-24,United Kingdom,45-54,Organic Search,Smart TV
+33,2025-05-27,Australia,25-34,Paid Search,Smart TV
+34,2025-07-19,Canada,25-34,Organic Search,Mobile
+35,2025-04-29,United States,35-44,Social Media,Tablet
+36,2025-01-23,Canada,25-34,Organic Search,Mobile
+37,2025-03-25,United States,18-24,Organic Search,Smart TV
+38,2025-06-23,United States,55+,Referral,Mobile
+39,2025-06-26,Australia,18-24,Email Campaign,Smart TV
+40,2025-08-10,United States,25-34,Organic Search,Smart TV
+41,2025-09-13,United Kingdom,25-34,Email Campaign,Smart TV
+42,2025-09-05,United States,25-34,Organic Search,Tablet
+43,2025-06-03,India,25-34,Organic Search,Tablet
+44,2025-03-31,United States,25-34,Paid Search,Mobile
+45,2025-05-20,Australia,55+,Organic Search,Smart TV
+46,2025-07-21,United States,25-34,Email Campaign,Tablet
+47,2025-10-15,United States,18-24,Referral,Smart TV
+48,2025-04-08,Germany,35-44,Social Media,Mobile
+49,2025-04-25,United States,35-44,Social Media,Smart TV
+50,2025-04-13,Germany,25-34,Referral,Laptop
+51,2025-07-19,United Kingdom,25-34,Organic Search,Laptop
+52,2025-06-16,Canada,45-54,Social Media,Smart TV
+53,2025-04-28,Canada,55+,Organic Search,Mobile
+54,2025-08-22,United Kingdom,55+,Organic Search,Laptop
+55,2025-02-18,United Kingdom,25-34,Referral,Mobile
+56,2025-08-08,United States,25-34,Affiliate,Tablet
+57,2025-07-20,United States,45-54,Social Media,Mobile
+58,2025-07-28,United Kingdom,18-24,Paid Search,Smart TV
+59,2025-04-07,Canada,25-34,Email Campaign,Smart TV
+60,2025-08-22,Canada,25-34,Social Media,Mobile
+61,2025-08-25,Australia,35-44,Paid Search,Smart TV
+62,2025-07-10,United States,55+,Organic Search,Smart TV
+63,2025-03-30,United States,55+,Paid Search,Laptop
+64,2025-09-26,Canada,35-44,Social Media,Smart TV
+65,2025-07-26,Germany,45-54,Email Campaign,Laptop
+66,2025-08-28,India,25-34,Paid Search,Laptop
+67,2025-03-26,United Kingdom,25-34,Paid Search,Smart TV
+68,2025-06-03,India,45-54,Social Media,Laptop
+69,2025-04-02,Germany,25-34,Referral,Laptop
+70,2025-08-20,United Kingdom,25-34,Social Media,Mobile
+71,2025-05-14,Germany,18-24,Organic Search,Smart TV
+72,2025-04-17,United Kingdom,25-34,Social Media,Smart TV
+73,2025-05-24,India,55+,Organic Search,Laptop
+74,2025-06-10,Australia,25-34,Social Media,Laptop
+75,2025-06-22,India,35-44,Email Campaign,Mobile
+76,2025-06-11,United Kingdom,35-44,Referral,Mobile
+77,2025-10-12,Australia,25-34,Email Campaign,Mobile
+78,2025-03-08,United Kingdom,45-54,Organic Search,Smart TV
+79,2025-06-05,United States,45-54,Organic Search,Tablet
+80,2025-09-07,United Kingdom,35-44,Organic Search,Tablet
+81,2025-03-02,Australia,18-24,Organic Search,Smart TV
+82,2025-07-10,United States,25-34,Organic Search,Tablet
+83,2025-04-27,United States,35-44,Affiliate,Mobile
+84,2025-04-04,United States,25-34,Email Campaign,Mobile
+85,2025-05-22,Australia,18-24,Paid Search,Laptop
+86,2025-07-28,United States,35-44,Referral,Laptop
+87,2025-02-16,United Kingdom,35-44,Organic Search,Mobile
+88,2025-05-30,United Kingdom,25-34,Social Media,Laptop
+89,2025-04-01,United States,25-34,Paid Search,Mobile
+90,2025-08-19,United Kingdom,45-54,Paid Search,Smart TV
+91,2025-10-19,United States,25-34,Referral,Mobile
+92,2025-05-14,United Kingdom,25-34,Social Media,Smart TV
+93,2025-05-02,Canada,45-54,Paid Search,Mobile
+94,2025-04-24,United Kingdom,25-34,Organic Search,Mobile
+95,2025-06-04,United States,25-34,Social Media,Smart TV
+96,2025-05-21,United Kingdom,25-34,Affiliate,Mobile
+97,2025-06-05,United States,25-34,Referral,Smart TV
+98,2025-10-29,India,18-24,Referral,Smart TV
+99,2025-08-15,Canada,55+,Email Campaign,Smart TV
+100,2025-05-07,India,18-24,Organic Search,Smart TV

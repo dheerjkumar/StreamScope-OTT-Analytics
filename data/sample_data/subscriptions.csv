@@ -1,0 +1,101 @@
+subscription_id,user_id,plan_id,start_date,end_date,status,billing_cycle,monthly_fee,cancellation_reason
+1,1,3,2025-08-22,,Active,Monthly,16.99,
+2,3,1,2025-03-05,,Active,Monthly,6.99,
+3,4,2,2025-10-17,,Active,Monthly,11.99,
+4,5,2,2025-09-05,,Active,Monthly,11.99,
+5,6,1,2025-08-08,2026-01-10,Canceled,Monthly,6.99,Found alternative
+6,10,2,2025-06-09,,Active,Annual,9.83,
+7,11,3,2025-10-01,,Active,Monthly,16.99,
+8,12,2,2025-01-18,,Active,Monthly,11.99,
+9,13,2,2025-03-19,,Active,Monthly,11.99,
+10,14,2,2025-04-07,,Active,Monthly,11.99,
+11,15,1,2025-03-19,,Active,Monthly,6.99,
+12,16,2,2025-06-29,2025-10-20,Canceled,Monthly,11.99,Infrequent usage
+13,17,1,2025-03-26,,Active,Monthly,6.99,
+14,18,4,2025-11-08,,Active,Monthly,21.99,
+15,19,3,2025-07-25,,Active,Monthly,16.99,
+16,20,1,2025-02-08,,Active,Monthly,6.99,
+17,22,2,2025-06-25,,Active,Monthly,11.99,
+18,24,1,2025-02-25,2025-07-07,Canceled,Monthly,6.99,Switched to competitor
+19,25,3,2025-03-20,,Active,Monthly,16.99,
+20,26,1,2025-09-25,2025-10-23,Canceled,Monthly,6.99,Lack of content
+21,27,3,2025-06-25,,Active,Monthly,16.99,
+22,28,3,2025-06-13,,Active,Monthly,16.99,
+23,29,2,2025-10-19,2025-11-16,Canceled,Monthly,11.99,Switched to competitor
+24,30,4,2025-07-23,,Active,Monthly,21.99,
+25,31,1,2025-03-03,,Active,Monthly,6.99,
+26,32,2,2025-03-01,,Active,Monthly,11.99,
+27,33,2,2025-05-31,,Active,Monthly,11.99,
+28,34,3,2025-07-19,,Active,Monthly,16.99,
+29,36,2,2025-01-27,,Active,Monthly,11.99,
+30,37,3,2025-03-25,,Active,Monthly,16.99,
+31,38,2,2025-06-26,2025-09-14,Canceled,Annual,9.83,Lack of content
+32,40,1,2025-08-13,,Active,Monthly,6.99,
+33,41,3,2025-09-17,2025-10-27,Canceled,Monthly,16.99,Lack of content
+34,42,2,2025-09-09,,Active,Monthly,11.99,
+35,44,1,2025-03-31,,Active,Monthly,6.99,
+36,45,2,2025-05-21,,Active,Monthly,11.99,
+37,46,2,2025-07-23,,Active,Monthly,11.99,
+38,47,3,2025-10-19,,Active,Annual,13.93,
+39,48,2,2025-04-09,2025-06-30,Canceled,Annual,9.83,Switched to competitor
+40,49,2,2025-04-28,,Active,Monthly,11.99,
+41,50,1,2025-04-16,,Active,Monthly,6.99,
+42,51,1,2025-07-22,,Active,Monthly,6.99,
+43,54,4,2025-08-23,,Active,Monthly,21.99,
+44,56,2,2025-08-13,,Active,Monthly,11.99,
+45,57,3,2025-07-20,2025-11-20,Canceled,Monthly,16.99,Price too high
+46,58,2,2025-08-02,2025-09-27,Canceled,Monthly,11.99,Price too high
+47,59,1,2025-04-08,,Active,Annual,5.73,
+48,60,1,2025-08-22,2025-09-19,Canceled,Monthly,6.99,Lack of content
+49,61,2,2025-08-30,,Active,Monthly,11.99,
+50,62,3,2025-07-12,,Active,Monthly,16.99,
+51,63,2,2025-03-30,2025-11-15,Canceled,Monthly,11.99,Price too high
+52,65,2,2025-07-26,2026-01-02,Canceled,Monthly,11.99,Infrequent usage
+53,67,2,2025-03-27,,Active,Annual,9.83,
+54,68,1,2025-06-08,,Active,Annual,5.73,
+55,69,2,2025-04-03,2025-10-12,Canceled,Monthly,11.99,Switched to competitor
+56,70,1,2025-08-21,,Active,Monthly,6.99,
+57,71,2,2025-05-17,,Active,Monthly,11.99,
+58,74,1,2025-06-10,2025-07-08,Canceled,Monthly,6.99,Lack of content
+59,75,1,2025-06-27,,Active,Monthly,6.99,
+60,77,2,2025-10-12,,Active,Monthly,11.99,
+61,78,3,2025-03-08,,Active,Monthly,16.99,
+62,79,2,2025-06-09,,Active,Monthly,11.99,
+63,81,2,2025-03-05,,Active,Monthly,11.99,
+64,82,3,2025-07-10,2025-10-14,Canceled,Monthly,16.99,Found alternative
+65,83,3,2025-04-30,2025-08-04,Canceled,Monthly,16.99,Infrequent usage
+66,85,3,2025-05-27,2025-10-21,Canceled,Monthly,16.99,Lack of content
+67,87,1,2025-02-17,,Active,Monthly,6.99,
+68,88,2,2025-06-01,,Active,Monthly,11.99,
+69,90,2,2025-08-23,,Active,Monthly,11.99,
+70,91,3,2025-10-19,,Active,Monthly,16.99,
+71,92,4,2025-05-15,,Active,Monthly,21.99,
+72,93,3,2025-05-04,,Active,Monthly,16.99,
+73,96,2,2025-05-26,,Active,Monthly,11.99,
+74,97,3,2025-06-08,,Active,Monthly,16.99,
+75,98,3,2025-10-30,,Active,Monthly,16.99,
+76,99,1,2025-08-18,,Active,Monthly,6.99,
+77,100,1,2025-05-11,,Active,Monthly,6.99,
+78,101,1,2025-10-29,,Active,Monthly,6.99,
+79,102,1,2025-06-14,,Active,Monthly,6.99,
+80,104,2,2025-10-31,,Active,Monthly,11.99,
+81,105,3,2025-07-09,2025-11-12,Canceled,Monthly,16.99,Lack of content
+82,106,1,2025-06-04,2025-07-17,Canceled,Annual,5.73,Lack of content
+83,107,2,2025-07-15,2026-01-13,Canceled,Monthly,11.99,Lack of content
+84,108,3,2025-05-31,,Active,Monthly,16.99,
+85,109,4,2025-09-17,,Active,Monthly,21.99,
+86,110,2,2025-08-31,,Active,Monthly,11.99,
+87,112,3,2025-06-06,2025-07-04,Canceled,Monthly,16.99,Infrequent usage
+88,113,2,2025-06-03,,Active,Monthly,11.99,
+89,115,3,2025-09-06,,Active,Monthly,16.99,
+90,116,2,2025-05-07,,Active,Monthly,11.99,
+91,117,3,2025-05-31,,Active,Annual,13.93,
+92,118,2,2025-07-24,,Active,Monthly,11.99,
+93,119,2,2025-03-20,2025-05-31,Canceled,Monthly,11.99,Technical issues
+94,119,3,2025-08-02,,Active,Monthly,16.99,
+95,120,3,2025-06-10,2025-11-21,Canceled,Monthly,16.99,Lack of content
+96,121,3,2025-02-26,2025-03-29,Canceled,Monthly,16.99,Technical issues
+97,122,3,2025-02-14,,Active,Monthly,16.99,
+98,123,2,2025-05-30,,Active,Annual,9.83,
+99,124,1,2025-04-02,2025-06-10,Canceled,Monthly,6.99,Switched to competitor
+100,125,2,2025-06-12,2025-07-25,Canceled,Monthly,11.99,Technical issues

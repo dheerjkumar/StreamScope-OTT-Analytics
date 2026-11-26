@@ -1,0 +1,49 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.ipynb_checkpoints
+build/
+dist/
+*.egg-info/
+
+# Environment secrets and credentials (CRITICAL: Never commit credentials)
+.env
+.env.local
+.env.*.local
+*.secret
+*.pem
+*.key
+
+# Database temporary files, logs, dumps
+*.log
+*.sqlite
+*.sqlite3
+*.tmp
+
+# Generated heavy datasets (reproducible via `py scripts/generate_data.py`)
+data/raw/
+data/processed/
+# Note: data/sample_data/ is tracked in Git for repository demonstration!
+
+# Power BI local cache / recovery
+*.pbit
+*.pbix.temp
+
+# IDE & Editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Operating System files
+Thumbs.db
+Desktop.ini
+.DS_Store
+$RECYCLE.BIN/

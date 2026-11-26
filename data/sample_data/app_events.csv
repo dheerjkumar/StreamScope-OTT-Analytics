@@ -1,0 +1,101 @@
+event_id,user_id,event_timestamp,event_type,content_id,device_type
+1,9947,2025-01-02 09:25:00,subscription_start,,Mobile
+2,3839,2025-01-06 10:22:00,subscription_start,,Smart TV
+3,9938,2025-01-07 13:16:00,subscription_start,,Smart TV
+4,9453,2025-01-07 19:42:00,subscription_start,,Smart TV
+5,6518,2025-01-07 20:36:00,subscription_start,,Smart TV
+6,9992,2025-01-09 09:50:00,subscription_start,,Smart TV
+7,4055,2025-01-10 11:07:00,subscription_start,,Smart TV
+8,9678,2025-01-11 13:00:00,subscription_start,,Mobile
+9,1170,2025-01-11 15:29:00,subscription_start,,Mobile
+10,1598,2025-01-12 11:46:00,subscription_start,,Smart TV
+11,9678,2025-01-13 09:18:16,app_open,,Mobile
+12,9678,2025-01-13 09:19:38,content_view,30,Mobile
+13,9678,2025-01-13 09:20:16,play,30,Mobile
+14,5447,2025-01-13 09:36:00,subscription_start,,Laptop
+15,6739,2025-01-13 16:22:00,subscription_start,,Laptop
+16,1208,2025-01-13 18:24:00,subscription_start,,Laptop
+17,4055,2025-01-13 19:46:28,app_open,,Smart TV
+18,4055,2025-01-13 19:50:03,content_view,76,Smart TV
+19,4055,2025-01-13 19:50:28,play,76,Smart TV
+20,952,2025-01-13 20:25:00,subscription_start,,Mobile
+21,8739,2025-01-13 20:51:00,subscription_start,,Mobile
+22,9611,2025-01-14 11:03:00,subscription_start,,Laptop
+23,2071,2025-01-14 13:03:00,subscription_start,,Laptop
+24,8169,2025-01-14 15:56:00,subscription_start,,Smart TV
+25,1598,2025-01-14 19:16:04,app_open,,Smart TV
+26,1598,2025-01-14 19:22:04,play,4,Smart TV
+27,9453,2025-01-14 21:41:27,app_open,,Smart TV
+28,8486,2025-01-14 21:43:00,subscription_start,,Smart TV
+29,9453,2025-01-14 21:46:27,play,63,Smart TV
+30,5065,2025-01-15 21:20:00,subscription_start,,Tablet
+31,8316,2025-01-16 12:03:00,subscription_start,,Mobile
+32,6661,2025-01-16 21:19:00,subscription_start,,Laptop
+33,2369,2025-01-16 21:32:00,subscription_start,,Smart TV
+34,6852,2025-01-17 09:23:00,subscription_start,,Mobile
+35,1551,2025-01-17 11:02:00,subscription_start,,Mobile
+36,7193,2025-01-17 13:18:00,subscription_start,,Mobile
+37,3496,2025-01-17 15:35:00,subscription_start,,Mobile
+38,9678,2025-01-17 21:01:52,app_open,,Tablet
+39,9678,2025-01-17 21:06:02,content_view,3,Tablet
+40,9678,2025-01-17 21:06:52,play,3,Tablet
+41,9536,2025-01-17 21:33:59,app_open,,Smart TV
+42,9536,2025-01-17 21:39:59,play,71,Smart TV
+43,9536,2025-01-17 21:43:00,subscription_start,,Smart TV
+44,12,2025-01-18 11:27:00,subscription_start,,Laptop
+45,6342,2025-01-18 11:30:00,subscription_start,,Laptop
+46,2337,2025-01-18 12:25:00,subscription_start,,Smart TV
+47,1312,2025-01-18 12:32:00,subscription_start,,Smart TV
+48,1096,2025-01-18 13:00:00,subscription_start,,Smart TV
+49,6626,2025-01-18 13:50:00,subscription_start,,Mobile
+50,9536,2025-01-18 14:31:10,app_open,,Tablet
+51,9536,2025-01-18 14:34:38,content_view,61,Tablet
+52,9536,2025-01-18 14:35:10,play,61,Tablet
+53,6976,2025-01-18 19:12:00,subscription_start,,Mobile
+54,1312,2025-01-18 20:47:30,app_open,,Smart TV
+55,1312,2025-01-18 20:52:45,content_view,44,Smart TV
+56,1312,2025-01-18 20:53:30,play,44,Smart TV
+57,1334,2025-01-18 20:54:00,subscription_start,,Tablet
+58,6626,2025-01-18 23:28:39,app_open,,Mobile
+59,6626,2025-01-18 23:33:56,content_view,26,Mobile
+60,6626,2025-01-18 23:34:39,play,26,Mobile
+61,6626,2025-01-18 23:47:39,add_to_watchlist,26,Mobile
+62,1376,2025-01-19 10:21:00,subscription_start,,Mobile
+63,6852,2025-01-19 10:50:21,app_open,,Mobile
+64,6852,2025-01-19 10:52:31,content_view,69,Mobile
+65,6852,2025-01-19 10:53:21,play,69,Mobile
+66,6852,2025-01-19 11:14:21,add_to_watchlist,69,Mobile
+67,6429,2025-01-19 12:16:00,subscription_start,,Laptop
+68,4055,2025-01-19 15:00:25,app_open,,Smart TV
+69,4055,2025-01-19 15:01:49,content_view,3,Smart TV
+70,4055,2025-01-19 15:02:25,play,3,Smart TV
+71,6429,2025-01-19 22:31:56,app_open,,Laptop
+72,6429,2025-01-19 22:35:29,content_view,1,Laptop
+73,6429,2025-01-19 22:35:56,play,1,Laptop
+74,8842,2025-01-20 12:01:00,subscription_start,,Tablet
+75,3904,2025-01-20 12:29:00,subscription_start,,Mobile
+76,9605,2025-01-20 12:48:00,subscription_start,,Mobile
+77,7650,2025-01-20 14:15:00,subscription_start,,Smart TV
+78,4832,2025-01-20 16:07:00,subscription_start,,Laptop
+79,5227,2025-01-20 16:15:00,subscription_start,,Smart TV
+80,1612,2025-01-20 17:08:00,subscription_start,,Smart TV
+81,6016,2025-01-20 17:55:00,subscription_start,,Mobile
+82,2855,2025-01-20 21:08:00,subscription_start,,Mobile
+83,9936,2025-01-20 23:12:11,app_open,,Smart TV
+84,9936,2025-01-20 23:12:11,search,59,Smart TV
+85,9936,2025-01-20 23:13:45,content_view,59,Smart TV
+86,9936,2025-01-20 23:14:11,play,59,Smart TV
+87,6518,2025-01-20 23:22:54,app_open,,Smart TV
+88,6518,2025-01-20 23:25:54,play,80,Smart TV
+89,3440,2025-01-21 09:31:00,subscription_start,,Smart TV
+90,4620,2025-01-21 18:15:00,subscription_start,,Smart TV
+91,8534,2025-01-21 18:18:00,subscription_start,,Mobile
+92,5207,2025-01-21 19:23:00,subscription_start,,Smart TV
+93,727,2025-01-21 19:52:00,subscription_start,,Mobile
+94,6661,2025-01-21 19:53:41,app_open,,Laptop
+95,6661,2025-01-21 19:57:41,play,21,Laptop
+96,2579,2025-01-21 21:14:00,subscription_start,,Mobile
+97,8486,2025-01-22 10:13:17,app_open,,Smart TV
+98,8486,2025-01-22 10:17:57,content_view,1,Smart TV
+99,8486,2025-01-22 10:18:17,play,1,Smart TV
+100,6852,2025-01-22 12:12:42,app_open,,Mobile

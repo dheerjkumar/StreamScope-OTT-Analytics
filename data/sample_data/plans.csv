@@ -1,0 +1,5 @@
+plan_id,plan_name,monthly_price,max_screens,video_quality
+1,Basic with Ads,6.99,1,HD 720p
+2,Standard HD,11.99,2,Full HD 1080p
+3,Premium 4K,16.99,4,4K Ultra HD
+4,Family Ultra,21.99,4,4K HDR + Atmos
