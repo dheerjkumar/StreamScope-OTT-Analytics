@@ -30,12 +30,17 @@ def validate_pbip():
     if os.path.exists(pbip_file) and os.path.getsize(pbip_file) > 50:
         with open(pbip_file, "r", encoding="utf-8") as f:
             data = json.load(f)
-            rep_path = data["artifacts"][0]["report"]["path"]
-            if rep_path == "StreamScope_Analytics.Report":
-                print(f"  ✓ [1/7] PBIP Entry File        : Valid ({os.path.getsize(pbip_file)} bytes) -> Points to {rep_path}")
-                tests_passed += 1
-            else:
+            rep_path = data.get("artifacts", [{}])[0].get("report", {}).get("path")
+            settings = data.get("settings", {})
+            valid_settings_keys = {"enableAutoRecovery"}
+            invalid_keys = set(settings.keys()) - valid_settings_keys
+            if invalid_keys:
+                print(f"  ✗ [1/7] PBIP contains unsupported settings: {invalid_keys}")
+            elif rep_path != "StreamScope_Analytics.Report":
                 print(f"  ✗ [1/7] PBIP pointer mismatch: {rep_path}")
+            else:
+                print(f"  ✓ [1/7] PBIP Entry File        : Valid ({os.path.getsize(pbip_file)} bytes) -> Points to {rep_path} (Settings schema verified)")
+                tests_passed += 1
     else:
         print(f"  ✗ [1/7] PBIP file missing or empty!")
 

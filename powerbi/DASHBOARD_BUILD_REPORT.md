@@ -27,7 +27,8 @@ The project has been reconstructed in full compliance with the official Microsof
 
 ```
 powerbi/
-├── StreamScope_Analytics.pbip                 <- Validated entry point pointing to Report (189 bytes)
+├── StreamScope_Analytics.pbip                 <- Validated entry point with official schema & enableAutoRecovery
+├── StreamScope_Analytics.pbip.bak             <- Pre-modification backup file
 ├── StreamScope_Analytics.Report/
 │   ├── definition.pbir                        <- Dataset pointer linking to SemanticModel (126 bytes)
 │   └── report.json                            <- Full 3-page layout with 22 visual containers (18.5 KB)

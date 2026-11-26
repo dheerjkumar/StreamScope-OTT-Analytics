@@ -157,5 +157,47 @@ Average Title Completion Rate : 76.34%
    - Zero tables dropped or altered; zero duplicate records created.
    - User's draft backup file `powerbi/StreamScope_Analytics_Draft.pbix` (and in `Documents/`) preserved untouched.
 
+---
+
+## 8. PBIP Schema Resolution & `enableAutoAuth` Bug Fix
+
+### A. Root Cause Analysis
+- **Error Observed**:
+  ```
+  Property 'enableAutoAuth' has not been defined and the schema does not allow additional properties.
+  Path: settings.enableAutoAuth, line 11.
+  ```
+- **Underlying Cause**: In `powerbi/StreamScope_Analytics.pbip`, line 11 contained an invalid property `"enableAutoAuth": true` under `"settings"`. Under the official Microsoft Fabric / Power BI Project JSON schema (`https://developer.microsoft.com/json-schemas/fabric/pbip/pbipProperties/1.0.0/schema.json`), `additionalProperties` is set to `false`. The only valid property permitted inside `settings` is `"enableAutoRecovery"` (boolean).
+
+### B. Corrective Implementation
+1. **Backup Created**:
+   - Backed up the original file to `powerbi/StreamScope_Analytics.pbip.bak`.
+2. **Corrected Schema in `powerbi/StreamScope_Analytics.pbip`**:
+   - Replaced `"enableAutoAuth": true` with valid Microsoft PBIP property `"enableAutoRecovery": true`.
+   - Added official `$schema` identifier for IDE IntelliSense and strict compliance:
+     ```json
+     {
+       "$schema": "https://developer.microsoft.com/json-schemas/fabric/pbip/pbipProperties/1.0.0/schema.json",
+       "version": "1.0",
+       "artifacts": [
+         {
+           "report": {
+             "path": "StreamScope_Analytics.Report"
+           }
+         }
+       ],
+       "settings": {
+         "enableAutoRecovery": true
+       }
+     }
+     ```
+3. **Validation & Integrity Verification**:
+   - Updated `scripts/validate_pbip_project.py` with strict PBIP settings schema checking to prevent future regressions.
+   - Ran `validate_pbip_project.py`: **7 / 7 tests passed (100.0%)**.
+   - Verified that `definition.pbir`, `definition.pbism`, `definition.pbidataset`, `report.json`, and modern PBIR directories remain 100% intact and valid.
+   - MySQL database and all tables/views remained completely untouched.
+   - Draft PBIX file `powerbi/StreamScope_Analytics_Draft.pbix` remained completely untouched.
+
+
 
 
